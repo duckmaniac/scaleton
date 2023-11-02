@@ -1,0 +1,144 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8jydmrnyfidu"]
+
+[ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="1_68e4r"]
+[ext_resource type="Texture2D" uid="uid://bb03gop1ms18s" path="res://assets/scaletons_room.png" id="2_1106w"]
+[ext_resource type="Texture2D" uid="uid://2cy5hig38cu" path="res://assets/bed.png" id="3_mog5x"]
+[ext_resource type="Texture2D" uid="uid://co4dia7vhjs2p" path="res://assets/flower.png" id="4_qb3sj"]
+[ext_resource type="Texture2D" uid="uid://warmoc1nigyk" path="res://assets/lamp.png" id="5_c7li7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jj6vn"]
+size = Vector2(215.5, 83)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_elihc"]
+size = Vector2(435.813, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t7i4b"]
+size = Vector2(287, 125)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_46lnt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_p5wu5"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gqkx2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qegqx"]
+size = Vector2(1037.5, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8bi5"]
+size = Vector2(252.875, 143)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gi"]
+size = Vector2(84.2188, 54.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrs0k"]
+size = Vector2(29, 15.125)
+
+[node name="scaletons_room" type="Node2D"]
+y_sort_enabled = true
+
+[node name="scaleton" parent="." instance=ExtResource("1_68e4r")]
+position = Vector2(1349, 740)
+
+[node name="room sprite" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("2_1106w")
+metadata/_edit_lock_ = true
+
+[node name="Collisions" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="bed" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bed"]
+position = Vector2(462.25, 516.5)
+shape = SubResource("RectangleShape2D_jj6vn")
+
+[node name="bookshelf" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bookshelf"]
+position = Vector2(976.094, 242.5)
+shape = SubResource("RectangleShape2D_elihc")
+
+[node name="table" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/table"]
+position = Vector2(1477.5, 243)
+shape = SubResource("RectangleShape2D_t7i4b")
+
+[node name="left wall" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/left wall"]
+position = Vector2(227, 553)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_46lnt")
+
+[node name="right wall" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/right wall"]
+position = Vector2(1687, 573)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_p5wu5")
+
+[node name="upper wall" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/upper wall"]
+position = Vector2(645, 214)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_gqkx2")
+
+[node name="bottom wall left" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bottom wall left"]
+position = Vector2(753.25, 1007.5)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_qegqx")
+
+[node name="bottom wall right" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bottom wall right"]
+position = Vector2(1590.56, 1007.5)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_m8bi5")
+
+[node name="flower" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/flower"]
+position = Vector2(1595.89, 891.125)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_ip1gi")
+
+[node name="lamp" type="StaticBody2D" parent="Collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/lamp"]
+position = Vector2(303.5, 423.563)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_qrs0k")
+
+[node name="Bed" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(462, 447)
+scale = Vector2(6.02273, 6.02273)
+texture = ExtResource("3_mog5x")
+
+[node name="Flower" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(1596, 777)
+scale = Vector2(6.14286, 6)
+texture = ExtResource("4_qb3sj")
+
+[node name="Lamp" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(303, 315)
+scale = Vector2(5.99265, 5.99265)
+texture = ExtResource("5_c7li7")
