@@ -1,16 +1,21 @@
-[gd_scene load_steps=16 format=3 uid="uid://c8jydmrnyfidu"]
+[gd_scene load_steps=27 format=3 uid="uid://c8jydmrnyfidu"]
 
 [ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="1_68e4r"]
 [ext_resource type="Texture2D" uid="uid://bb03gop1ms18s" path="res://assets/scaletons_room.png" id="2_1106w"]
 [ext_resource type="Texture2D" uid="uid://2cy5hig38cu" path="res://assets/bed.png" id="3_mog5x"]
 [ext_resource type="Texture2D" uid="uid://co4dia7vhjs2p" path="res://assets/flower.png" id="4_qb3sj"]
 [ext_resource type="Texture2D" uid="uid://warmoc1nigyk" path="res://assets/lamp.png" id="5_c7li7"]
+[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/2d_lights_and_shadows_neutral_point_light.webp" id="6_ofewy"]
+[ext_resource type="Script" path="res://scripts/lamp.gd" id="7_lfgq3"]
+[ext_resource type="Texture2D" uid="uid://bmqlo74pbwhbm" path="res://assets/cupboard.png" id="8_g6mwt"]
+[ext_resource type="Texture2D" uid="uid://cr8jsoafgjkkk" path="res://assets/dark.png" id="8_n5i1d"]
+[ext_resource type="Script" path="res://scripts/cupboard.gd" id="8_nac8h"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj6vn"]
-size = Vector2(215.5, 83)
+size = Vector2(215.5, 64.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elihc"]
-size = Vector2(435.813, 125)
+size = Vector2(443.906, 125)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7i4b"]
 size = Vector2(287, 125)
@@ -28,16 +33,68 @@ size = Vector2(1037.5, 143)
 size = Vector2(252.875, 143)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gi"]
-size = Vector2(84.2188, 54.25)
+size = Vector2(206, 54.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qrs0k"]
-size = Vector2(29, 15.125)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrc8g"]
+size = Vector2(176, 95)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15bco"]
+atlas = ExtResource("5_c7li7")
+region = Rect2(17, 0, 17, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ectw0"]
+atlas = ExtResource("5_c7li7")
+region = Rect2(0, 0, 17, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdl7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15bco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ectw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15bco")
+}],
+"loop": false,
+"name": &"toggle",
+"speed": 10.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omayp"]
+atlas = ExtResource("8_g6mwt")
+region = Rect2(0, 0, 73, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lywvl"]
+atlas = ExtResource("8_g6mwt")
+region = Rect2(73, 0, 73, 50)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t7sch"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omayp")
+}],
+"loop": false,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lywvl")
+}],
+"loop": false,
+"name": &"opened",
+"speed": 5.0
+}]
 
 [node name="scaletons_room" type="Node2D"]
 y_sort_enabled = true
 
 [node name="scaleton" parent="." instance=ExtResource("1_68e4r")]
-position = Vector2(1349, 740)
+position = Vector2(514, 509)
 
 [node name="room sprite" type="Sprite2D" parent="."]
 position = Vector2(960, 540)
@@ -46,20 +103,21 @@ texture = ExtResource("2_1106w")
 metadata/_edit_lock_ = true
 
 [node name="Collisions" type="Node2D" parent="."]
+z_index = 1
 metadata/_edit_lock_ = true
 
 [node name="bed" type="StaticBody2D" parent="Collisions"]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bed"]
-position = Vector2(462.25, 516.5)
+position = Vector2(396, 597.75)
 shape = SubResource("RectangleShape2D_jj6vn")
 
 [node name="bookshelf" type="StaticBody2D" parent="Collisions"]
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/bookshelf"]
-position = Vector2(976.094, 242.5)
+position = Vector2(996.047, 249)
 shape = SubResource("RectangleShape2D_elihc")
 
 [node name="table" type="StaticBody2D" parent="Collisions"]
@@ -117,28 +175,76 @@ position = Vector2(1595.89, 891.125)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_ip1gi")
 
-[node name="lamp" type="StaticBody2D" parent="Collisions"]
+[node name="shelf" type="StaticBody2D" parent="Collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/lamp"]
-position = Vector2(303.5, 423.563)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collisions/shelf"]
+position = Vector2(604, 227)
 rotation = -3.14159
-shape = SubResource("RectangleShape2D_qrs0k")
+shape = SubResource("RectangleShape2D_ip1gi")
 
 [node name="Bed" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(462, 447)
-scale = Vector2(6.02273, 6.02273)
+position = Vector2(396, 528)
+scale = Vector2(6, 6.01136)
 texture = ExtResource("3_mog5x")
 
 [node name="Flower" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(1596, 777)
+position = Vector2(1603, 777)
 scale = Vector2(6.14286, 6)
 texture = ExtResource("4_qb3sj")
 
-[node name="Lamp" type="Sprite2D" parent="."]
+[node name="actions" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="lamp" type="StaticBody2D" parent="actions" groups=["interactable"]]
 z_index = 1
-position = Vector2(303, 315)
+y_sort_enabled = true
+position = Vector2(-3, -40)
+collision_layer = 2
+script = ExtResource("7_lfgq3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="actions/lamp"]
+z_index = 1
+position = Vector2(357, 358)
+shape = SubResource("RectangleShape2D_yrc8g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="actions/lamp"]
+position = Vector2(339, 423)
 scale = Vector2(5.99265, 5.99265)
-texture = ExtResource("5_c7li7")
+sprite_frames = SubResource("SpriteFrames_rdl7k")
+animation = &"toggle"
+
+[node name="PointLight2D" type="PointLight2D" parent="actions/lamp"]
+position = Vector2(338, 349)
+scale = Vector2(1.47656, 1.47656)
+energy = 0.8
+texture = ExtResource("6_ofewy")
+
+[node name="cupboard" type="StaticBody2D" parent="actions" groups=["interactable"]]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(654, -87)
+collision_layer = 2
+script = ExtResource("8_nac8h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="actions/cupboard"]
+z_index = 1
+position = Vector2(448, 439)
+shape = SubResource("RectangleShape2D_yrc8g")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="actions/cupboard"]
+position = Vector2(339, 423)
+scale = Vector2(5.99265, 5.99265)
+sprite_frames = SubResource("SpriteFrames_t7sch")
+animation = &"closed"
+
+[node name="dark" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("8_n5i1d")
+
+[connection signal="body_exited" from="scaleton" to="scaleton" method="_on_body_exited"]
+[connection signal="animation_finished" from="actions/lamp/AnimatedSprite2D" to="actions/lamp" method="_on_animated_sprite_2d_animation_finished"]
