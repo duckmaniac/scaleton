@@ -8,7 +8,7 @@ var phrases = [
 var count = 0
 var is_dialog_showing = false
 
-func interact(player):
+func interact(_player):
 	if not is_dialog_showing:
 		is_dialog_showing = true
 		$CanvasLayer/RichTextLabel.text = phrases[count % phrases.size()]

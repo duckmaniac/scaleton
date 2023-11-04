@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://brsaa2tlclx0n"]
+[gd_scene load_steps=28 format=3 uid="uid://brsaa2tlclx0n"]
 
 [ext_resource type="Script" path="res://scripts/scaleton.gd" id="1_cxwre"]
 [ext_resource type="Texture2D" uid="uid://b208nmwjvep17" path="res://assets/scaleton.png" id="1_eerih"]
 [ext_resource type="Texture2D" uid="uid://tqpbj1ju1g3p" path="res://assets/scaleton-home.png" id="2_5nb26"]
+[ext_resource type="AudioStream" uid="uid://dxm36hrn22bi0" path="res://assets/sfx/step1.mp3" id="4_5gwhm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psfnt"]
 atlas = ExtResource("1_eerih")
@@ -238,4 +239,9 @@ animation = &"idle_backward"
 position = Vector2(3, -94.5)
 shape = SubResource("RectangleShape2D_waud6")
 
+[node name="StepsPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_5gwhm")
+volume_db = -1.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]

@@ -1,6 +1,6 @@
 extends StaticBody2D
 	
-func interact(player):
+func interact(_player):
 	$AnimatedSprite2D.play("toggle")
 
 
