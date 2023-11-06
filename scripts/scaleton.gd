@@ -5,7 +5,7 @@ var screen_size
 @export var speed = 380.0
 var direction = Vector2.ZERO
 var interactable_object = null
-var can_move = false
+var can_move = true
 var sprite = null
 
 # Preload the sounds
@@ -20,7 +20,7 @@ var is_steps_sound_playing = false
 func _ready():
 	randomize()
 	screen_size = get_viewport_rect().size
-	sprite = get_node("AnimatedSprite2DHome")
+	wear_street_clothes()
 
 func _process(delta):
 	process_interaction()
@@ -78,8 +78,6 @@ func sound_steps():
 func move_character(delta):
 	direction = direction.normalized()
 	move_and_collide(direction * speed * delta)
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
 
 
 func _on_body_entered(body):
@@ -92,13 +90,19 @@ func _on_body_exited(body):
 	if body.is_in_group("interactable"):
 		interactable_object = null
 
-func change_clothes():
-	sprite = get_node("AnimatedSprite2D")
-	$AnimatedSprite2DHome.hide()
-	$AnimatedSprite2D.show()
+func wear_home_clothes():
+	sprite = get_node("home_clothes_animation")
+	$street_clothes_animation.hide()
+	$home_clothes_animation.show()
+	
+
+func wear_street_clothes():
+	sprite = get_node("street_clothes_animation")
+	$home_clothes_animation.hide()
+	$street_clothes_animation.show()
 
 func is_dressed_in_street_clothes():
-	return sprite == get_node("AnimatedSprite2D")
+	return sprite == get_node("street_clothes_animation")
 
 
 func _on_steps_player_finished():

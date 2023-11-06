@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bywh1m1b1o5xc"]
+
+[ext_resource type="AudioStream" uid="uid://gc35slcna4nj" path="res://assets/music/01.farewell.mp3" id="1_d2ivo"]
+[ext_resource type="Script" path="res://scripts/music_controller.gd" id="1_mm8rh"]
+
+[node name="music_controller" type="Node"]
+script = ExtResource("1_mm8rh")
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_d2ivo")

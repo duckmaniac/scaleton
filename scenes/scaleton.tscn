@@ -1,48 +1,48 @@
 [gd_scene load_steps=28 format=3 uid="uid://brsaa2tlclx0n"]
 
 [ext_resource type="Script" path="res://scripts/scaleton.gd" id="1_cxwre"]
-[ext_resource type="Texture2D" uid="uid://b208nmwjvep17" path="res://assets/scaleton.png" id="1_eerih"]
-[ext_resource type="Texture2D" uid="uid://tqpbj1ju1g3p" path="res://assets/scaleton-home.png" id="2_5nb26"]
+[ext_resource type="Texture2D" uid="uid://b208nmwjvep17" path="res://assets/sprites/scaleton-street.png" id="2_7ipvw"]
+[ext_resource type="Texture2D" uid="uid://tqpbj1ju1g3p" path="res://assets/sprites/scaleton-home.png" id="3_m2bnf"]
 [ext_resource type="AudioStream" uid="uid://dxm36hrn22bi0" path="res://assets/sfx/step1.mp3" id="4_5gwhm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_psfnt"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tnuhm"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yky8x"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_78oj3"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tho2l"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cvfp7"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cccqa"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bba1v"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1uwis"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0k71c"]
-atlas = ExtResource("1_eerih")
+atlas = ExtResource("2_7ipvw")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_540ak"]
@@ -109,43 +109,43 @@ animations = [{
 }]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ybewq"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0g2i"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mbnk2"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tpmmg"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_q5hy1"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(0, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7jxjn"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(32, 64, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wwuue"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(64, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mm06i"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(96, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lqxv4"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(0, 32, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_aa0a5"]
-atlas = ExtResource("2_5nb26")
+atlas = ExtResource("3_m2bnf")
 region = Rect2(32, 32, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4o8hk"]
@@ -220,16 +220,17 @@ y_sort_enabled = true
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true
+lock_rotation = true
 script = ExtResource("1_cxwre")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
+[node name="street_clothes_animation" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -96)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_540ak")
-animation = &"idle_backward"
+animation = &"idle_forward"
 
-[node name="AnimatedSprite2DHome" type="AnimatedSprite2D" parent="."]
+[node name="home_clothes_animation" type="AnimatedSprite2D" parent="."]
+visible = false
 position = Vector2(0, -96)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_4o8hk")
@@ -242,6 +243,9 @@ shape = SubResource("RectangleShape2D_waud6")
 [node name="StepsPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_5gwhm")
 volume_db = -1.0
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+current = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]

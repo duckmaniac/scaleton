@@ -1,0 +1,87 @@
+[gd_scene load_steps=11 format=3 uid="uid://17diwjohlm7k"]
+
+[ext_resource type="Script" path="res://scripts/interact_lamp.gd" id="1_5h0hg"]
+[ext_resource type="Texture2D" uid="uid://x6v7hlxnongx" path="res://assets/sprites/home/lamp-green.png" id="2_sd06f"]
+[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="3_au12c"]
+[ext_resource type="Texture2D" uid="uid://1n3e0gn44xmx" path="res://assets/sprites/home/lamp-red.png" id="3_f5est"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxp8"]
+size = Vector2(176, 154.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15bco"]
+atlas = ExtResource("2_sd06f")
+region = Rect2(17, 0, 17, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ectw0"]
+atlas = ExtResource("2_sd06f")
+region = Rect2(0, 0, 17, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_darkp"]
+atlas = ExtResource("3_f5est")
+region = Rect2(17, 0, 17, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xoqx"]
+atlas = ExtResource("3_f5est")
+region = Rect2(0, 0, 17, 39)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rdl7k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15bco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ectw0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15bco")
+}],
+"loop": false,
+"name": &"green",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_darkp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xoqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_darkp")
+}],
+"loop": false,
+"name": &"red",
+"speed": 5.0
+}]
+
+[node name="lamp" type="StaticBody2D" groups=["interactable"]]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-3, -40)
+collision_layer = 2
+script = ExtResource("1_5h0hg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(357, 387.75)
+shape = SubResource("RectangleShape2D_1lxp8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(339, 423)
+scale = Vector2(5.99265, 5.99265)
+sprite_frames = SubResource("SpriteFrames_rdl7k")
+animation = &"green"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(338, 349)
+scale = Vector2(1.47656, 1.47656)
+energy = 0.8
+shadow_filter = 1
+shadow_filter_smooth = 3.0
+texture = ExtResource("3_au12c")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -3.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
