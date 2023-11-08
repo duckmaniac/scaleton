@@ -248,4 +248,5 @@ volume_db = -1.0
 current = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]

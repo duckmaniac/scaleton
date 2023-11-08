@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcwy7iqwiqdpj"
-path="res://.godot/imported/corridor.png-81e615f12b40b4e89856396739f1300f.ctex"
+uid="uid://bdcduh0di4qck"
+path="res://.godot/imported/hallway.png-394fc016361d547fb93698eade0b666d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/home/corridor.png"
-dest_files=["res://.godot/imported/corridor.png-81e615f12b40b4e89856396739f1300f.ctex"]
+source_file="res://assets/sprites/home/hallway.png"
+dest_files=["res://.godot/imported/hallway.png-394fc016361d547fb93698eade0b666d.ctex"]
 
 [params]
 

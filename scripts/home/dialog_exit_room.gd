@@ -14,9 +14,8 @@ func interact(player):
 	if is_dialog_showing: return
 	
 	if player.is_dressed_in_street_clothes():
-		if player.sprite.animation == "walk_forward":
-			player.position = Vector2(1442, 1721)
-			emit_signal("to_coridor")
+		player.set_deferred("position", Vector2(1442, 1721))
+		emit_signal("to_coridor")
 	else:
 		is_dialog_showing = true
 		$CanvasLayer/RichTextLabel.text = phrases[count % phrases.size()]
