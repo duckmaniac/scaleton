@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://17diwjohlm7k"]
+[gd_scene load_steps=14 format=3 uid="uid://17diwjohlm7k"]
 
 [ext_resource type="Script" path="res://scripts/lamp.gd" id="1_sg51v"]
 [ext_resource type="Texture2D" uid="uid://x6v7hlxnongx" path="res://assets/sprites/home/lamp-green.png" id="2_sd06f"]
 [ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="3_au12c"]
 [ext_resource type="Texture2D" uid="uid://1n3e0gn44xmx" path="res://assets/sprites/home/lamp-red.png" id="3_f5est"]
+[ext_resource type="Texture2D" uid="uid://dfxib3mnkyk0k" path="res://assets/sprites/home/lamp-small.png" id="3_vvj71"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxp8"]
 size = Vector2(176, 154.5)
@@ -23,6 +24,14 @@ region = Rect2(17, 0, 17, 39)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4xoqx"]
 atlas = ExtResource("3_f5est")
 region = Rect2(0, 0, 17, 39)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxbpq"]
+atlas = ExtResource("3_vvj71")
+region = Rect2(0, 0, 16, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n7wjk"]
+atlas = ExtResource("3_vvj71")
+region = Rect2(16, 0, 16, 21)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_rdl7k"]
 animations = [{
@@ -53,6 +62,20 @@ animations = [{
 "loop": false,
 "name": &"red",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxbpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n7wjk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxbpq")
+}],
+"loop": false,
+"name": &"small",
+"speed": 5.0
 }]
 
 [node name="lamp" type="StaticBody2D" groups=["interactable"]]
@@ -71,7 +94,7 @@ shape = SubResource("RectangleShape2D_1lxp8")
 position = Vector2(339, 423)
 scale = Vector2(5.99265, 5.99265)
 sprite_frames = SubResource("SpriteFrames_rdl7k")
-animation = &"green"
+animation = &"small"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(338, 349)

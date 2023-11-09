@@ -1,16 +1,18 @@
 extends StaticBody2D
 
-enum LampColor { green, red }
-@export var lamp_color = LampColor.green
+enum LampType { green, red, small }
+@export var lamp_color = LampType.green
 
 var sound_on = preload("res://assets/sfx/lamp_on.mp3")
 var sound_off = preload("res://assets/sfx/lamp_off.mp3")
 
 func _ready():
-	if lamp_color == LampColor.green:
+	if lamp_color == LampType.green:
 		$AnimatedSprite2D.animation = "green"
-	elif lamp_color == LampColor.red:
+	elif lamp_color == LampType.red:
 		$AnimatedSprite2D.animation = "red"
+	elif lamp_color == LampType.small:
+		$AnimatedSprite2D.animation = "small"	
 	
 func interact(_player):
 	if $PointLight2D.enabled:

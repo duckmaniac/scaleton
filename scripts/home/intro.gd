@@ -5,5 +5,5 @@ signal back_to_corridor
 func interact(player):
 	player.can_move = false
 	$CanvasLayer.visible = true
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1.5).timeout
 	$CanvasLayer/author.visible = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=3 uid="uid://ccfv4txtc8p0v"]
+[gd_scene load_steps=78 format=3 uid="uid://ccfv4txtc8p0v"]
 
 [ext_resource type="Script" path="res://scripts/home/home_main.gd" id="1_dqm4q"]
 [ext_resource type="Script" path="res://scripts/home/home_camera.gd" id="2_lm2c7"]
@@ -26,9 +26,11 @@
 [ext_resource type="Script" path="res://scripts/home/move_to_hallway.gd" id="24_7e0ll"]
 [ext_resource type="Texture2D" uid="uid://bdcduh0di4qck" path="res://assets/sprites/home/hallway.png" id="25_x358r"]
 [ext_resource type="Texture2D" uid="uid://bgtwjqhp2c4cl" path="res://assets/sprites/home/couch.png" id="26_qd08c"]
-[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="27_qqkby"]
 [ext_resource type="Script" path="res://scripts/home/back_to_corridor.gd" id="28_5vqrt"]
+[ext_resource type="PackedScene" uid="uid://c4r5jyjaeqicu" path="res://scenes/star.tscn" id="29_0gdui"]
 [ext_resource type="Script" path="res://scripts/home/intro.gd" id="29_lupf1"]
+[ext_resource type="PackedScene" uid="uid://o7vl7lpoldf0" path="res://scenes/scaleton_mirror.tscn" id="30_2vd08"]
+[ext_resource type="AudioStream" uid="uid://whacv8fiiilt" path="res://assets/sfx/clock.mp3" id="30_f73pe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj6vn"]
 size = Vector2(215.5, 64.5)
@@ -206,6 +208,9 @@ size = Vector2(320, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nrki"]
 size = Vector2(525, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b64l0"]
+size = Vector2(58.5, 341)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pdgn"]
 size = Vector2(178, 60.875)
@@ -632,7 +637,7 @@ shape = SubResource("RectangleShape2D_6epee")
 [node name="snoring" type="AudioStreamPlayer2D" parent="corridor/interactions/d_parents_door"]
 position = Vector2(474, 1795)
 stream = ExtResource("21_5qeh2")
-volume_db = 10.0
+volume_db = 5.0
 pitch_scale = 1.3
 autoplay = true
 max_distance = 1000.0
@@ -681,6 +686,12 @@ position = Vector2(1920, 1079)
 [node name="background" type="Sprite2D" parent="hallway"]
 z_index = -1
 position = Vector2(-963, 1617)
+scale = Vector2(6, 6)
+texture = ExtResource("25_x358r")
+
+[node name="background-mirror" type="Sprite2D" parent="hallway"]
+z_index = -3
+position = Vector2(-965, 1319)
 scale = Vector2(6, 6)
 texture = ExtResource("25_x358r")
 
@@ -762,16 +773,6 @@ position = Vector2(-1767, 1670)
 scale = Vector2(6, 6.1263)
 texture = ExtResource("26_qd08c")
 
-[node name="light" type="Node" parent="hallway"]
-
-[node name="lamp" type="PointLight2D" parent="hallway/light"]
-position = Vector2(759, 2527)
-scale = Vector2(1.47656, 1.47656)
-energy = 0.8
-shadow_filter = 1
-shadow_filter_smooth = 3.0
-texture = ExtResource("27_qqkby")
-
 [node name="interactions" type="Node" parent="hallway"]
 
 [node name="back_to_corridor" type="StaticBody2D" parent="hallway/interactions" groups=["auto-interactable"]]
@@ -780,8 +781,8 @@ collision_layer = 2
 script = ExtResource("28_5vqrt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/back_to_corridor"]
-position = Vector2(1973.5, 2826.5)
-shape = SubResource("RectangleShape2D_2pdgn")
+position = Vector2(1913.75, 2851.5)
+shape = SubResource("RectangleShape2D_b64l0")
 
 [node name="intro" type="StaticBody2D" parent="hallway/interactions" groups=["interactable"]]
 z_index = 3
@@ -795,16 +796,109 @@ shape = SubResource("RectangleShape2D_2pdgn")
 [node name="CanvasLayer" type="CanvasLayer" parent="hallway/interactions/intro"]
 visible = false
 
+[node name="stars" type="Node2D" parent="hallway/interactions/intro/CanvasLayer"]
+position = Vector2(3, -3)
+
+[node name="star" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(393, 354)
+autoplay = "default"
+frame_progress = 0.20816
+
+[node name="star2" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(918, 669)
+autoplay = "default"
+frame = 3
+frame_progress = 0.0
+
+[node name="star3" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(711, 159)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star10" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(554, 794)
+autoplay = "default"
+frame = 1
+frame_progress = 0.0
+
+[node name="star7" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1322, 276)
+autoplay = "default"
+frame = 1
+frame_progress = 0.0
+
+[node name="star12" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1744, 454)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star4" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(233, 41)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star5" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1669, 1020)
+scale = Vector2(8, 6.66663)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star11" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1193, 860)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star8" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(127, 503)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star6" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(218, 941)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star9" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1673, 92)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star13" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
+z_index = 3
+position = Vector2(1491, 742)
+autoplay = "default"
+frame_progress = 0.0
+
 [node name="ColorRect" type="ColorRect" parent="hallway/interactions/intro/CanvasLayer"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -958.5
-offset_top = -622.0
-offset_right = 958.5
-offset_bottom = 622.0
+offset_left = -955.5
+offset_top = -625.0
+offset_right = 961.5
+offset_bottom = 619.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -817,10 +911,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -74.5
-offset_top = -13.0
-offset_right = 74.5
-offset_bottom = 13.0
+offset_left = -495.0
+offset_top = -51.5
+offset_right = 501.0
+offset_bottom = 45.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -836,10 +930,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 9.0
-offset_top = 86.0
-offset_right = 876.0
-offset_bottom = 183.0
+offset_left = 148.0
+offset_top = 78.0
+offset_right = 1015.0
+offset_bottom = 175.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -848,6 +942,24 @@ theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
 theme_override_fonts/font = ExtResource("12_poj00")
 theme_override_font_sizes/font_size = 50
 text = "by Dmitrii Tarbaev"
+
+[node name="lamp" parent="hallway/interactions" instance=ExtResource("8_5q5oc")]
+z_index = 0
+position = Vector2(421, 2127)
+lamp_color = 2
+
+[node name="clock" type="AudioStreamPlayer2D" parent="hallway"]
+position = Vector2(-1315, 1804)
+stream = ExtResource("30_f73pe")
+volume_db = -1.0
+autoplay = true
+max_distance = 1000.0
+
+[node name="scaleton_mirror" parent="." node_paths=PackedStringArray("scaleton") instance=ExtResource("30_2vd08")]
+z_index = -2
+y_sort_enabled = false
+position = Vector2(1638, 515)
+scaleton = NodePath("../scaleton")
 
 [connection signal="to_coridor" from="scaletons_room/interactions/d_exit_room" to="Camera2D" method="_on_d_exit_room_to_coridor"]
 [connection signal="body_shape_entered" from="scaletons_room/foreground/flower" to="scaletons_room/foreground/flower" method="_on_body_shape_entered"]

@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c4r5jyjaeqicu"]
+
+[ext_resource type="Texture2D" uid="uid://dpuf3uy12my52" path="res://assets/sprites/star.png" id="1_3nmdk"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omrdu"]
+atlas = ExtResource("1_3nmdk")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nshql"]
+atlas = ExtResource("1_3nmdk")
+region = Rect2(3, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pto13"]
+atlas = ExtResource("1_3nmdk")
+region = Rect2(6, 0, 3, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x23jb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omrdu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nshql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pto13")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nshql")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omrdu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="star" type="AnimatedSprite2D"]
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_x23jb")
+frame_progress = 0.448897

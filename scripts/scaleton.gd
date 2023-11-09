@@ -58,14 +58,11 @@ func play_animation():
 		
 	if direction.x != 0:
 		sprite.play("walk_left")
-		sprite.flip_v = false
 		sprite.flip_h = direction.x > 0
 	elif direction.y > 0:
 		sprite.play("walk_forward")
 	elif direction.y < 0:
 		sprite.play("walk_backward")
-	else:
-		sprite.play("idle")
 		
 func sound_steps():
 	if not is_steps_sound_playing:
