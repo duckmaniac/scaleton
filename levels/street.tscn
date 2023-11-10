@@ -1,0 +1,331 @@
+[gd_scene load_steps=21 format=3 uid="uid://nbjpa2ei7jdb"]
+
+[ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
+[ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
+[ext_resource type="Texture2D" uid="uid://b2du46e268vma" path="res://assets/sprites/street/fence.png" id="2_1gafa"]
+[ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="2_3wjrk"]
+[ext_resource type="Texture2D" uid="uid://bj3qpv6d2lg46" path="res://assets/sprites/street/house_left.png" id="3_24nbd"]
+[ext_resource type="Texture2D" uid="uid://cx8vcfhdylc0a" path="res://assets/sprites/street/basket.png" id="4_78uvh"]
+[ext_resource type="Texture2D" uid="uid://bmfwtlbk45fr2" path="res://assets/sprites/street/house_right.png" id="4_ryldv"]
+[ext_resource type="Texture2D" uid="uid://bka82v1wretpn" path="res://assets/sprites/street/roof.png" id="5_ty2fd"]
+[ext_resource type="PackedScene" uid="uid://c4r5jyjaeqicu" path="res://scenes/star.tscn" id="8_0aww5"]
+[ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="9_bsa46"]
+[ext_resource type="PackedScene" uid="uid://bfjysn6i20ke5" path="res://scenes/ball.tscn" id="10_u5hll"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ua68c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k7r02"]
+size = Vector2(349, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c17t6"]
+size = Vector2(29.5001, 240)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocu0k"]
+size = Vector2(236.5, 621)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6jeii"]
+size = Vector2(236.5, 570)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5tcyj"]
+size = Vector2(29.5, 936)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8eph0"]
+size = Vector2(29.5, 174)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1u5us"]
+size = Vector2(29.5, 246)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o4lxt"]
+size = Vector2(1920, 190.995)
+
+[node name="street" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_vxctq")
+
+[node name="neighbours" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-48, 0)
+
+[node name="background" type="Sprite2D" parent="neighbours"]
+position = Vector2(1008, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("1_7ok3t")
+
+[node name="collisions" type="Node2D" parent="neighbours"]
+
+[node name="top_wall" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/top_wall"]
+position = Vector2(1896, 276)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_ua68c")
+
+[node name="left_wall" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/left_wall"]
+position = Vector2(47, 367)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_ua68c")
+
+[node name="right_wall" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/right_wall"]
+position = Vector2(1975, 342)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_k7r02")
+
+[node name="fence_left" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/fence_left"]
+z_index = 1
+position = Vector2(168, 501.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_c17t6")
+
+[node name="house_left" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/house_left"]
+z_index = 1
+position = Vector2(426.5, 313.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_ocu0k")
+
+[node name="house_right" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/house_right"]
+z_index = 1
+position = Vector2(1593, 318)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_6jeii")
+
+[node name="fence_center" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/fence_center"]
+z_index = 1
+position = Vector2(990, 501.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_5tcyj")
+
+[node name="basket" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/basket"]
+z_index = 1
+position = Vector2(1023, 327)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_8eph0")
+
+[node name="fence_right" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/fence_right"]
+z_index = 1
+position = Vector2(1845, 501.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_1u5us")
+
+[node name="bottom_wall" type="StaticBody2D" parent="neighbours/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/bottom_wall"]
+position = Vector2(1008, 983.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_o4lxt")
+
+[node name="foreground" type="Node2D" parent="neighbours"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="fence" type="Sprite2D" parent="neighbours/foreground"]
+position = Vector2(1008, 438)
+scale = Vector2(6, 6)
+texture = ExtResource("2_1gafa")
+
+[node name="house_left" type="Sprite2D" parent="neighbours/foreground"]
+position = Vector2(429, 222)
+scale = Vector2(6, 6)
+texture = ExtResource("3_24nbd")
+
+[node name="house_right" type="Sprite2D" parent="neighbours/foreground"]
+position = Vector2(1596, 219)
+scale = Vector2(6, 6)
+texture = ExtResource("4_ryldv")
+
+[node name="roof" type="Sprite2D" parent="neighbours/foreground"]
+position = Vector2(1002, 945)
+scale = Vector2(6, 6)
+texture = ExtResource("5_ty2fd")
+
+[node name="basket" type="Sprite2D" parent="neighbours/foreground"]
+position = Vector2(1023, 225)
+scale = Vector2(6, 6)
+texture = ExtResource("4_78uvh")
+
+[node name="intro" type="CanvasLayer" parent="neighbours"]
+visible = false
+
+[node name="stars" type="Node2D" parent="neighbours/intro"]
+position = Vector2(3, -3)
+
+[node name="star" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(393, 354)
+autoplay = "default"
+frame_progress = 0.20816
+
+[node name="star2" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(918, 669)
+autoplay = "default"
+frame = 3
+frame_progress = 0.0
+
+[node name="star3" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(711, 159)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star10" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(554, 794)
+autoplay = "default"
+frame = 1
+frame_progress = 0.0
+
+[node name="star7" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1322, 276)
+autoplay = "default"
+frame = 1
+frame_progress = 0.0
+
+[node name="star12" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1744, 454)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star4" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(233, 41)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star5" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1669, 1020)
+scale = Vector2(8, 6.66663)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star11" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1193, 860)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star8" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(127, 503)
+autoplay = "default"
+frame = 4
+frame_progress = 0.0
+
+[node name="star6" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(218, 941)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star9" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1673, 92)
+autoplay = "default"
+frame = 2
+frame_progress = 0.0
+
+[node name="star13" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+z_index = 3
+position = Vector2(1491, 742)
+autoplay = "default"
+frame_progress = 0.0
+
+[node name="ColorRect" type="ColorRect" parent="neighbours/intro"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -626.0
+offset_right = 960.0
+offset_bottom = 618.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.168627, 0.0941176, 0.235294, 1)
+
+[node name="game" type="Label" parent="neighbours/intro"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -495.0
+offset_top = -51.5
+offset_right = 501.0
+offset_bottom = 45.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
+theme_override_fonts/font = ExtResource("9_bsa46")
+theme_override_font_sizes/font_size = 100
+text = "SCALETON'S STORY"
+
+[node name="author" type="Label" parent="neighbours/intro"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 148.0
+offset_top = 78.0
+offset_right = 1015.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
+theme_override_fonts/font = ExtResource("9_bsa46")
+theme_override_font_sizes/font_size = 50
+text = "by Dmitrii Tarbaev"
+
+[node name="ball" parent="neighbours" instance=ExtResource("10_u5hll")]
+z_index = 1
+position = Vector2(432, 538)
+
+[node name="global" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.38
+blend_mode = 1
+
+[node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
+position = Vector2(972, 842)

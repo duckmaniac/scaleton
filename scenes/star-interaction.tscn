@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://do6sajp43u6aa"]
+
+[ext_resource type="Texture2D" uid="uid://y3bpitre4icv" path="res://assets/sprites/star-interaction.png" id="1_clr5l"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ixff0"]
+blend_mode = 1
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55s08"]
+atlas = ExtResource("1_clr5l")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5454t"]
+atlas = ExtResource("1_clr5l")
+region = Rect2(3, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6x8n"]
+atlas = ExtResource("1_clr5l")
+region = Rect2(6, 0, 3, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x23jb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55s08")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5454t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6x8n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5454t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55s08")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="star" type="AnimatedSprite2D"]
+material = SubResource("CanvasItemMaterial_ixff0")
+scale = Vector2(8, 8)
+sprite_frames = SubResource("SpriteFrames_x23jb")
+autoplay = "default"
+frame_progress = 0.448897

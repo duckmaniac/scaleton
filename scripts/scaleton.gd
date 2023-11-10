@@ -1,12 +1,15 @@
 extends RigidBody2D
 
+
 var screen_size
 
 @export var speed = 380.0
 var direction = Vector2.ZERO
+var prev_direction = Vector2.ZERO
 var interactable_object = null
 var can_move = true
 var sprite = null
+var prev_animation = null
 
 # Preload the sounds
 var step_sounds = [
@@ -17,25 +20,42 @@ var step_sounds = [
 ]
 var is_steps_sound_playing = false
 
+
 func _ready():
 	randomize()
 	screen_size = get_viewport_rect().size
 	wear_street_clothes()
 
-func _process(delta):
+
+func _process(_delta):
 	process_interaction()
 	set_direction()
 	play_animation()
-	
+
+func _physics_process(delta):
 	if direction.length() != 0:
 		sound_steps()
-		move_character(delta)		
-	
+		move_character(delta)
+	else:
+		set_linear_velocity(Vector2.ZERO)
+
 func process_interaction():
 	if Input.is_action_just_pressed("interact") and interactable_object != null:
 		interactable_object.interact(self)
+		
+	if Input.is_action_just_pressed("dance") and can_move:
+		if prev_animation == "walk_backward":
+			set_animation("dance_backward")
+		else:
+			set_animation("dance_forward")
+
+	if Input.is_action_just_released("dance") and can_move:
+		sprite.play(prev_animation)
+
 
 func set_direction():
+	if direction != Vector2.ZERO:
+		prev_direction = direction
 	direction = Vector2.ZERO
 	if can_move:
 		if Input.is_action_pressed("ui_right"):
@@ -47,22 +67,26 @@ func set_direction():
 		if Input.is_action_pressed("ui_up"):
 			direction.y -= 1
 
+
 func play_animation():
 	if direction.length() == 0:
 		if sprite.animation == "walk_forward":
-			sprite.play("idle_forward")
+			set_animation("idle_forward")
 		elif sprite.animation == "walk_backward":
-			sprite.play("idle_backward")
-		sprite.stop()
+			set_animation("idle_backward")
+		if (sprite.animation != "dance_forward" and
+			sprite.animation != "dance_backward"):
+			sprite.stop()
 		return
 		
 	if direction.x != 0:
-		sprite.play("walk_left")
+		set_animation("walk_left")
 		sprite.flip_h = direction.x > 0
 	elif direction.y > 0:
-		sprite.play("walk_forward")
+		set_animation("walk_forward")
 	elif direction.y < 0:
-		sprite.play("walk_backward")
+		set_animation("walk_backward")
+		
 		
 func sound_steps():
 	if not is_steps_sound_playing:
@@ -78,14 +102,17 @@ func move_character(delta):
 
 
 func _on_body_entered(body):
-	if body.is_in_group("interactable"):
-		interactable_object = body
-	elif body.is_in_group("auto-interactable"):
+	if body.is_in_group("auto-interactable"):
 		body.interact(self)
+		interactable_object = body
+	elif body.is_in_group("interactable"):
+		interactable_object = body
+	
 		
 func _on_body_exited(body):
 	if body.is_in_group("interactable"):
 		interactable_object = null
+
 
 func wear_home_clothes():
 	sprite = get_node("home_clothes_animation")
@@ -98,9 +125,20 @@ func wear_street_clothes():
 	$home_clothes_animation.hide()
 	$street_clothes_animation.show()
 
+
 func is_dressed_in_street_clothes():
 	return sprite == get_node("street_clothes_animation")
 
 
 func _on_steps_player_finished():
 	is_steps_sound_playing = false
+
+
+func teleport(new_position):
+	set_deferred("interactable_object", null)
+	set_deferred("position", new_position)
+	
+
+func set_animation(animation_name):
+	prev_animation = sprite.animation
+	sprite.play(animation_name)

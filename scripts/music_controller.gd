@@ -1,6 +1,8 @@
 extends Node
 
-var ost = [preload("res://assets/music/01.farewell.mp3")]
+var ost = [
+	preload("res://assets/music/01.farewell.mp3"),
+	preload("res://assets/music/02.friend.mp3")]
 
 func play_music():
 	$music.play()

@@ -6,9 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://1n3e0gn44xmx" path="res://assets/sprites/home/lamp-red.png" id="3_f5est"]
 [ext_resource type="Texture2D" uid="uid://dfxib3mnkyk0k" path="res://assets/sprites/home/lamp-small.png" id="3_vvj71"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxp8"]
-size = Vector2(176, 154.5)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_15bco"]
 atlas = ExtResource("2_sd06f")
 region = Rect2(17, 0, 17, 39)
@@ -78,23 +75,26 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxp8"]
+size = Vector2(176, 113)
+
 [node name="lamp" type="StaticBody2D" groups=["interactable"]]
-z_index = 1
+z_index = 2
 y_sort_enabled = true
 position = Vector2(-3, -40)
 collision_layer = 2
 script = ExtResource("1_sg51v")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(357, 387.75)
-shape = SubResource("RectangleShape2D_1lxp8")
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(339, 423)
 scale = Vector2(5.99265, 5.99265)
 sprite_frames = SubResource("SpriteFrames_rdl7k")
-animation = &"small"
+animation = &"green"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(357, 531.5)
+shape = SubResource("RectangleShape2D_1lxp8")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(338, 349)

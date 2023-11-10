@@ -1,6 +1,6 @@
-[gd_scene load_steps=78 format=3 uid="uid://ccfv4txtc8p0v"]
+[gd_scene load_steps=85 format=3 uid="uid://nwdepydlb2tl"]
 
-[ext_resource type="Script" path="res://scripts/home/home_main.gd" id="1_dqm4q"]
+[ext_resource type="Script" path="res://scripts/home/level_home.gd" id="1_dh4yn"]
 [ext_resource type="Script" path="res://scripts/home/home_camera.gd" id="2_lm2c7"]
 [ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="3_qg35q"]
 [ext_resource type="Texture2D" uid="uid://bb03gop1ms18s" path="res://assets/sprites/home/room.png" id="4_kag6d"]
@@ -8,18 +8,20 @@
 [ext_resource type="Texture2D" uid="uid://bmqlo74pbwhbm" path="res://assets/sprites/home/cupboard.png" id="7_xmkmm"]
 [ext_resource type="AudioStream" uid="uid://cycuts84he1cy" path="res://assets/sfx/change_clothes.mp3" id="8_5i3nc"]
 [ext_resource type="PackedScene" uid="uid://17diwjohlm7k" path="res://scenes/lamp.tscn" id="8_5q5oc"]
+[ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="9_rh7av"]
 [ext_resource type="AudioStream" uid="uid://dugg5ikaijoyb" path="res://assets/sfx/paper_show.mp3" id="9_vumei"]
 [ext_resource type="Texture2D" uid="uid://dc1a0b6ho5rfb" path="res://assets/sprites/home/note.png" id="10_am70d"]
 [ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="10_uxqtl"]
-[ext_resource type="Script" path="res://scripts/home/dialog_exit_room.gd" id="11_87y5v"]
 [ext_resource type="Script" path="res://scripts/detail_view.gd" id="11_t2yj6"]
 [ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="12_poj00"]
-[ext_resource type="Texture2D" uid="uid://bwvcwj3x7yghu" path="res://assets/sprites/dialog.png" id="12_xaqnf"]
-[ext_resource type="Script" path="res://scripts/dialog.gd" id="13_bngig"]
 [ext_resource type="Texture2D" uid="uid://2cy5hig38cu" path="res://assets/sprites/home/bed.png" id="15_s01au"]
 [ext_resource type="Texture2D" uid="uid://bcwy7iqwiqdpj" path="res://assets/sprites/home/corridor.png" id="17_fswsr"]
+[ext_resource type="Script" path="res://scripts/home/move_to_corridor.gd" id="18_27t45"]
 [ext_resource type="Texture2D" uid="uid://dxga0uu2wgxor" path="res://assets/sprites/home/flower-animation.png" id="18_id3u7"]
 [ext_resource type="Script" path="res://scripts/home/flower.gd" id="18_p20y4"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="19_gdg0w"]
+[ext_resource type="Script" path="res://scripts/highlight.gd" id="19_gtss6"]
+[ext_resource type="AudioStream" uid="uid://ce2qk76j02hul" path="res://assets/sfx/leaf.mp3" id="19_q4wdn"]
 [ext_resource type="Script" path="res://scripts/home/back_to_room.gd" id="21_5ivis"]
 [ext_resource type="AudioStream" uid="uid://crkihgdpk2c" path="res://assets/sfx/snoring.mp3" id="21_5qeh2"]
 [ext_resource type="Texture2D" uid="uid://bdqrvknixj05l" path="res://assets/sprites/home/family-portrait.png" id="21_ftsvp"]
@@ -27,25 +29,28 @@
 [ext_resource type="Texture2D" uid="uid://bdcduh0di4qck" path="res://assets/sprites/home/hallway.png" id="25_x358r"]
 [ext_resource type="Texture2D" uid="uid://bgtwjqhp2c4cl" path="res://assets/sprites/home/couch.png" id="26_qd08c"]
 [ext_resource type="Script" path="res://scripts/home/back_to_corridor.gd" id="28_5vqrt"]
-[ext_resource type="PackedScene" uid="uid://c4r5jyjaeqicu" path="res://scenes/star.tscn" id="29_0gdui"]
-[ext_resource type="Script" path="res://scripts/home/intro.gd" id="29_lupf1"]
+[ext_resource type="Script" path="res://scripts/street/intro.gd" id="29_4a604"]
 [ext_resource type="PackedScene" uid="uid://o7vl7lpoldf0" path="res://scenes/scaleton_mirror.tscn" id="30_2vd08"]
 [ext_resource type="AudioStream" uid="uid://whacv8fiiilt" path="res://assets/sfx/clock.mp3" id="30_f73pe"]
+[ext_resource type="Script" path="res://scripts/home/couch.gd" id="32_pspio"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj6vn"]
-size = Vector2(215.5, 64.5)
+size = Vector2(217, 219.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q3qw4"]
+size = Vector2(24, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elihc"]
-size = Vector2(443.906, 125)
+size = Vector2(437, 290)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7i4b"]
-size = Vector2(287, 125)
+size = Vector2(287, 162)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kflv4"]
-size = Vector2(570, 20)
+size = Vector2(718, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udooh"]
-size = Vector2(570, 20)
+size = Vector2(753, 20)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gqkx2"]
 
@@ -62,10 +67,10 @@ size = Vector2(252.875, 143)
 size = Vector2(83.0001, 54.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gi"]
-size = Vector2(206, 54.25)
+size = Vector2(210, 48.9999)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrc8g"]
-size = Vector2(176, 95)
+size = Vector2(204, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omayp"]
 atlas = ExtResource("7_xmkmm")
@@ -94,17 +99,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eb7m"]
-size = Vector2(130, 71)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l033h"]
-size = Vector2(173, 39)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xmf51"]
+size = Vector2(216.5, 85.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2khje"]
-size = Vector2(280, 246)
+size = Vector2(330, 246)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_18pfx"]
-size = Vector2(201, 120)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eb7m"]
+size = Vector2(146, 78)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bo3hg"]
 atlas = ExtResource("18_id3u7")
@@ -150,13 +152,16 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0jvvb"]
-size = Vector2(1070, 47)
+size = Vector2(131.75, 154)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l033h"]
+size = Vector2(185, 39)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uol8"]
-size = Vector2(70.1201, 66)
+size = Vector2(96.03, 45)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb6b3"]
-size = Vector2(198, 56)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_porkf"]
+size = Vector2(84, 71)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wuyvc"]
 size = Vector2(1636.5, 20)
@@ -165,7 +170,7 @@ size = Vector2(1636.5, 20)
 size = Vector2(1769.75, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hwrtj"]
-size = Vector2(282, 20)
+size = Vector2(419.5, 20)
 
 [sub_resource type="Gradient" id="Gradient_wkugq"]
 offsets = PackedFloat32Array(0, 0.690323)
@@ -177,54 +182,66 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kt0tx"]
-size = Vector2(136.75, 120)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6epee"]
-size = Vector2(179.5, 120)
+size = Vector2(163.375, 113)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y0nab"]
-size = Vector2(377.75, 51)
+size = Vector2(377.75, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6dtwp"]
 size = Vector2(242, 433)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6epee"]
+size = Vector2(179.5, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mb6b3"]
+size = Vector2(198, 76)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xutpj"]
-size = Vector2(262, 66)
+size = Vector2(265, 210)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xddo4"]
-size = Vector2(294, 65)
+size = Vector2(299, 237)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fvnd"]
-size = Vector2(83.75, 54)
+size = Vector2(85, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_41id0"]
-size = Vector2(122.875, 44)
+size = Vector2(14.8774, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4svhs"]
+size = Vector2(135.439, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aihhj"]
+size = Vector2(132.719, 10.75)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_424x0"]
 size = Vector2(1502, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l33v3"]
-size = Vector2(320, 20)
+size = Vector2(341, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0nrki"]
-size = Vector2(525, 20)
+size = Vector2(348, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b64l0"]
-size = Vector2(58.5, 341)
+size = Vector2(58.5, 242)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2pdgn"]
-size = Vector2(178, 60.875)
+size = Vector2(169, 103)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v6liv"]
+size = Vector2(186, 173)
 
 [node name="home" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_dqm4q")
+script = ExtResource("1_dh4yn")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 script = ExtResource("2_lm2c7")
 
 [node name="scaleton" parent="." instance=ExtResource("3_qg35q")]
-position = Vector2(1504, 507)
+position = Vector2(1504, 501)
 can_sleep = false
 
 [node name="scaletons_room" type="Node2D" parent="."]
@@ -236,92 +253,99 @@ scale = Vector2(6, 6)
 texture = ExtResource("4_kag6d")
 metadata/_edit_lock_ = true
 
-[node name="Collisions" type="Node2D" parent="scaletons_room"]
+[node name="collisions" type="Node2D" parent="scaletons_room"]
 z_index = 1
 metadata/_edit_lock_ = true
 
-[node name="bed" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="bed" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/bed"]
-position = Vector2(396, 597.75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/bed"]
+position = Vector2(398.5, 669.625)
 shape = SubResource("RectangleShape2D_jj6vn")
 
-[node name="bookshelf" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="lamp" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/bookshelf"]
-position = Vector2(996.047, 249)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/lamp"]
+position = Vector2(339, 491.5)
+shape = SubResource("RectangleShape2D_q3qw4")
+
+[node name="cupboard" type="StaticBody2D" parent="scaletons_room/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/cupboard"]
+position = Vector2(993.5, 335)
 shape = SubResource("RectangleShape2D_elihc")
 
-[node name="table" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="table" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/table"]
-position = Vector2(1477.5, 243)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/table"]
+position = Vector2(1476, 389)
 shape = SubResource("RectangleShape2D_t7i4b")
 
-[node name="left wall" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="left wall" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/left wall"]
-position = Vector2(224, 651)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/left wall"]
+position = Vector2(224, 577)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_kflv4")
 
-[node name="right wall" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="right wall" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/right wall"]
-position = Vector2(1690, 651)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/right wall"]
+position = Vector2(1690, 559.5)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_udooh")
 
-[node name="upper wall" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="top wall" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/upper wall"]
-position = Vector2(645, 214)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/top wall"]
+position = Vector2(653, 393)
 rotation = 3.14159
 shape = SubResource("WorldBoundaryShape2D_gqkx2")
 
-[node name="bottom wall center2" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="bottom wall center2" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/bottom wall center2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/bottom wall center2"]
 position = Vector2(1369, 1088)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_xke6y")
 
-[node name="bottom wall left" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="bottom wall left" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/bottom wall left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/bottom wall left"]
 position = Vector2(753.25, 1007.5)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_qegqx")
 
-[node name="bottom wall right" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="bottom wall right" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/bottom wall right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/bottom wall right"]
 position = Vector2(1590.56, 1007.5)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_m8bi5")
 
-[node name="flower" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="flower" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/flower"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/flower"]
 position = Vector2(1596.5, 891.125)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_e3ot2")
 
-[node name="shelf" type="StaticBody2D" parent="scaletons_room/Collisions"]
+[node name="shelf" type="StaticBody2D" parent="scaletons_room/collisions"]
 metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/Collisions/shelf"]
-position = Vector2(604, 227)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/shelf"]
+position = Vector2(610, 389)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_ip1gi")
 
@@ -339,7 +363,7 @@ script = ExtResource("6_a27o5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/cupboard"]
 z_index = 1
-position = Vector2(448, 439)
+position = Vector2(456, 583)
 shape = SubResource("RectangleShape2D_yrc8g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="scaletons_room/interactions/cupboard"]
@@ -352,6 +376,21 @@ animation = &"closed"
 stream = ExtResource("8_5i3nc")
 volume_db = -5.0
 
+[node name="d_books" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
+position = Vector2(781, 451)
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_books"]
+position = Vector2(108, 42.25)
+shape = SubResource("RectangleShape2D_xmf51")
+
+[node name="d_bed" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
+position = Vector2(781, 451)
+phrases = ["Dreams? Nah, I've been dead tired for centuries!", "No rest for the wicked... or for the skeletal!", "Why should I sleep? I'm bone-tired all the time!"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_bed"]
+position = Vector2(-348, 241)
+shape = SubResource("RectangleShape2D_2khje")
+
 [node name="note" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
 position = Vector2(-304, -294)
 collision_layer = 2
@@ -362,7 +401,7 @@ sfx_on_hide = ExtResource("10_uxqtl")
 [node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/note"]
 layer = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="scaletons_room/interactions/note/CanvasLayer"]
+[node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/note/CanvasLayer"]
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -375,16 +414,18 @@ offset_right = 335.0
 offset_bottom = 455.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_colors/default_color = Color(0, 0, 0, 1)
-theme_override_constants/line_separation = 7
-theme_override_fonts/normal_font = ExtResource("12_poj00")
-theme_override_font_sizes/normal_font_size = 35
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("12_poj00")
+theme_override_font_sizes/font_size = 34
 text = "Dear Mom and Dad,
 
 I’m taking a leap of faith to pursue my dream of becoming a stand-up comedian above ground. I cherish our home and the laughs we've shared, but I've got this funny feeling in my bones that there's more for me out there. Don’t worry, I’m not just clacking my jaw - I’ve thought this through. I promise to make you proud and fill the world with our signature humor. I'll keep in touch, and before you know it, I might just be the next big rib-tickler on the comedy scene!
 
 With a humerus hug,
 Your bony boy - Scaleton"
+vertical_alignment = 1
+autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="scaletons_room/interactions/note/CanvasLayer"]
 position = Vector2(974, 528)
@@ -399,131 +440,89 @@ color = Color(0, 0, 0, 0.588235)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/note"]
 z_index = 1
-position = Vector2(1767, 649)
+position = Vector2(1775, 772)
 shape = SubResource("RectangleShape2D_3eb7m")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="scaletons_room/interactions/note"]
 volume_db = -3.0
 
-[node name="d_exit_room" type="StaticBody2D" parent="scaletons_room/interactions" groups=["auto-interactable"]]
-z_index = 3
-collision_layer = 2
-script = ExtResource("11_87y5v")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/d_exit_room"]
-visible = false
-
-[node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/d_exit_room/CanvasLayer"]
-z_index = 1
-offset_left = 149.0
-offset_top = 797.0
-offset_right = 1765.0
-offset_bottom = 1002.0
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 45
-text = "Nope, can't leave without my clothes. I got some 'bare bones' to cover up!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="scaletons_room/interactions/d_exit_room/CanvasLayer"]
-position = Vector2(960, 540)
-scale = Vector2(6, 6)
-texture = ExtResource("12_xaqnf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_exit_room"]
-position = Vector2(1372, 1057)
-shape = SubResource("RectangleShape2D_l033h")
-
-[node name="d_bed" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
-z_index = 3
-collision_layer = 2
-script = ExtResource("13_bngig")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/d_bed"]
-visible = false
-
-[node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/d_bed/CanvasLayer"]
-z_index = 1
-offset_left = 149.0
-offset_top = 797.0
-offset_right = 1765.0
-offset_bottom = 1002.0
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 45
-text = "Nope, can't leave without my clothes. I got some 'bare bones' to cover up!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="scaletons_room/interactions/d_bed/CanvasLayer"]
-position = Vector2(960, 540)
-scale = Vector2(6, 6)
-texture = ExtResource("12_xaqnf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_bed"]
-position = Vector2(408, 651)
-shape = SubResource("RectangleShape2D_2khje")
-
-[node name="d_books" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
-z_index = 3
-collision_layer = 2
-script = ExtResource("13_bngig")
-phrases = ["\"Archery is for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/d_books"]
-visible = false
-
-[node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/d_books/CanvasLayer"]
-z_index = 1
-offset_left = 149.0
-offset_top = 797.0
-offset_right = 1765.0
-offset_bottom = 1002.0
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 45
-text = "Nope, can't leave without my clothes. I got some 'bare bones' to cover up!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="scaletons_room/interactions/d_books/CanvasLayer"]
-position = Vector2(960, 540)
-scale = Vector2(6, 6)
-texture = ExtResource("12_xaqnf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_books"]
-position = Vector2(890.5, 354)
-shape = SubResource("RectangleShape2D_18pfx")
-
-[node name="light" type="Node" parent="scaletons_room"]
-
-[node name="global" type="DirectionalLight2D" parent="scaletons_room/light"]
-color = Color(1, 1, 0, 1)
-energy = 0.38
-blend_mode = 1
-
-[node name="foreground" type="Node2D" parent="scaletons_room"]
+[node name="flower" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
+z_index = 2
 y_sort_enabled = true
-
-[node name="bed" type="Sprite2D" parent="scaletons_room/foreground"]
-z_index = 1
-position = Vector2(396, 528)
-scale = Vector2(6, 6.01136)
-texture = ExtResource("15_s01au")
-
-[node name="flower" type="Area2D" parent="scaletons_room/foreground"]
+collision_layer = 2
 script = ExtResource("18_p20y4")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="scaletons_room/foreground/flower"]
-z_index = 1
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="scaletons_room/interactions/flower"]
 position = Vector2(1603, 777)
 scale = Vector2(6.14286, 6)
 sprite_frames = SubResource("SpriteFrames_bbf6g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/foreground/flower"]
-position = Vector2(1124, 760)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/flower"]
+position = Vector2(1597.13, 849)
 shape = SubResource("RectangleShape2D_0jvvb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="scaletons_room/interactions/flower"]
+stream = ExtResource("19_q4wdn")
+volume_db = -10.0
+
+[node name="exit_room" type="StaticBody2D" parent="scaletons_room/interactions" groups=["auto-interactable"]]
+collision_layer = 2
+script = ExtResource("18_27t45")
+
+[node name="d_exit_room" parent="scaletons_room/interactions/exit_room" instance=ExtResource("9_rh7av")]
+position = Vector2(781, 451)
+phrases = ["Nope, can't leave without my clothes. I got some 'bare bones' to cover up!", "I can't go anywhere without my wardrobe. I need something to 'dress my skeleton' in!", "Leaving without my attire? Not a chance! I've got 'basic bones' to adorn!"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/exit_room"]
+position = Vector2(1368.5, 1057)
+shape = SubResource("RectangleShape2D_l033h")
+
+[node name="highlight" type="Node2D" parent="scaletons_room/interactions"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("19_gtss6")
+
+[node name="star" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1083, 363)
+frame = 2
+frame_progress = 0.0
+
+[node name="star2" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(312, 389)
+frame = 4
+frame_progress = 0.0
+
+[node name="star3" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(423, 558)
+frame = 1
+frame_progress = 0.0
+
+[node name="star4" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1594, 796)
+
+[node name="star5" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1469, 353)
+frame = 3
+frame_progress = 0.0
+
+[node name="star6" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(813, 340)
+frame = 1
+frame_progress = 0.0
+
+[node name="star7" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1370, 1039)
+frame = 1
+frame_progress = 0.0
+
+[node name="foreground" type="Node2D" parent="scaletons_room"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="bed" type="Sprite2D" parent="scaletons_room/foreground"]
+position = Vector2(396, 528)
+scale = Vector2(6, 6.01136)
+texture = ExtResource("15_s01au")
 
 [node name="corridor" type="Node2D" parent="."]
 
@@ -538,20 +537,20 @@ position = Vector2(0, 1080)
 [node name="lamp" type="StaticBody2D" parent="corridor/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/collisions/lamp"]
-position = Vector2(1652.06, 420)
+position = Vector2(1650.98, 605.5)
 shape = SubResource("RectangleShape2D_2uol8")
 
 [node name="flower" type="StaticBody2D" parent="corridor/collisions"]
 z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/collisions/flower"]
-position = Vector2(206, 429)
-shape = SubResource("RectangleShape2D_mb6b3")
+position = Vector2(204, 599.5)
+shape = SubResource("RectangleShape2D_porkf")
 
 [node name="top" type="StaticBody2D" parent="corridor/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/collisions/top"]
-position = Vector2(827.25, 432)
+position = Vector2(836, 604)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_wuyvc")
 
@@ -564,7 +563,7 @@ shape = SubResource("RectangleShape2D_kvslq")
 [node name="right" type="StaticBody2D" parent="corridor/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/collisions/right"]
-position = Vector2(1744, 735)
+position = Vector2(1744, 737.5)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_hwrtj")
 
@@ -586,12 +585,6 @@ energy = 1.3
 texture = SubResource("GradientTexture2D_1a0ph")
 texture_scale = 6.0
 
-[node name="global" type="DirectionalLight2D" parent="corridor/light"]
-visible = false
-color = Color(1, 1, 0, 1)
-energy = 0.38
-blend_mode = 1
-
 [node name="interactions" type="Node" parent="corridor"]
 
 [node name="scaletons_door" type="StaticBody2D" parent="corridor/interactions" groups=["interactable"]]
@@ -600,47 +593,8 @@ collision_layer = 2
 script = ExtResource("21_5ivis")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/scaletons_door"]
-position = Vector2(1424.63, 1594)
+position = Vector2(1437.31, 1717.5)
 shape = SubResource("RectangleShape2D_kt0tx")
-
-[node name="d_parents_door" type="StaticBody2D" parent="corridor/interactions" groups=["interactable"]]
-z_index = 3
-collision_layer = 2
-script = ExtResource("13_bngig")
-phrases = ["This is my parents' room, I don't want to wake them up", "Why did the skeleton go to the doctor about his snoring problem?", "Because he couldn't find his \"jaw-dropping\" solution!"]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="corridor/interactions/d_parents_door"]
-visible = false
-
-[node name="RichTextLabel" type="Label" parent="corridor/interactions/d_parents_door/CanvasLayer"]
-z_index = 1
-offset_left = 149.0
-offset_top = 797.0
-offset_right = 1765.0
-offset_bottom = 1002.0
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 45
-text = "Nope, can't leave without my clothes. I got some 'bare bones' to cover up!"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="Sprite2D" type="Sprite2D" parent="corridor/interactions/d_parents_door/CanvasLayer"]
-position = Vector2(960, 540)
-scale = Vector2(6, 6)
-texture = ExtResource("12_xaqnf")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/d_parents_door"]
-position = Vector2(479, 1597)
-shape = SubResource("RectangleShape2D_6epee")
-
-[node name="snoring" type="AudioStreamPlayer2D" parent="corridor/interactions/d_parents_door"]
-position = Vector2(474, 1795)
-stream = ExtResource("21_5qeh2")
-volume_db = 5.0
-pitch_scale = 1.3
-autoplay = true
-max_distance = 1000.0
 
 [node name="family_portrait" type="StaticBody2D" parent="corridor/interactions" groups=["interactable"]]
 z_index = 3
@@ -662,7 +616,7 @@ offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.588235)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/family_portrait"]
-position = Vector2(963.125, 1566.5)
+position = Vector2(963.125, 1734.5)
 shape = SubResource("RectangleShape2D_y0nab")
 
 [node name="exit_corridor" type="StaticBody2D" parent="corridor/interactions" groups=["auto-interactable"]]
@@ -679,9 +633,50 @@ z_index = 0
 position = Vector2(1309, 1168)
 lamp_color = 1
 
+[node name="d_parents_door" parent="corridor/interactions" instance=ExtResource("9_rh7av")]
+phrases = ["This is my parents' room, I don't want to wake them up", "Why did the skeleton go to the doctor about his snoring problem?", "Because he couldn't find his \"jaw-dropping\" solution!"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/d_parents_door"]
+position = Vector2(479, 1716.5)
+shape = SubResource("RectangleShape2D_6epee")
+
+[node name="snoring" type="AudioStreamPlayer2D" parent="corridor/interactions/d_parents_door"]
+position = Vector2(474, 1795)
+stream = ExtResource("21_5qeh2")
+volume_db = 5.0
+pitch_scale = 1.3
+autoplay = true
+max_distance = 1000.0
+
+[node name="highlight" type="Node2D" parent="corridor/interactions"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("19_gtss6")
+
+[node name="star" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1394, 1580)
+frame = 2
+frame_progress = 0.0
+
+[node name="star2" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1624, 1597)
+frame = 4
+frame_progress = 0.0
+
+[node name="star3" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(966, 1584)
+frame = 1
+frame_progress = 0.0
+
+[node name="star4" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(423, 1581)
+
+[node name="star5" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(10, 1821)
+
 [node name="hallway" type="Node2D" parent="."]
 y_sort_enabled = true
-position = Vector2(1920, 1079)
+position = Vector2(1923, 1083)
 
 [node name="background" type="Sprite2D" parent="hallway"]
 z_index = -1
@@ -701,46 +696,60 @@ position = Vector2(0, 1080)
 [node name="table" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/table"]
-position = Vector2(-1209, 348)
+position = Vector2(-1212, 499)
 shape = SubResource("RectangleShape2D_mb6b3")
 
 [node name="hanger" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/hanger"]
-position = Vector2(-1536, 347)
+position = Vector2(-1538.5, 459)
 shape = SubResource("RectangleShape2D_xutpj")
 
 [node name="mirror" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/mirror"]
-position = Vector2(-549, 364.5)
+position = Vector2(-552.5, 450.5)
 shape = SubResource("RectangleShape2D_xddo4")
 
 [node name="flower" type="StaticBody2D" parent="hallway/collisions"]
 z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/flower"]
-position = Vector2(-774.125, 354)
+position = Vector2(-777.5, 507)
 shape = SubResource("RectangleShape2D_7fvnd")
 
 [node name="couch" type="StaticBody2D" parent="hallway/collisions"]
 z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/couch"]
-position = Vector2(-1759.56, 650)
+position = Vector2(-1705.56, 742)
 shape = SubResource("RectangleShape2D_41id0")
+
+[node name="top" type="StaticBody2D" parent="hallway/collisions/couch"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/couch/top"]
+position = Vector2(-1781, 648)
+shape = SubResource("RectangleShape2D_4svhs")
+
+[node name="bottom" type="StaticBody2D" parent="hallway/collisions/couch"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/couch/bottom"]
+position = Vector2(-1780, 837)
+shape = SubResource("RectangleShape2D_aihhj")
 
 [node name="top" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/top"]
-position = Vector2(-1093, 338)
+position = Vector2(-1093, 510)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_424x0")
 
 [node name="top_right" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/top_right"]
-position = Vector2(-160, 432.001)
+position = Vector2(-170.5, 601.5)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_l33v3")
 
@@ -753,200 +762,86 @@ shape = SubResource("RectangleShape2D_kvslq")
 [node name="right" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/right"]
-position = Vector2(-332, 301)
+position = Vector2(-332, 367.25)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_hwrtj")
 
 [node name="left" type="StaticBody2D" parent="hallway/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/collisions/left"]
-position = Vector2(-1835, 613.5)
+position = Vector2(-1835, 702)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_0nrki")
 
-[node name="foreground" type="Node2D" parent="hallway"]
+[node name="interactions" type="Node2D" parent="hallway"]
 y_sort_enabled = true
-
-[node name="couch" type="Sprite2D" parent="hallway/foreground"]
-z_index = 1
-position = Vector2(-1767, 1670)
-scale = Vector2(6, 6.1263)
-texture = ExtResource("26_qd08c")
-
-[node name="interactions" type="Node" parent="hallway"]
 
 [node name="back_to_corridor" type="StaticBody2D" parent="hallway/interactions" groups=["auto-interactable"]]
 z_index = 3
+position = Vector2(-1920, -1078)
 collision_layer = 2
 script = ExtResource("28_5vqrt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/back_to_corridor"]
-position = Vector2(1913.75, 2851.5)
+position = Vector2(1913.75, 2905)
 shape = SubResource("RectangleShape2D_b64l0")
 
 [node name="intro" type="StaticBody2D" parent="hallway/interactions" groups=["interactable"]]
 z_index = 3
+position = Vector2(-1920, -1078)
 collision_layer = 2
-script = ExtResource("29_lupf1")
+script = ExtResource("29_4a604")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/intro"]
-position = Vector2(960, 2546)
+position = Vector2(964.5, 2672.5)
 shape = SubResource("RectangleShape2D_2pdgn")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="hallway/interactions/intro"]
-visible = false
+[node name="lamp" parent="hallway/interactions" instance=ExtResource("8_5q5oc")]
+position = Vector2(-1511, 1049)
+lamp_color = 2
 
-[node name="stars" type="Node2D" parent="hallway/interactions/intro/CanvasLayer"]
-position = Vector2(3, -3)
+[node name="couch" type="StaticBody2D" parent="hallway/interactions" groups=["interactable"]]
+y_sort_enabled = true
+collision_layer = 2
+script = ExtResource("32_pspio")
 
-[node name="star" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(393, 354)
-autoplay = "default"
-frame_progress = 0.20816
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/couch"]
+position = Vector2(-1750, 1814.5)
+shape = SubResource("RectangleShape2D_v6liv")
 
-[node name="star2" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(918, 669)
-autoplay = "default"
+[node name="couch" type="Sprite2D" parent="hallway/interactions/couch"]
+z_index = 2
+position = Vector2(-1770, 1670)
+scale = Vector2(6, 6.1263)
+texture = ExtResource("26_qd08c")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hallway/interactions/couch"]
+volume_db = -3.0
+
+[node name="highlight" type="Node2D" parent="hallway/interactions"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(-1923, -1082)
+script = ExtResource("19_gtss6")
+
+[node name="star" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(903, 2564)
+frame_progress = 0.0
+
+[node name="star2" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(778, 2578)
 frame = 3
 frame_progress = 0.0
 
-[node name="star3" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(711, 159)
-autoplay = "default"
-frame = 4
-frame_progress = 0.0
-
-[node name="star10" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(554, 794)
-autoplay = "default"
+[node name="star3" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(195, 2795)
 frame = 1
 frame_progress = 0.0
 
-[node name="star7" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1322, 276)
-autoplay = "default"
+[node name="star4" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1908, 2900)
 frame = 1
 frame_progress = 0.0
-
-[node name="star12" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1744, 454)
-autoplay = "default"
-frame = 4
-frame_progress = 0.0
-
-[node name="star4" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(233, 41)
-autoplay = "default"
-frame = 4
-frame_progress = 0.0
-
-[node name="star5" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1669, 1020)
-scale = Vector2(8, 6.66663)
-autoplay = "default"
-frame = 4
-frame_progress = 0.0
-
-[node name="star11" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1193, 860)
-autoplay = "default"
-frame = 2
-frame_progress = 0.0
-
-[node name="star8" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(127, 503)
-autoplay = "default"
-frame = 4
-frame_progress = 0.0
-
-[node name="star6" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(218, 941)
-autoplay = "default"
-frame = 2
-frame_progress = 0.0
-
-[node name="star9" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1673, 92)
-autoplay = "default"
-frame = 2
-frame_progress = 0.0
-
-[node name="star13" parent="hallway/interactions/intro/CanvasLayer/stars" instance=ExtResource("29_0gdui")]
-z_index = 3
-position = Vector2(1491, 742)
-autoplay = "default"
-frame_progress = 0.0
-
-[node name="ColorRect" type="ColorRect" parent="hallway/interactions/intro/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -955.5
-offset_top = -625.0
-offset_right = 961.5
-offset_bottom = 619.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-color = Color(0.168627, 0.0941176, 0.235294, 1)
-
-[node name="game" type="Label" parent="hallway/interactions/intro/CanvasLayer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -495.0
-offset_top = -51.5
-offset_right = 501.0
-offset_bottom = 45.5
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 100
-text = "SCALETON'S STORY"
-
-[node name="author" type="Label" parent="hallway/interactions/intro/CanvasLayer"]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 148.0
-offset_top = 78.0
-offset_right = 1015.0
-offset_bottom = 175.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
-theme_override_fonts/font = ExtResource("12_poj00")
-theme_override_font_sizes/font_size = 50
-text = "by Dmitrii Tarbaev"
-
-[node name="lamp" parent="hallway/interactions" instance=ExtResource("8_5q5oc")]
-z_index = 0
-position = Vector2(421, 2127)
-lamp_color = 2
 
 [node name="clock" type="AudioStreamPlayer2D" parent="hallway"]
 position = Vector2(-1315, 1804)
@@ -961,9 +856,12 @@ y_sort_enabled = false
 position = Vector2(1638, 515)
 scaleton = NodePath("../scaleton")
 
-[connection signal="to_coridor" from="scaletons_room/interactions/d_exit_room" to="Camera2D" method="_on_d_exit_room_to_coridor"]
-[connection signal="body_shape_entered" from="scaletons_room/foreground/flower" to="scaletons_room/foreground/flower" method="_on_body_shape_entered"]
+[node name="global_light" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.38
+blend_mode = 1
+
+[connection signal="to_corridor" from="scaletons_room/interactions/exit_room" to="Camera2D" method="_on_exit_room_to_corridor"]
 [connection signal="to_scaletons_room" from="corridor/interactions/scaletons_door" to="Camera2D" method="_on_scaletons_door_to_scaletons_room"]
 [connection signal="to_hallway" from="corridor/interactions/exit_corridor" to="Camera2D" method="_on_exit_corridor_to_hallway"]
 [connection signal="back_to_corridor" from="hallway/interactions/back_to_corridor" to="Camera2D" method="_on_back_to_corridor_back_to_corridor"]
-[connection signal="back_to_corridor" from="hallway/interactions/intro" to="Camera2D" method="_on_back_to_corridor_back_to_corridor"]
