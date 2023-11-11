@@ -242,7 +242,6 @@ script = ExtResource("2_lm2c7")
 
 [node name="scaleton" parent="." instance=ExtResource("3_qg35q")]
 position = Vector2(1504, 501)
-can_sleep = false
 
 [node name="scaletons_room" type="Node2D" parent="."]
 y_sort_enabled = true

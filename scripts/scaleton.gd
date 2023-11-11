@@ -36,8 +36,6 @@ func _physics_process(delta):
 	if direction.length() != 0:
 		sound_steps()
 		move_character(delta)
-	else:
-		set_linear_velocity(Vector2.ZERO)
 
 func process_interaction():
 	if Input.is_action_just_pressed("interact") and interactable_object != null:

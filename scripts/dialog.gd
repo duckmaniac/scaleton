@@ -32,7 +32,7 @@ func _on_Timer_timeout():
 		$CanvasLayer/Label.text = current_phrase.substr(0, count_chars)
 		if count_chars < current_phrase.length():
 			start_timer()
-			
+
 
 func interact(player):
 	if not is_dialog_showing: 

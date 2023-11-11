@@ -15,3 +15,6 @@ func _ready():
 		await get_tree().create_timer(3.8).timeout
 		$neighbours/intro.visible = false
 		$scaleton.can_move = true
+		
+func _process(_delta):
+	$scaleton.position.x = clamp($scaleton.position.x, 496, 641)
