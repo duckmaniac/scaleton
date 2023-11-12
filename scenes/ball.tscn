@@ -11,9 +11,12 @@ bounce = 0.6
 radius = 7.0
 
 [node name="ball" type="RigidBody2D" groups=["auto-interactable"]]
-collision_layer = 2
+collision_layer = 0
+collision_mask = 6
 physics_material_override = SubResource("PhysicsMaterial_r5e1u")
 gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
 script = ExtResource("1_tdmbb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

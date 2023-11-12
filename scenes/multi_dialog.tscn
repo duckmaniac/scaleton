@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://tcrni8jxboos"]
+
+[ext_resource type="Script" path="res://scripts/multi_dialog.gd" id="1_a8mi7"]
+[ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="2_eidbb"]
+[ext_resource type="Texture2D" uid="uid://bwvcwj3x7yghu" path="res://assets/sprites/dialog.png" id="3_c7au8"]
+[ext_resource type="AudioStream" uid="uid://ceq5rcy4qq006" path="res://assets/sfx/type.mp3" id="4_jcq0c"]
+
+[node name="d_books" type="StaticBody2D" groups=["interactable"]]
+z_index = 3
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("1_a8mi7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 207.0
+offset_top = 810.0
+offset_right = 1692.0
+offset_bottom = 991.0
+theme_override_fonts/font = ExtResource("2_eidbb")
+theme_override_font_sizes/font_size = 45
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("3_c7au8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_jcq0c")
+volume_db = -3.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=37 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -12,7 +12,46 @@
 [ext_resource type="Texture2D" uid="uid://bwllv130t6yrh" path="res://assets/sprites/street/playground.png" id="8_lckor"]
 [ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="9_bsa46"]
 [ext_resource type="PackedScene" uid="uid://bfjysn6i20ke5" path="res://scenes/ball.tscn" id="10_u5hll"]
+[ext_resource type="PackedScene" uid="uid://tcrni8jxboos" path="res://scenes/multi_dialog.tscn" id="12_fxdoc"]
 [ext_resource type="PackedScene" uid="uid://cnpa7htl5vhc6" path="res://scenes/friend.tscn" id="13_j7csx"]
+[ext_resource type="Script" path="res://scripts/dimmer.gd" id="13_n4aef"]
+
+[sub_resource type="Animation" id="Animation_teg7i"]
+resource_name = "light_off"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/curtain:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.168627, 0.0941176, 0.235294, 0), Color(0.168627, 0.0941176, 0.235294, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_4ajt4"]
+resource_name = "light_on"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayer/curtain:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.168627, 0.0941176, 0.235294, 1), Color(0.168627, 0.0941176, 0.235294, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_olrp7"]
+_data = {
+"light_off": SubResource("Animation_teg7i"),
+"light_on": SubResource("Animation_4ajt4")
+}
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ua68c"]
 
@@ -64,9 +103,36 @@ size = Vector2(1920, 190.995)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehvon"]
 size = Vector2(239.003, 1920)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ikn"]
+size = Vector2(159, 55)
+
 [node name="street" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_vxctq")
+
+[node name="dimmer" type="CanvasLayer" parent="."]
+script = ExtResource("13_n4aef")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="dimmer"]
+libraries = {
+"": SubResource("AnimationLibrary_olrp7")
+}
+
+[node name="curtain" type="ColorRect" parent="dimmer/AnimationPlayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -960.0
+offset_top = -622.0
+offset_right = 960.0
+offset_bottom = 622.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+color = Color(0.168627, 0.0941176, 0.235294, 0)
 
 [node name="neighbours" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -434,18 +500,23 @@ theme_override_fonts/font = ExtResource("9_bsa46")
 theme_override_font_sizes/font_size = 50
 text = "by Dmitrii Tarbaev"
 
-[node name="ball" parent="neighbours" instance=ExtResource("10_u5hll")]
-z_index = 1
-position = Vector2(667, 665)
-collision_layer = 0
-collision_mask = 6
-max_contacts_reported = 1
-contact_monitor = true
-
 [node name="playground" type="Sprite2D" parent="neighbours"]
 position = Vector2(990, 687)
 scale = Vector2(6, 6)
 texture = ExtResource("8_lckor")
+
+[node name="d_with_boney" parent="neighbours" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
+phrases = ["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Hilarious *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/d_with_boney"]
+position = Vector2(991, 822)
+shape = SubResource("RectangleShape2D_g0ikn")
+
+[node name="footbal-game" type="Node" parent="neighbours"]
+
+[node name="ball" parent="neighbours/footbal-game" instance=ExtResource("10_u5hll")]
+z_index = 1
+position = Vector2(610, 664)
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -453,13 +524,13 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
-position = Vector2(520, 781)
+position = Vector2(935, 852)
 collision_layer = 3
 collision_mask = 3
 
 [node name="friend" parent="." node_paths=PackedStringArray("ball") groups=["friend"] instance=ExtResource("13_j7csx")]
 z_index = 2
-position = Vector2(1341, 629)
-collision_layer = 3
-collision_mask = 0
-ball = NodePath("../neighbours/ball")
+position = Vector2(1165, 616)
+ball = NodePath("../neighbours/footbal-game/ball")
+
+[connection signal="dialog_ended" from="neighbours/d_with_boney" to="." method="_on_d_with_boney_dialog_ended"]

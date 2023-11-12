@@ -272,6 +272,8 @@ max_contacts_reported = 1
 contact_monitor = true
 can_sleep = false
 lock_rotation = true
+freeze = true
+freeze_mode = 1
 script = ExtResource("1_cxwre")
 
 [node name="street_clothes_animation" type="AnimatedSprite2D" parent="."]

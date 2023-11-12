@@ -1,12 +1,15 @@
 extends CharacterBody2D
 
+enum State {STATE_DIALOG, STATE_PLAY, STATE_WALKING}
+
 @export var ball: RigidBody2D = null
+var state = State.STATE_DIALOG
 var speed = 200
 var sprite = null
 var direction = Vector2.ZERO
 var timer = Timer.new()
 var can_change_animation = true
-var error = 0
+var error = 0.0
 
 
 func _ready():
@@ -48,21 +51,22 @@ func play_animation():
 
 
 func _physics_process(_delta):
-	if position.distance_to(ball.position) < 100 and position.x > 1230 and position.x < 1430:
-		velocity = position.direction_to(Vector2(ball.position.x, ball.position.y - 60 + randi_range(-error, error))) * speed
-		move_and_slide()
-		
-		if velocity.x < 0:
-			direction.x = -1
-		
-	elif ball.position.x > 995 and position.distance_to(Vector2(1335, ball.position.y - 60)) > 10:
-		velocity = position.direction_to(Vector2(1335, ball.position.y - 60)) * speed
-		move_and_slide()
-		
-		if velocity.y < 0:
-			direction.y = 1
-		elif velocity.y > 0:
-			direction.y = -1
-		direction.x = 0
-	else:
-		direction = Vector2.ZERO
+	if state == State.STATE_PLAY:
+		if position.distance_to(ball.position) < 100 and position.x > 1279 and position.x < 1369:
+			velocity = position.direction_to(Vector2(ball.position.x, ball.position.y - 60 + randf_range(error / 2, error))) * speed
+			move_and_slide()
+			
+			if velocity.x < 0:
+				direction.x = -1
+			
+		elif ball.position.x > 995 and position.distance_to(Vector2(1335, ball.position.y - 60)) > 10:
+			velocity = position.direction_to(Vector2(1360, ball.position.y - 60)) * speed
+			move_and_slide()
+			
+			if velocity.y < 0:
+				direction.y = 1
+			elif velocity.y > 0:
+				direction.y = -1
+			direction.x = 0
+		else:
+			direction = Vector2.ZERO
