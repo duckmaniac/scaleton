@@ -2,13 +2,33 @@ extends RigidBody2D
 
 
 var has_been_kicked = false
-var kick_strength = 20000
+var can_be_kicked = true
+var timer = Timer.new()
+var kick_strength = 23000
+var reset_state = false
+var is_forced_move = true
+
+func _ready():
+	add_child(timer)
+	timer.wait_time = 0.5
+	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
+	timer.start()
+		
+		
+func _on_Timer_timeout():
+	can_be_kicked = true
 
 
 func kick(direction):
-	set_linear_velocity(Vector2(0, linear_velocity.y))
-	apply_force(direction * kick_strength)
-	has_been_kicked = true
+	if can_be_kicked:
+		set_linear_velocity(Vector2(0, linear_velocity.y))
+		apply_force(direction * kick_strength)
+		has_been_kicked = true
+		$AudioStreamPlayer.pitch_scale = randf_range(0.6, 1)
+		$AudioStreamPlayer.play()
+		can_be_kicked = false
+		timer.start()
+	
 
 # Player interaction.
 func interact(player):
@@ -16,7 +36,7 @@ func interact(player):
 
 
 func _process(_delta):
-	if has_been_kicked and abs(linear_velocity.x) < 100:
+	if has_been_kicked and abs(linear_velocity.x) < 100 and is_forced_move:
 		if linear_velocity.x >= 0:
 			apply_central_force(Vector2(100, 0))
 		else:
@@ -35,4 +55,13 @@ func _process(_delta):
 func _on_body_entered(body):
 	if body.is_in_group("friend"):
 		kick(Vector2(-1, 0))
-		body.error += 75
+		body.error *= 3
+
+	
+func _integrate_forces(state):
+	if reset_state:
+		state.transform = Transform2D(0.0, Vector2(602, 668))
+		set_linear_velocity(Vector2(0, 0))
+		reset_state = false
+		has_been_kicked = false
+		can_be_kicked = true

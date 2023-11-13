@@ -1,6 +1,8 @@
 extends StaticBody2D
 
 @export var phrases = []
+@export var one_off = false
+
 signal dialog_ended
 
 var type_sound = preload("res://assets/sfx/type.mp3")
@@ -13,6 +15,7 @@ var is_dialog_showing = false
 var timer = null
 
 var is_typing = false
+var has_been_interacted = false
 
 
 func _ready():	
@@ -54,6 +57,8 @@ func show_next_phrase():
 
 
 func interact(player):
+	if one_off and has_been_interacted: return
+	
 	if is_typing:
 		$CanvasLayer/Label.text = current_phrase
 		$AudioStreamPlayer.stream = type_end_sound
@@ -71,4 +76,5 @@ func interact(player):
 		$CanvasLayer.hide()
 		is_dialog_showing = false
 		player.can_move = true
+		has_been_interacted = true
 		emit_signal("dialog_ended")

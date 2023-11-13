@@ -157,8 +157,11 @@ position = Vector2(-9.5, 71.5001)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_1sipf")
 
-[node name="StepsPlayer" type="AudioStreamPlayer" parent="."]
+[node name="StepsPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_cia7c")
+pitch_scale = 1.1
 
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
+
+[connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]
