@@ -12,6 +12,7 @@ var count_chars = 1
 var current_phrase = null
 var is_dialog_showing = false
 var timer = null
+var is_typing = false
 
 func _ready():	
 	timer = Timer.new()
@@ -24,22 +25,31 @@ func start_timer():
 	timer.start()
 
 func _on_Timer_timeout():
-	if is_dialog_showing:
+	if is_dialog_showing and is_typing:
 		count_chars += 1
 		if current_phrase[count_chars-1] == " ":	
 			$AudioStreamPlayer.play()
-		elif count_chars == current_phrase.length() - 1:
+		elif count_chars == current_phrase.length():
 			$AudioStreamPlayer.stream = type_end_sound
 			$AudioStreamPlayer.play()
+			is_typing = false
 		$CanvasLayer/Label.text = current_phrase.substr(0, count_chars)
 		if count_chars < current_phrase.length():
-			start_timer()
+			start_timer()	
 
 
 func interact(player):
+	if is_typing:
+		$CanvasLayer/Label.text = current_phrase
+		$AudioStreamPlayer.stream = type_end_sound
+		$AudioStreamPlayer.play()
+		is_typing = false
+		return
+		
 	if not is_dialog_showing: 
 		player.can_move = false
 		is_dialog_showing = true
+		is_typing = true
 		current_phrase = phrases[count_phrases % phrases.size()]
 		$CanvasLayer.show()
 		$AudioStreamPlayer.stream = type_sound
@@ -51,5 +61,6 @@ func interact(player):
 		count_phrases += 1
 		count_chars = 1
 		is_dialog_showing = false
+		is_typing = false
 		player.can_move = true
 		emit_signal("phrase_ended")

@@ -1,6 +1,9 @@
 extends RigidBody2D
 
 
+signal friend_kick
+signal scaleton_kick
+
 var has_been_kicked = false
 var can_be_kicked = true
 var timer = Timer.new()
@@ -20,19 +23,20 @@ func _on_Timer_timeout():
 
 
 func kick(direction):
-	if can_be_kicked:
-		set_linear_velocity(Vector2(0, linear_velocity.y))
-		apply_force(direction * kick_strength)
-		has_been_kicked = true
-		$AudioStreamPlayer.pitch_scale = randf_range(0.6, 1)
-		$AudioStreamPlayer.play()
-		can_be_kicked = false
-		timer.start()
+	set_linear_velocity(Vector2(0, linear_velocity.y))
+	apply_force(direction * kick_strength)
+	has_been_kicked = true
+	$AudioStreamPlayer.pitch_scale = randf_range(0.6, 1)
+	$AudioStreamPlayer.play()
+	can_be_kicked = false
+	timer.start()
 	
 
 # Player interaction.
 func interact(player):
-	kick(Vector2(1, player.prev_direction.y))
+	if can_be_kicked:
+		kick(Vector2(1, player.prev_direction.y))
+		emit_signal("scaleton_kick")
 
 
 func _process(_delta):
@@ -53,9 +57,10 @@ func _process(_delta):
 
 # Friend interaction.
 func _on_body_entered(body):
-	if body.is_in_group("friend"):
+	if can_be_kicked and body.is_in_group("friend"):
 		kick(Vector2(-1, 0))
 		body.error *= 3
+		emit_signal("friend_kick")
 
 	
 func _integrate_forces(state):

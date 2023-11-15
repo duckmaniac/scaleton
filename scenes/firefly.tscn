@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://m38q2vllalgk"]
+
+[ext_resource type="Texture2D" uid="uid://d2oivtarbasw1" path="res://assets/sprites/firefly.png" id="1_df08o"]
+[ext_resource type="Script" path="res://scripts/firefly.gd" id="1_fwnum"]
+[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="3_q0shm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cu2am"]
+atlas = ExtResource("1_df08o")
+region = Rect2(0, 0, 3, 3)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yiuie"]
+atlas = ExtResource("1_df08o")
+region = Rect2(3, 0, 3, 3)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_juwrx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cu2am")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yiuie")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[node name="firefly" type="CharacterBody2D" groups=["firefly"]]
+script = ExtResource("1_fwnum")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_juwrx")
+animation = &"fly"
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.1
+texture = ExtResource("3_q0shm")

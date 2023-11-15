@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=76 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -13,10 +13,26 @@
 [ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="9_bsa46"]
 [ext_resource type="PackedScene" uid="uid://bfjysn6i20ke5" path="res://scenes/ball.tscn" id="10_u5hll"]
 [ext_resource type="Texture2D" uid="uid://by88cnwkwusyn" path="res://assets/sprites/street/mushrooms.png" id="10_ugidk"]
+[ext_resource type="Texture2D" uid="uid://bmtfkxaw6rqi6" path="res://assets/sprites/street/cliffs1.png" id="11_u8ana"]
 [ext_resource type="PackedScene" uid="uid://tcrni8jxboos" path="res://scenes/multi_dialog.tscn" id="12_fxdoc"]
 [ext_resource type="PackedScene" uid="uid://cnpa7htl5vhc6" path="res://scenes/friend.tscn" id="13_j7csx"]
 [ext_resource type="Script" path="res://scripts/dimmer.gd" id="13_n4aef"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="14_vybhx"]
 [ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="15_c1odq"]
+[ext_resource type="Script" path="res://scripts/street/mushrooms.gd" id="16_o1tl7"]
+[ext_resource type="PackedScene" uid="uid://m38q2vllalgk" path="res://scenes/firefly.tscn" id="16_tth7t"]
+[ext_resource type="AudioStream" uid="uid://yclogf44lfpj" path="res://assets/sfx/mushrooms.mp3" id="18_qvtrp"]
+[ext_resource type="Script" path="res://scripts/street/to_bar_outside.gd" id="20_dkpkb"]
+[ext_resource type="Script" path="res://scripts/highlight.gd" id="22_857nn"]
+[ext_resource type="Texture2D" uid="uid://dllk5raej86s3" path="res://assets/sprites/street/bar_outside.png" id="22_nqo8m"]
+[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="23_x3iuq"]
+[ext_resource type="Texture2D" uid="uid://d6bm52ftw2jy" path="res://assets/sprites/street/cliffs2.png" id="25_bkurt"]
+[ext_resource type="Script" path="res://scripts/street/street_camera.gd" id="25_xaah1"]
+[ext_resource type="Texture2D" uid="uid://cubr3sua1sf41" path="res://assets/sprites/street/bar_outside_foreground.png" id="26_1qcix"]
+[ext_resource type="Texture2D" uid="uid://c7n02ep5di2e5" path="res://assets/sprites/street/flashlight.png" id="27_a5q17"]
+[ext_resource type="Texture2D" uid="uid://doytisbiyoyym" path="res://assets/sprites/street/post.png" id="28_oxrgk"]
+[ext_resource type="Texture2D" uid="uid://mrbll3a4rfm8" path="res://assets/sprites/street/post_box.png" id="29_8ga7i"]
+[ext_resource type="Texture2D" uid="uid://swpdm3v35egm" path="res://assets/sprites/street/bar_menu.png" id="30_s63rs"]
 
 [sub_resource type="Animation" id="Animation_teg7i"]
 resource_name = "light_off"
@@ -134,16 +150,109 @@ size = Vector2(261, 246)
 size = Vector2(1920, 190.995)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ehvon"]
-size = Vector2(239.003, 1920)
+size = Vector2(188.002, 1920)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mgsmg"]
 size = Vector2(91, 447)
+
+[sub_resource type="Animation" id="Animation_ihwmb"]
+resource_name = "show_scaleton_phrase"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("scaleton_phrase:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.52549, 0.533333, 0.588235, 0), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ocgjx"]
+resource_name = "show_friend_phrase"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("friend_phrase:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4, 1, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.52549, 0.533333, 0.588235, 0), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_u3e75"]
+resource_name = "game_ended"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../playground:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_75eh4"]
+_data = {
+"game_ended": SubResource("Animation_u3e75"),
+"show_friend_phrase": SubResource("Animation_ocgjx"),
+"show_scaleton_phrase": SubResource("Animation_ihwmb")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ikn"]
 size = Vector2(159, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jtvt"]
 size = Vector2(258, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a241o"]
+size = Vector2(258, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y7x33"]
+size = Vector2(183, 163)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1cq7w"]
+size = Vector2(42.5, 364)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkx17"]
+size = Vector2(20.5, 365)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2ogu"]
+size = Vector2(1092, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1mwh2"]
+size = Vector2(1920, 19.999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rl85m"]
+size = Vector2(648, 186.999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib4ir"]
+size = Vector2(1032, 187)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cssy8"]
+size = Vector2(132, 23.7502)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ovjb"]
+size = Vector2(84, 10.7503)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gjwhc"]
+size = Vector2(89.9998, 134)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e2v2u"]
+size = Vector2(42.9999, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmqjp"]
+size = Vector2(66, 10.7503)
 
 [node name="street" type="Node2D"]
 y_sort_enabled = true
@@ -393,7 +502,7 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/bottom_wall/for_ball"]
 z_index = 1
-position = Vector2(1007, 1007.5)
+position = Vector2(1007, 981.999)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_ehvon")
 
@@ -431,6 +540,12 @@ position = Vector2(144, 780)
 scale = Vector2(6, 6)
 texture = ExtResource("10_ugidk")
 offset = Vector2(0, 6.073)
+
+[node name="cliffs" type="Sprite2D" parent="neighbours/foreground"]
+z_index = 1
+position = Vector2(1008, 78)
+scale = Vector2(6, 6)
+texture = ExtResource("11_u8ana")
 
 [node name="intro" type="CanvasLayer" parent="neighbours"]
 visible = false
@@ -589,6 +704,14 @@ z_index = 1
 position = Vector2(602, 668)
 collision_layer = 4
 
+[node name="highlight" type="Node2D" parent="neighbours/footbal_game/ball"]
+script = ExtResource("22_857nn")
+
+[node name="star7" parent="neighbours/footbal_game/ball/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(-3, 2)
+frame = 1
+frame_progress = 0.0
+
 [node name="left_goal" type="Area2D" parent="neighbours/footbal_game"]
 collision_layer = 0
 collision_mask = 4
@@ -608,15 +731,57 @@ shape = SubResource("RectangleShape2D_mgsmg")
 one_way_collision = true
 
 [node name="playground" type="Sprite2D" parent="neighbours/footbal_game"]
-visible = false
 position = Vector2(942, 687)
 scale = Vector2(6, 6)
 texture = ExtResource("8_lckor")
 
+[node name="CanvasLayer" type="CanvasLayer" parent="neighbours/footbal_game"]
+
+[node name="scaleton_phrase" type="Label" parent="neighbours/footbal_game/CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 49.0
+offset_top = 117.0
+offset_right = 277.0
+offset_bottom = 158.0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.52549, 0.533333, 0.588235, 0)
+theme_override_fonts/font = ExtResource("9_bsa46")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="friend_phrase" type="Label" parent="neighbours/footbal_game/CanvasLayer"]
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = 22.0
+offset_right = -160.0
+offset_bottom = 70.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.52549, 0.533333, 0.588235, 0)
+theme_override_fonts/font = ExtResource("9_bsa46")
+theme_override_font_sizes/font_size = 30
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="neighbours/footbal_game"]
+root_node = NodePath("../CanvasLayer")
+libraries = {
+"": SubResource("AnimationLibrary_75eh4")
+}
+
 [node name="interactions" type="Node" parent="neighbours"]
 
 [node name="d_with_boney" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
-position = Vector2(-48, 0)
+position = Vector2(-371, -26)
 phrases = ["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Hilarious *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"]
 one_off = true
 
@@ -625,7 +790,7 @@ position = Vector2(991, 822)
 shape = SubResource("RectangleShape2D_g0ikn")
 
 [node name="d_after_game" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
-position = Vector2(-48, 0)
+position = Vector2(1284, 635)
 phrases = ["Boney: This is the life, huh? Alright, game's over. Time for the real deal. Ready to hit that secret passage?", "Scaleton: Yeah, let's do this. Surface, here I come!"]
 one_off = true
 
@@ -642,14 +807,98 @@ phrases = ["The Garners' place, mysterious yet charming. They collect unique art
 position = Vector2(352, 444)
 shape = SubResource("RectangleShape2D_3jtvt")
 
+[node name="d_basket" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
+collision_layer = 0
+collision_mask = 3
+phrases = ["You know, there's this memory from when I was a kid. We were playing soccer and these older teens took our ball. But my buddy, he challenged them to a game for it. We played, won, and got our ball back. Felt like heroes that day"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_basket"]
+position = Vector2(976, 340)
+shape = SubResource("RectangleShape2D_a241o")
+
 [node name="d_left_house2" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
 collision_layer = 0
 collision_mask = 3
-phrases = ["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family man. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family."]
+phrases = ["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family skeleton. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family. "]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_house2"]
 position = Vector2(1543, 446)
 shape = SubResource("RectangleShape2D_3jtvt")
+
+[node name="mushrooms" type="StaticBody2D" parent="neighbours/interactions" groups=["interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("16_o1tl7")
+
+[node name="firefly" parent="neighbours/interactions/mushrooms" instance=ExtResource("16_tth7t")]
+z_index = 2
+position = Vector2(95, 771)
+
+[node name="firefly2" parent="neighbours/interactions/mushrooms" instance=ExtResource("16_tth7t")]
+z_index = 2
+position = Vector2(122, 800)
+
+[node name="firefly3" parent="neighbours/interactions/mushrooms" instance=ExtResource("16_tth7t")]
+z_index = 2
+position = Vector2(62, 812)
+
+[node name="firefly4" parent="neighbours/interactions/mushrooms" instance=ExtResource("16_tth7t")]
+z_index = 2
+position = Vector2(81, 790)
+
+[node name="firefly5" parent="neighbours/interactions/mushrooms" instance=ExtResource("16_tth7t")]
+z_index = 2
+position = Vector2(87, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/mushrooms"]
+position = Vector2(114.5, 799.5)
+shape = SubResource("RectangleShape2D_y7x33")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="neighbours/interactions/mushrooms"]
+stream = ExtResource("18_qvtrp")
+
+[node name="exit_neighbours" type="StaticBody2D" parent="neighbours/interactions" groups=["auto-interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("20_dkpkb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/exit_neighbours"]
+position = Vector2(1882.75, 701)
+shape = SubResource("RectangleShape2D_1cq7w")
+
+[node name="d_left_border" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
+collision_layer = 0
+collision_mask = 3
+phrases = ["I shouldn't head this way - my path lies in the other direction, where my buddy already went", "No use going here. I need to follow the other way, where my friend has headed", "This isn't my route. I must go the opposite way, following where my pal ventured"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
+position = Vector2(11, 699.5)
+shape = SubResource("RectangleShape2D_wkx17")
+
+[node name="highlight" type="Node2D" parent="neighbours/interactions"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("22_857nn")
+
+[node name="star" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(1549, 312)
+frame = 2
+frame_progress = 0.0
+
+[node name="star3" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(368, 314)
+frame = 1
+frame_progress = 0.0
+
+[node name="star5" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(93, 805)
+frame = 3
+frame_progress = 0.0
+
+[node name="star6" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(975, 154)
+frame = 1
+frame_progress = 0.0
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -657,7 +906,7 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
-position = Vector2(932, 839)
+position = Vector2(937, 804)
 collision_layer = 3
 collision_mask = 3
 
@@ -667,7 +916,145 @@ position = Vector2(1165, 616)
 collision_mask = 3
 ball = NodePath("../neighbours/footbal_game/ball")
 
+[node name="bar-outside" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="background" type="Sprite2D" parent="bar-outside"]
+position = Vector2(960, 1720)
+scale = Vector2(6, 6)
+texture = ExtResource("22_nqo8m")
+
+[node name="light" type="Node" parent="bar-outside"]
+
+[node name="PointLight2D" type="PointLight2D" parent="bar-outside/light"]
+position = Vector2(843, 1240)
+texture = ExtResource("23_x3iuq")
+
+[node name="PointLight2D2" type="PointLight2D" parent="bar-outside/light"]
+position = Vector2(1429, 1239)
+scale = Vector2(1, 0.480469)
+texture = ExtResource("23_x3iuq")
+
+[node name="foreground" type="Node2D" parent="bar-outside"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="cliffs" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(960, 1228)
+scale = Vector2(6, 6)
+texture = ExtResource("25_bkurt")
+
+[node name="roofs" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(969, 2071)
+scale = Vector2(6, 6)
+texture = ExtResource("26_1qcix")
+
+[node name="flashlight" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(843, 1606)
+scale = Vector2(6, 6)
+texture = ExtResource("27_a5q17")
+offset = Vector2(0, -28)
+
+[node name="post" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(366, 1519)
+scale = Vector2(6, 6)
+texture = ExtResource("28_oxrgk")
+offset = Vector2(0, -15)
+
+[node name="post_box" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(576, 1585)
+scale = Vector2(6, 6)
+texture = ExtResource("29_8ga7i")
+
+[node name="bar_menu" type="Sprite2D" parent="bar-outside/foreground"]
+position = Vector2(1752, 1585)
+scale = Vector2(6, 6)
+texture = ExtResource("30_s63rs")
+offset = Vector2(0, 10)
+
+[node name="collisions" type="Node2D" parent="bar-outside"]
+z_index = 1
+
+[node name="top_wall" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/top_wall"]
+position = Vector2(546, 1452)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_f2ogu")
+
+[node name="bottom_wall" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/bottom_wall"]
+position = Vector2(960, 2072)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_1mwh2")
+
+[node name="post" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/post"]
+position = Vector2(366, 1555.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_rl85m")
+
+[node name="bar" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/bar"]
+position = Vector2(1404, 1555.5)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_ib4ir")
+
+[node name="bar_menu" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/bar_menu"]
+position = Vector2(1753, 1692.88)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_cssy8")
+
+[node name="post_box" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/post_box"]
+position = Vector2(576, 1678.38)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_8ovjb")
+
+[node name="garbage_container" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/garbage_container"]
+position = Vector2(843, 1509)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_gjwhc")
+
+[node name="garbage_bag" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/garbage_bag"]
+position = Vector2(866.5, 1561)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_e2v2u")
+
+[node name="flashlight" type="StaticBody2D" parent="bar-outside/collisions"]
+metadata/_edit_lock_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/flashlight"]
+position = Vector2(843, 1678)
+rotation = 3.14159
+shape = SubResource("RectangleShape2D_qmqjp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("25_xaah1")
+
+[connection signal="friend_kick" from="neighbours/footbal_game/ball" to="." method="_on_ball_friend_kick"]
+[connection signal="scaleton_kick" from="neighbours/footbal_game/ball" to="." method="_on_ball_scaleton_kick"]
 [connection signal="body_entered" from="neighbours/footbal_game/left_goal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="neighbours/footbal_game/right_goal" to="." method="_on_right_goal_body_entered"]
 [connection signal="dialog_ended" from="neighbours/interactions/d_with_boney" to="." method="_on_d_with_boney_dialog_ended"]
 [connection signal="dialog_ended" from="neighbours/interactions/d_after_game" to="." method="_on_d_after_game_dialog_ended"]
+[connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="Camera2D" method="_on_exit_neighbours_to_bar_outside"]
