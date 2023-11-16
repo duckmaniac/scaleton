@@ -1,0 +1,226 @@
+[gd_scene load_steps=26 format=3 uid="uid://dhibevppyabdr"]
+
+[ext_resource type="Texture2D" uid="uid://cdeaxrin5j106" path="res://assets/sprites/street/tolik.png" id="1_l3xqa"]
+[ext_resource type="Script" path="res://scripts/street/tolik.gd" id="1_my70b"]
+[ext_resource type="Script" path="res://scripts/street/pet_tolik.gd" id="3_t1ks2"]
+[ext_resource type="AudioStream" uid="uid://bsfnyjqwbpwek" path="res://assets/sfx/purr.mp3" id="4_6hgrj"]
+[ext_resource type="AudioStream" uid="uid://wui8qw4ede3y" path="res://assets/sfx/pet.mp3" id="4_7084c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1lcu"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(32, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_diy44"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74ryo"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(64, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7smc4"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(96, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qlxj0"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfba3"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bhh3i"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24x6i"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4hfuk"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tuh5y"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg6rj"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(64, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3vwxs"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xktuq"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hasn7"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(32, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5vokl"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 16, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tjwho"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(96, 0, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hx40s"]
+atlas = ExtResource("1_l3xqa")
+region = Rect2(0, 0, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0wkd1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1lcu")
+}],
+"loop": true,
+"name": &"idle1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_diy44")
+}],
+"loop": true,
+"name": &"idle2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74ryo")
+}],
+"loop": true,
+"name": &"noticed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7smc4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qlxj0")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfba3")
+}],
+"loop": true,
+"name": &"sit1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bhh3i")
+}],
+"loop": true,
+"name": &"sit2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24x6i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4hfuk")
+}],
+"loop": false,
+"name": &"sit_down",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tuh5y")
+}],
+"loop": true,
+"name": &"stand1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg6rj")
+}],
+"loop": true,
+"name": &"stand2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3vwxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xktuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hasn7")
+}],
+"loop": false,
+"name": &"stand_up",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5vokl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tjwho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hx40s")
+}],
+"loop": false,
+"name": &"to_idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ateug"]
+size = Vector2(116, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6pur"]
+size = Vector2(220, 133)
+
+[node name="tolik" type="CharacterBody2D"]
+y_sort_enabled = true
+script = ExtResource("1_my70b")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 2
+position = Vector2(-1, -59)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_0wkd1")
+animation = &"idle1"
+offset = Vector2(0, 10)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3, 38)
+shape = SubResource("RectangleShape2D_ateug")
+
+[node name="pet_activator" type="StaticBody2D" parent="." groups=["interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("3_t1ks2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pet_activator"]
+position = Vector2(-12, 15.5)
+shape = SubResource("RectangleShape2D_x6pur")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="pet_activator"]
+stream = ExtResource("4_7084c")
+pitch_scale = 0.7
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_6hgrj")
+volume_db = 8.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="pet" from="pet_activator" to="." method="_on_pet_activator_pet"]

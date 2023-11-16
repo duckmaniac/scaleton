@@ -112,3 +112,9 @@ func sound_steps():
 
 func _on_steps_player_finished():
 	is_steps_sound_playing = false
+
+
+func _on_exit_neighbours_to_bar_outside():
+	position = Vector2(230, 1722)
+	state = State.STATE_WALKING
+	point_to_walk = Vector2(1491, 1591)

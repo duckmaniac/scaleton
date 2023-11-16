@@ -107,9 +107,8 @@ func _on_body_entered(body):
 		interactable_object = body
 	
 		
-func _on_body_exited(body):
-	if body.is_in_group("interactable"):
-		interactable_object = null
+func _on_body_exited(_body):
+	interactable_object = null
 
 
 func wear_home_clothes():

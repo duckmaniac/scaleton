@@ -18,8 +18,9 @@ var friend_phrase_counter = 0
 
 
 func _ready():
-	MusicController.set_track(1)
-	MusicController.play_music()
+	if not debug:
+		MusicController.set_track(1)
+		MusicController.play_music()
 	
 	# intro
 	if not debug:

@@ -29,7 +29,7 @@ func _on_Timer_timeout():
 		count_chars += 1
 		if current_phrase[count_chars-1] == " ":	
 			$AudioStreamPlayer.play()
-		elif count_chars == current_phrase.length():
+		if count_chars == current_phrase.length():
 			$AudioStreamPlayer.stream = type_end_sound
 			$AudioStreamPlayer.play()
 			is_typing = false
