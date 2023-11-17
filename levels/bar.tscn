@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2iv1n8a1p8ik"]
+
+[ext_resource type="Texture2D" uid="uid://cl64fb7424yoe" path="res://assets/sprites/bar/hall.png" id="1_g021d"]
+[ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="2_6s84i"]
+
+[node name="bar" type="Node2D"]
+
+[node name="hall" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="hall"]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("1_g021d")
+
+[node name="light" type="Node" parent="hall"]
+
+[node name="left" type="PointLight2D" parent="hall/light"]
+position = Vector2(567, 241)
+texture = ExtResource("2_6s84i")
+
+[node name="right" type="PointLight2D" parent="hall/light"]
+position = Vector2(1347, 244)
+texture = ExtResource("2_6s84i")
+
+[node name="global" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.38
+blend_mode = 1

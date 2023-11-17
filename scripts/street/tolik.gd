@@ -54,7 +54,8 @@ func _physics_process(delta):
 		switch_animation_to_run()
 		velocity = position.direction_to(player.position) * speed * delta
 		move_and_slide()
-	elif was_pet and position.distance_to(player.position) > 150 and position.distance_to(start_position) > 10:
+	elif (was_pet and (position.distance_to(player.position) > 150 or
+		 state == State.STATE_RUN) and position.distance_to(start_position) > 10):
 		if can_move_after_pet:
 			switch_animation_to_run()
 			velocity = position.direction_to(start_position) * speed * delta
@@ -123,5 +124,6 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _on_pet_activator_pet():
 	was_pet = true
-	$AudioStreamPlayer2D.play()
+	if $AudioStreamPlayer2D.get_playback_position() == 0:
+		$AudioStreamPlayer2D.play()
 	switch_animation_to_sit()

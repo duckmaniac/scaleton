@@ -111,7 +111,4 @@ shape = SubResource("RectangleShape2D_1sipf")
 stream = ExtResource("3_cia7c")
 pitch_scale = 1.1
 
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-current = true
-
 [connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]

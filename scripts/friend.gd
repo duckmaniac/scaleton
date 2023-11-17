@@ -48,10 +48,10 @@ func play_animation():
 		return
 
 	if direction.length() == 0:
-		if sprite.animation == "walk_forward":
-			sprite.play("idle_forward")
-		elif sprite.animation == "walk_backward":
+		if sprite.animation == "walk_backward":
 			sprite.play("idle_backward")
+		else:
+			sprite.play("idle_forward")
 		sprite.stop()
 		return
 	
@@ -100,6 +100,8 @@ func _physics_process(_delta):
 				direction.x = -1
 			elif velocity.x > 0:
 				direction.x = 1
+		else:
+			direction = Vector2.ZERO
 
 
 func sound_steps():
@@ -115,6 +117,9 @@ func _on_steps_player_finished():
 
 
 func _on_exit_neighbours_to_bar_outside():
-	position = Vector2(230, 1722)
+	# Teleport only once.
+	if position.y < 1000:
+		position = Vector2(230, 1722)
+		
 	state = State.STATE_WALKING
-	point_to_walk = Vector2(1491, 1591)
+	point_to_walk = Vector2(1543, 1580)

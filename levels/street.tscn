@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=90 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -39,6 +39,9 @@
 [ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="36_4mj74"]
 [ext_resource type="FontFile" uid="uid://f3pwpl6o3v2" path="res://assets/text/MatrixSans-Regular.ttf" id="37_tl5gl"]
 [ext_resource type="Texture2D" uid="uid://dc1a0b6ho5rfb" path="res://assets/sprites/home/note.png" id="38_q0at0"]
+[ext_resource type="Script" path="res://scripts/street/back_to_neighbours.gd" id="39_oaisi"]
+[ext_resource type="Texture2D" uid="uid://is32j838yhue" path="res://assets/sprites/street/news_sepia.png" id="39_r7nwo"]
+[ext_resource type="PackedScene" uid="uid://pujoq03fit0w" path="res://scenes/choice_dialog.tscn" id="40_itm4w"]
 
 [sub_resource type="Animation" id="Animation_teg7i"]
 resource_name = "light_off"
@@ -105,8 +108,8 @@ _data = {
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ua68c"]
 distance = 5.65684
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3p2u"]
-size = Vector2(462, 120)
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_yx84x"]
+distance = 88.6425
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k7r02"]
 size = Vector2(349, 16)
@@ -232,10 +235,10 @@ size = Vector2(157, 163)
 size = Vector2(42.5, 364)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkx17"]
-size = Vector2(47, 389.5)
+size = Vector2(27, 389.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2ogu"]
-size = Vector2(1092, 20)
+size = Vector2(891, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1mwh2"]
 size = Vector2(1920, 19.999)
@@ -269,6 +272,12 @@ size = Vector2(216.5, 153)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6bcr8"]
 size = Vector2(146, 115)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mckg4"]
+size = Vector2(42.5, 362)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hxqrs"]
+size = Vector2(239, 104.75)
 
 [node name="street" type="Node2D"]
 y_sort_enabled = true
@@ -349,9 +358,9 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/left_wall/for_ball"]
 z_index = 1
-position = Vector2(-73, 682)
+position = Vector2(-43.5014, 1073)
 rotation = 1.5708
-shape = SubResource("RectangleShape2D_b3p2u")
+shape = SubResource("WorldBoundaryShape2D_yx84x")
 
 [node name="right_wall" type="StaticBody2D" parent="neighbours/collisions"]
 metadata/_edit_lock_ = true
@@ -888,30 +897,32 @@ collision_mask = 3
 phrases = ["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
-position = Vector2(-13, 699.5)
+position = Vector2(8.5, 699.5)
 shape = SubResource("RectangleShape2D_wkx17")
 
-[node name="highlight" type="Node2D" parent="neighbours/interactions"]
+[node name="highlight" type="Node2D" parent="neighbours"]
 z_index = 2
 y_sort_enabled = true
+position = Vector2(48, 0)
 script = ExtResource("22_857nn")
 
-[node name="star" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+[node name="star" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(1549, 312)
 frame = 2
 frame_progress = 0.0
 
-[node name="star3" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+[node name="star3" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(368, 314)
 frame = 1
 frame_progress = 0.0
 
-[node name="star5" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+[node name="star5" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(175, 805)
 frame = 3
 frame_progress = 0.0
 
-[node name="star6" parent="neighbours/interactions/highlight" instance=ExtResource("14_vybhx")]
+[node name="star6" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
+z_index = 1
 position = Vector2(975, 154)
 frame = 1
 frame_progress = 0.0
@@ -962,7 +973,7 @@ scale = Vector2(6, 6)
 texture = ExtResource("25_bkurt")
 
 [node name="roofs" type="Sprite2D" parent="bar-outside/foreground"]
-position = Vector2(969, 2071)
+position = Vector2(1020, 2071)
 scale = Vector2(6, 6)
 texture = ExtResource("26_1qcix")
 
@@ -996,7 +1007,7 @@ z_index = 1
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/top_wall"]
-position = Vector2(546, 1452)
+position = Vector2(445.5, 1452)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_f2ogu")
 
@@ -1085,7 +1096,17 @@ shape = SubResource("RectangleShape2D_jksyy")
 position = Vector2(1089, 1633)
 player = NodePath("../../scaleton")
 
-[node name="interactions" type="Node" parent="bar-outside"]
+[node name="highlight" type="Node2D" parent="bar-outside/tolik"]
+script = ExtResource("22_857nn")
+
+[node name="star7" parent="bar-outside/tolik/highlight" instance=ExtResource("14_vybhx")]
+z_index = 2
+position = Vector2(-2, 14)
+frame = 1
+frame_progress = 0.0
+
+[node name="interactions" type="Node2D" parent="bar-outside"]
+y_sort_enabled = true
 
 [node name="d_post" parent="bar-outside/interactions" instance=ExtResource("15_c1odq")]
 collision_layer = 0
@@ -1124,23 +1145,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -328.0
-offset_top = -223.0
-offset_right = 345.0
-offset_bottom = 425.0
+offset_left = -317.0
+offset_top = -239.0
+offset_right = 356.0
+offset_bottom = 409.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("37_tl5gl")
 theme_override_font_sizes/font_size = 25
-text = "\"Milk Prohibition Ends: A Toast to 100 Years of Freedom\"
-Skeleton Daily - November 16, 2023
+text = "Skeleton Daily - November 16, 2023
 
 Celebrating 100 years since the Milk Prohibition's end, we remember when milk was banned for causing \"too much excitement\" in our skeleton world. Despite the risks, skeletons gathered in secret \"milk bars\" to enjoy their favorite drink.
 
 Today, milk symbolizes our triumph over past restrictions. From hearty \"Bone Strength Brew\" to delightful \"Ghastly Gooey Chocolate Milk,\" it's a testament to our community's resilience and joy. Here's to a century of milky freedom!
 
-By Skully Scribbles, Columnist, Skeleton Daily"
+By Skully Scribbles,
+Columnist, Skeleton Daily"
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RichTextLabel2" type="Label" parent="bar-outside/interactions/news/CanvasLayer"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -72.0
+offset_top = -381.0
+offset_right = 379.0
+offset_bottom = -237.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_fonts/font = ExtResource("37_tl5gl")
+theme_override_font_sizes/font_size = 30
+text = "\"Milk Prohibition Ends: A Toast to 100 Years of Freedom\""
 vertical_alignment = 1
 autowrap_mode = 3
 
@@ -1155,6 +1198,11 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.588235)
 
+[node name="Sprite2D2" type="Sprite2D" parent="bar-outside/interactions/news/CanvasLayer"]
+position = Vector2(762, 204)
+scale = Vector2(6, 6)
+texture = ExtResource("39_r7nwo")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/news"]
 z_index = 1
 position = Vector2(1065, 1941.5)
@@ -1162,6 +1210,48 @@ shape = SubResource("RectangleShape2D_6bcr8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="bar-outside/interactions/news"]
 volume_db = -3.0
+
+[node name="back_to_neighbours" type="StaticBody2D" parent="bar-outside/interactions" groups=["auto-interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("39_oaisi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/back_to_neighbours"]
+position = Vector2(0, 1880)
+shape = SubResource("RectangleShape2D_mckg4")
+
+[node name="d_exit_street" parent="bar-outside/interactions" instance=ExtResource("40_itm4w")]
+collision_layer = 0
+collision_mask = 3
+phrases = ["Are you ready to go?"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_exit_street"]
+position = Vector2(1423, 1672.63)
+shape = SubResource("RectangleShape2D_hxqrs")
+
+[node name="highlight" type="Node2D" parent="bar-outside"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("22_857nn")
+
+[node name="star" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(261, 1554)
+frame = 1
+frame_progress = 0.0
+
+[node name="star3" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(758, 1625)
+frame = 4
+frame_progress = 0.0
+
+[node name="star5" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(1425, 1482)
+frame_progress = 0.0
+
+[node name="star6" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(1738, 1641)
+frame = 3
+frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -1175,3 +1265,5 @@ script = ExtResource("25_xaah1")
 [connection signal="dialog_ended" from="neighbours/interactions/d_after_game" to="." method="_on_d_after_game_dialog_ended"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="friend" method="_on_exit_neighbours_to_bar_outside"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="Camera2D" method="_on_exit_neighbours_to_bar_outside"]
+[connection signal="to_neighbours" from="bar-outside/interactions/back_to_neighbours" to="Camera2D" method="_on_back_to_neighbours_to_neighbours"]
+[connection signal="yes_chosen" from="bar-outside/interactions/d_exit_street" to="." method="_on_d_exit_street_yes_chosen"]

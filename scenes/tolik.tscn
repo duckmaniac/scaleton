@@ -220,7 +220,9 @@ pitch_scale = 0.7
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_6hgrj")
-volume_db = 8.0
+volume_db = 3.0
+max_distance = 800.0
+attenuation = 1.5
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="pet" from="pet_activator" to="." method="_on_pet_activator_pet"]

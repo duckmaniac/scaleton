@@ -104,3 +104,7 @@ func _on_ball_scaleton_kick():
 		$neighbours/footbal_game/CanvasLayer/scaleton_phrase.text = scaleton_phrases[scaleton_phrase_counter % scaleton_phrases.size()]
 		scaleton_phrase_counter += 1
 		$neighbours/footbal_game/AnimationPlayer.play("show_scaleton_phrase")
+
+
+func _on_d_exit_street_yes_chosen():
+	get_tree().change_scene_to_file("res://levels/home.tscn")

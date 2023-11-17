@@ -399,6 +399,7 @@ sfx_on_hide = ExtResource("10_uxqtl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/note"]
 layer = 2
+visible = false
 
 [node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/note/CanvasLayer"]
 z_index = 1

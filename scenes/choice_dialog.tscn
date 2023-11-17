@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://pujoq03fit0w"]
+
+[ext_resource type="Script" path="res://scripts/choice_dialog.gd" id="1_12j8g"]
+[ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="2_s4nvp"]
+[ext_resource type="Texture2D" uid="uid://bwvcwj3x7yghu" path="res://assets/sprites/dialog.png" id="3_qeexl"]
+[ext_resource type="AudioStream" uid="uid://ceq5rcy4qq006" path="res://assets/sfx/type.mp3" id="4_qy04h"]
+
+[node name="d_with_choice" type="StaticBody2D" groups=["interactable"]]
+z_index = 3
+collision_layer = 2
+script = ExtResource("1_12j8g")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 207.0
+offset_top = 810.0
+offset_right = 1692.0
+offset_bottom = 949.0
+theme_override_fonts/font = ExtResource("2_s4nvp")
+theme_override_font_sizes/font_size = 45
+text = "Ready?"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="left_choice" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 228.0
+offset_top = 810.0
+offset_right = 874.0
+offset_bottom = 991.0
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = ExtResource("2_s4nvp")
+theme_override_font_sizes/font_size = 40
+text = "YES"
+horizontal_alignment = 2
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="right_choice" type="Label" parent="CanvasLayer"]
+z_index = 1
+offset_left = 1023.0
+offset_top = 810.0
+offset_right = 1710.0
+offset_bottom = 991.0
+theme_override_fonts/font = ExtResource("2_s4nvp")
+theme_override_font_sizes/font_size = 40
+text = "NO"
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("3_qeexl")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qy04h")
+volume_db = -3.0
