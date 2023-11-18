@@ -811,7 +811,7 @@ phrases = ["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, 
 one_off = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_with_boney"]
-position = Vector2(1152, 698)
+position = Vector2(1318, 856)
 shape = SubResource("RectangleShape2D_g0ikn")
 
 [node name="d_after_game" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
@@ -819,7 +819,7 @@ phrases = ["Boney: This is the life, huh? Alright, game's over. Time for the rea
 one_off = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_after_game"]
-position = Vector2(927, 800)
+position = Vector2(-230, 203)
 shape = SubResource("RectangleShape2D_g0ikn")
 
 [node name="d_left_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
@@ -927,13 +927,19 @@ position = Vector2(975, 154)
 frame = 1
 frame_progress = 0.0
 
+[node name="star7" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
+z_index = 1
+position = Vector2(1893, 636)
+frame = 1
+frame_progress = 0.0
+
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
 energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
-position = Vector2(923, 801)
+position = Vector2(949, 839)
 collision_layer = 3
 collision_mask = 3
 
@@ -1180,7 +1186,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 2
+theme_override_constants/outline_size = 1
 theme_override_fonts/font = ExtResource("37_tl5gl")
 theme_override_font_sizes/font_size = 30
 text = "\"Milk Prohibition Ends: A Toast to 100 Years of Freedom\""
@@ -1250,6 +1256,11 @@ frame_progress = 0.0
 
 [node name="star6" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(1738, 1641)
+frame = 3
+frame_progress = 0.0
+
+[node name="star7" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+position = Vector2(17, 1814)
 frame = 3
 frame_progress = 0.0
 

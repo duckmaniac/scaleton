@@ -1,10 +1,56 @@
-[gd_scene load_steps=3 format=3 uid="uid://bywh1m1b1o5xc"]
+[gd_scene load_steps=6 format=3 uid="uid://bywh1m1b1o5xc"]
 
 [ext_resource type="AudioStream" uid="uid://gc35slcna4nj" path="res://assets/music/01.farewell.mp3" id="1_d2ivo"]
 [ext_resource type="Script" path="res://scripts/music_controller.gd" id="1_mm8rh"]
+
+[sub_resource type="Animation" id="Animation_kwv7q"]
+resource_name = "ease_in"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [-10.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_owata"]
+resource_name = "ease_out"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("music:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(3, 3),
+"update": 0,
+"values": [0.0, -10.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pm2s6"]
+_data = {
+"ease_in": SubResource("Animation_kwv7q"),
+"ease_out": SubResource("Animation_owata")
+}
 
 [node name="music_controller" type="Node"]
 script = ExtResource("1_mm8rh")
 
 [node name="music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_d2ivo")
+volume_db = -80.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pm2s6")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

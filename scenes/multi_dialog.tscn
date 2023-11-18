@@ -12,6 +12,7 @@ collision_mask = 3
 script = ExtResource("1_a8mi7")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer"]

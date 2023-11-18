@@ -1,7 +1,7 @@
 extends Node
 
 
-var debug = true
+var debug = false
 var is_playing_football = false
 
 var lose_phrases = ["LET'S TRY AGAIN!", "DON'T GIVE UP!", "KEEP GOING!",
@@ -20,16 +20,15 @@ var friend_phrase_counter = 0
 func _ready():
 	if not debug:
 		MusicController.set_track(1)
-		MusicController.play_music()
 	
 	# intro
 	if not debug:
 		$scaleton.contact_monitor = false
 		$scaleton.can_move = false
 		$neighbours/intro.visible = true
-		await get_tree().create_timer(3.2).timeout
+		await get_tree().create_timer(3.7).timeout
 		$neighbours/intro/author.visible = true
-		await get_tree().create_timer(3.8).timeout
+		await get_tree().create_timer(3.5).timeout
 		$neighbours/intro.visible = false
 		$scaleton.contact_monitor = true
 

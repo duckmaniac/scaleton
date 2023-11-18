@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://nwdepydlb2tl"]
+[gd_scene load_steps=90 format=3 uid="uid://nwdepydlb2tl"]
 
 [ext_resource type="Script" path="res://scripts/home/level_home.gd" id="1_dh4yn"]
 [ext_resource type="Script" path="res://scripts/home/home_camera.gd" id="2_lm2c7"]
@@ -22,6 +22,7 @@
 [ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="19_gdg0w"]
 [ext_resource type="Script" path="res://scripts/highlight.gd" id="19_gtss6"]
 [ext_resource type="AudioStream" uid="uid://ce2qk76j02hul" path="res://assets/sfx/leaf.mp3" id="19_q4wdn"]
+[ext_resource type="Script" path="res://scripts/home/hint.gd" id="20_go4er"]
 [ext_resource type="Script" path="res://scripts/home/back_to_room.gd" id="21_5ivis"]
 [ext_resource type="AudioStream" uid="uid://crkihgdpk2c" path="res://assets/sfx/snoring.mp3" id="21_5qeh2"]
 [ext_resource type="Texture2D" uid="uid://bdqrvknixj05l" path="res://assets/sprites/home/family-portrait.png" id="21_ftsvp"]
@@ -41,7 +42,7 @@ size = Vector2(217, 219.25)
 size = Vector2(24, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_elihc"]
-size = Vector2(437, 290)
+size = Vector2(439.5, 290)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t7i4b"]
 size = Vector2(287, 162)
@@ -67,10 +68,10 @@ size = Vector2(252.875, 143)
 size = Vector2(83.0001, 54.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ip1gi"]
-size = Vector2(210, 48.9999)
+size = Vector2(210, 148.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yrc8g"]
-size = Vector2(204, 80)
+size = Vector2(195, 91)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_omayp"]
 atlas = ExtResource("7_xmkmm")
@@ -100,7 +101,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xmf51"]
-size = Vector2(216.5, 85.5)
+size = Vector2(216.5, 94.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yei8b"]
+size = Vector2(167.625, 108.375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2khje"]
 size = Vector2(330, 246)
@@ -156,6 +160,43 @@ size = Vector2(131.75, 154)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l033h"]
 size = Vector2(185, 39)
+
+[sub_resource type="Animation" id="Animation_nkl3h"]
+resource_name = "hide_hint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 1), Color(0.666667, 0.564706, 0.690196, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_knj8e"]
+resource_name = "hint"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 0), Color(0.666667, 0.564706, 0.690196, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_uvu3a"]
+_data = {
+"hide_hint": SubResource("Animation_nkl3h"),
+"show_hint": SubResource("Animation_knj8e")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2uol8"]
 size = Vector2(96.03, 45)
@@ -274,7 +315,7 @@ shape = SubResource("RectangleShape2D_q3qw4")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/cupboard"]
-position = Vector2(993.5, 335)
+position = Vector2(944.75, 321)
 shape = SubResource("RectangleShape2D_elihc")
 
 [node name="table" type="StaticBody2D" parent="scaletons_room/collisions"]
@@ -344,7 +385,7 @@ shape = SubResource("RectangleShape2D_e3ot2")
 metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/collisions/shelf"]
-position = Vector2(610, 389)
+position = Vector2(555, 348.75)
 rotation = -3.14159
 shape = SubResource("RectangleShape2D_ip1gi")
 
@@ -356,13 +397,13 @@ y_sort_enabled = true
 [node name="cupboard" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(654, -87)
+position = Vector2(606, -117)
 collision_layer = 2
 script = ExtResource("6_a27o5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/cupboard"]
 z_index = 1
-position = Vector2(456, 583)
+position = Vector2(451.5, 588.5)
 shape = SubResource("RectangleShape2D_yrc8g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="scaletons_room/interactions/cupboard"]
@@ -376,11 +417,27 @@ stream = ExtResource("8_5i3nc")
 volume_db = -5.0
 
 [node name="d_books" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
-position = Vector2(781, 451)
+position = Vector2(733, 421)
+phrases = ["\"Archery  for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_books"]
-position = Vector2(108, 42.25)
+position = Vector2(101, 47.625)
 shape = SubResource("RectangleShape2D_xmf51")
+
+[node name="d_clock" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
+position = Vector2(733, 421)
+phrases = ["Oops, look at the time! I better hurry up and meet my friend outside", "Time's ticking and I'm just here boning around. Gotta rattle my bones and meet my buddy outside!", "These clock hands are moving faster than my bones. Time to dash and catch up with my buddy!"]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_clock"]
+position = Vector2(515.188, -11.1875)
+shape = SubResource("RectangleShape2D_yei8b")
+
+[node name="clock" type="AudioStreamPlayer2D" parent="scaletons_room/interactions/d_clock"]
+position = Vector2(536, -232)
+stream = ExtResource("30_f73pe")
+volume_db = -1.0
+autoplay = true
+max_distance = 1000.0
 
 [node name="d_bed" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(781, 451)
@@ -398,8 +455,7 @@ sfx_on_show = ExtResource("9_vumei")
 sfx_on_hide = ExtResource("10_uxqtl")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/note"]
-layer = 2
-visible = false
+layer = 3
 
 [node name="RichTextLabel" type="Label" parent="scaletons_room/interactions/note/CanvasLayer"]
 z_index = 1
@@ -471,49 +527,40 @@ script = ExtResource("18_27t45")
 
 [node name="d_exit_room" parent="scaletons_room/interactions/exit_room" instance=ExtResource("9_rh7av")]
 position = Vector2(781, 451)
-phrases = ["Nope, can't leave without my clothes. I got some 'bare bones' to cover up!", "I can't go anywhere without my wardrobe. I need something to 'dress my skeleton' in!", "Leaving without my attire? Not a chance! I've got 'basic bones' to adorn!"]
+phrases = ["Nope, can't leave without my clothes. I got some \"bare bones\" to cover up!", "I can't go anywhere without my wardrobe. I need something to \"dress my skeleton\" in!", "Leaving without my attire? Not a chance! I've got \"basic bones\" to adorn! "]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/exit_room"]
 position = Vector2(1368.5, 1057)
 shape = SubResource("RectangleShape2D_l033h")
 
-[node name="highlight" type="Node2D" parent="scaletons_room/interactions"]
-z_index = 2
-y_sort_enabled = true
-script = ExtResource("19_gtss6")
+[node name="hint" type="Node" parent="scaletons_room/interactions"]
+script = ExtResource("20_go4er")
 
-[node name="star" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1083, 363)
-frame = 2
-frame_progress = 0.0
+[node name="CanvasLayer" type="CanvasLayer" parent="scaletons_room/interactions/hint"]
 
-[node name="star2" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(312, 389)
-frame = 4
-frame_progress = 0.0
+[node name="Label" type="Label" parent="scaletons_room/interactions/hint/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -447.0
+offset_top = -70.0
+offset_right = -38.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.666667, 0.564706, 0.690196, 0)
+theme_override_fonts/font = ExtResource("12_poj00")
+theme_override_font_sizes/font_size = 40
+text = "Hold TAB to get a hint"
 
-[node name="star3" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(423, 558)
-frame = 1
-frame_progress = 0.0
-
-[node name="star4" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1594, 796)
-
-[node name="star5" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1469, 353)
-frame = 3
-frame_progress = 0.0
-
-[node name="star6" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(813, 340)
-frame = 1
-frame_progress = 0.0
-
-[node name="star7" parent="scaletons_room/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1370, 1039)
-frame = 1
-frame_progress = 0.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="scaletons_room/interactions/hint"]
+libraries = {
+"": SubResource("AnimationLibrary_uvu3a")
+}
 
 [node name="foreground" type="Node2D" parent="scaletons_room"]
 z_index = 2
@@ -523,6 +570,49 @@ y_sort_enabled = true
 position = Vector2(396, 528)
 scale = Vector2(6, 6.01136)
 texture = ExtResource("15_s01au")
+
+[node name="highlight" type="Node2D" parent="scaletons_room"]
+z_index = 2
+y_sort_enabled = true
+script = ExtResource("19_gtss6")
+
+[node name="star" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1035, 333)
+frame = 2
+frame_progress = 0.0
+
+[node name="star2" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(312, 389)
+frame = 4
+frame_progress = 0.0
+
+[node name="star3" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(423, 558)
+frame = 1
+frame_progress = 0.0
+
+[node name="star4" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1594, 796)
+
+[node name="star5" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1469, 353)
+frame = 3
+frame_progress = 0.0
+
+[node name="star6" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(770, 310)
+frame = 1
+frame_progress = 0.0
+
+[node name="star7" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1370, 1039)
+frame = 1
+frame_progress = 0.0
+
+[node name="star8" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
+position = Vector2(1269, 189)
+frame = 1
+frame_progress = 0.0
 
 [node name="corridor" type="Node2D" parent="."]
 
@@ -843,13 +933,6 @@ position = Vector2(1908, 2900)
 frame = 1
 frame_progress = 0.0
 
-[node name="clock" type="AudioStreamPlayer2D" parent="hallway"]
-position = Vector2(-1315, 1804)
-stream = ExtResource("30_f73pe")
-volume_db = -1.0
-autoplay = true
-max_distance = 1000.0
-
 [node name="scaleton_mirror" parent="." node_paths=PackedStringArray("scaleton") instance=ExtResource("30_2vd08")]
 z_index = -2
 y_sort_enabled = false
@@ -861,7 +944,9 @@ color = Color(1, 1, 0, 1)
 energy = 0.38
 blend_mode = 1
 
+[connection signal="view_closed" from="scaletons_room/interactions/note" to="scaletons_room/interactions/hint" method="_on_note_view_closed"]
 [connection signal="to_corridor" from="scaletons_room/interactions/exit_room" to="Camera2D" method="_on_exit_room_to_corridor"]
+[connection signal="shown" from="scaletons_room/highlight" to="scaletons_room/interactions/hint" method="_on_highlight_shown"]
 [connection signal="to_scaletons_room" from="corridor/interactions/scaletons_door" to="Camera2D" method="_on_scaletons_door_to_scaletons_room"]
 [connection signal="to_hallway" from="corridor/interactions/exit_corridor" to="Camera2D" method="_on_exit_corridor_to_hallway"]
 [connection signal="back_to_corridor" from="hallway/interactions/back_to_corridor" to="Camera2D" method="_on_back_to_corridor_back_to_corridor"]

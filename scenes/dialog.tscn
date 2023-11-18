@@ -12,6 +12,7 @@ script = ExtResource("1_ntc8d")
 phrases = ["\"Archery is for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 2
 visible = false
 
 [node name="Label" type="Label" parent="CanvasLayer"]

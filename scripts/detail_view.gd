@@ -1,5 +1,8 @@
 extends StaticBody2D
 
+
+signal view_closed
+
 @export var sfx_on_show : Resource = null
 @export var sfx_on_hide : Resource = null
 	
@@ -10,6 +13,7 @@ func interact(player):
 			$AudioStreamPlayer.play()
 		$CanvasLayer.hide()
 		player.can_move = true
+		emit_signal("view_closed")
 	else:
 		if sfx_on_show != null:
 			$AudioStreamPlayer.stream = sfx_on_show
