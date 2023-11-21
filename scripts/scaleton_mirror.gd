@@ -28,7 +28,7 @@ func _process(delta):
 		
 func process_interaction():	
 	if Input.is_action_just_pressed("dance") and can_move:
-		if prev_animation == "walk_forward":
+		if prev_animation == "walk_forward" or prev_animation == "idle_forward":
 			set_animation("dance_forward")
 		else:
 			set_animation("dance_backward")

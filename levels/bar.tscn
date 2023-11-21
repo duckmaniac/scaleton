@@ -1,18 +1,205 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2iv1n8a1p8ik"]
+[gd_scene load_steps=79 format=3 uid="uid://b2iv1n8a1p8ik"]
 
 [ext_resource type="Script" path="res://scripts/bar/level_bar.gd" id="1_d67o3"]
 [ext_resource type="Texture2D" uid="uid://cl64fb7424yoe" path="res://assets/sprites/bar/hall.png" id="1_g021d"]
 [ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="2_6s84i"]
+[ext_resource type="Texture2D" uid="uid://bujc8ouhp355v" path="res://assets/sprites/bar/secret_door.png" id="3_sv58k"]
+[ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="4_4iwui"]
+[ext_resource type="Texture2D" uid="uid://eunh6lty6tdo" path="res://assets/sprites/bar/behind_secret_door.png" id="4_71s1n"]
+[ext_resource type="Texture2D" uid="uid://drsy752qq6cx5" path="res://assets/sprites/bar/piano.png" id="4_coky4"]
+[ext_resource type="Texture2D" uid="uid://d307j5g4qhpti" path="res://assets/sprites/bar/piano_chair.png" id="5_irjpe"]
+[ext_resource type="Texture2D" uid="uid://dddguojxtng8h" path="res://assets/sprites/bar/table1.png" id="5_nd3l2"]
+[ext_resource type="Texture2D" uid="uid://qieiyelfmqea" path="res://assets/sprites/bar/notes.png" id="5_rrh4r"]
+[ext_resource type="Texture2D" uid="uid://kchqv7ul5wt6" path="res://assets/sprites/bar/table2.png" id="6_3xdpu"]
+[ext_resource type="Texture2D" uid="uid://by5eh14lbg67e" path="res://assets/sprites/bar/bar_table.png" id="7_e7xon"]
+[ext_resource type="Texture2D" uid="uid://dea7hnajfh7x8" path="res://assets/sprites/bar/flower.png" id="8_51542"]
+[ext_resource type="Texture2D" uid="uid://bgtwjqhp2c4cl" path="res://assets/sprites/home/couch.png" id="9_s5grk"]
+[ext_resource type="Script" path="res://scripts/bar/closed_door.gd" id="11_bq606"]
+[ext_resource type="AudioStream" uid="uid://c5ljf1qxsoxnk" path="res://assets/sfx/closed_door.mp3" id="11_px0ie"]
+[ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="12_ancou"]
+[ext_resource type="Script" path="res://scripts/bar/couch.gd" id="14_3a3of"]
+[ext_resource type="Script" path="res://scripts/bar/piano_game.gd" id="15_akfl0"]
+[ext_resource type="Texture2D" uid="uid://cim0l7hjek1gr" path="res://assets/sprites/bar/piano_game.png" id="15_matot"]
+[ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="17_afp0w"]
+[ext_resource type="Texture2D" uid="uid://ddjtgsh2pag6g" path="res://assets/sprites/bar/pressed_white_key.png" id="18_1t305"]
+[ext_resource type="Texture2D" uid="uid://ciiotu8rhhhg1" path="res://assets/sprites/bar/black_keys.png" id="18_p0dr8"]
+[ext_resource type="AudioStream" uid="uid://b8unthvy3uoi1" path="res://assets/sfx/piano/do.mp3" id="20_b520t"]
+[ext_resource type="Texture2D" uid="uid://bds8wikdl1hwq" path="res://assets/sprites/bar/pressed_black_key.png" id="20_x70jd"]
+[ext_resource type="AudioStream" uid="uid://bgfsdj8immxpe" path="res://assets/sfx/piano/do#.mp3" id="21_57gcp"]
+[ext_resource type="AudioStream" uid="uid://28s28d1gqw2f" path="res://assets/sfx/piano/re.mp3" id="22_ce8q0"]
+[ext_resource type="AudioStream" uid="uid://bph4lhkqjhfmn" path="res://assets/sfx/piano/re#.mp3" id="23_rblko"]
+[ext_resource type="AudioStream" uid="uid://bu6ct0ntf17st" path="res://assets/sfx/piano/mi.mp3" id="24_gnckp"]
+[ext_resource type="AudioStream" uid="uid://btn3gi4hsxvrs" path="res://assets/sfx/piano/fa.mp3" id="25_il4ui"]
+[ext_resource type="AudioStream" uid="uid://csfsfc84knvrn" path="res://assets/sfx/piano/fa#.mp3" id="26_i2pgr"]
+[ext_resource type="AudioStream" uid="uid://c1ie7qnmxclfk" path="res://assets/sfx/piano/sol.mp3" id="27_ucyoh"]
+[ext_resource type="AudioStream" uid="uid://86pw4dcm2pm1" path="res://assets/sfx/piano/sol#.mp3" id="28_d2fib"]
+[ext_resource type="AudioStream" uid="uid://cftvk2lhxx3kc" path="res://assets/sfx/piano/la.mp3" id="29_r1pre"]
+[ext_resource type="AudioStream" uid="uid://cuapy01oyvmkm" path="res://assets/sfx/piano/la#.mp3" id="30_2qeny"]
+[ext_resource type="AudioStream" uid="uid://cx3jhyw57q2bw" path="res://assets/sfx/piano/ti.mp3" id="31_wqlek"]
+[ext_resource type="AudioStream" uid="uid://ct6tv3iwajj4g" path="res://assets/sfx/piano/do_high.mp3" id="32_3yv0p"]
+[ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="36_k0tm0"]
+[ext_resource type="Texture2D" uid="uid://dfhsr3ymc45re" path="res://assets/sprites/bar/piano_highlight.png" id="37_76e3b"]
+[ext_resource type="Script" path="res://scripts/highlight.gd" id="38_cefma"]
+[ext_resource type="PackedScene" uid="uid://cnpa7htl5vhc6" path="res://scenes/friend.tscn" id="38_sevjk"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="39_lbnag"]
+[ext_resource type="Texture2D" uid="uid://cnkn7w0lte1o0" path="res://assets/sprites/bar/notes_highlight.png" id="39_pu64m"]
+[ext_resource type="Texture2D" uid="uid://dcf3ymvle3u8p" path="res://assets/sprites/bar/piano_game_notes.png" id="40_2idvp"]
+[ext_resource type="PackedScene" uid="uid://tcrni8jxboos" path="res://scenes/multi_dialog.tscn" id="41_kne50"]
+[ext_resource type="Script" path="res://scripts/bar/hidden_notes.gd" id="43_axb2o"]
+[ext_resource type="AudioStream" uid="uid://dugg5ikaijoyb" path="res://assets/sfx/paper_show.mp3" id="43_fb02g"]
+[ext_resource type="Script" path="res://scripts/bar/exit_bar.gd" id="46_1uq77"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efdws"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_quyul"]
+size = Vector2(612.5, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hq1xg"]
+size = Vector2(648.25, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0jug7"]
+size = Vector2(235, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3r0g"]
+size = Vector2(138, 858.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_meux5"]
+size = Vector2(42.25, 84)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fqbb3"]
+size = Vector2(23, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cgepd"]
+size = Vector2(26, 223.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cotgi"]
+size = Vector2(53.5, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xucd3"]
+size = Vector2(46.25, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5op5w"]
+size = Vector2(55.125, 72)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_676j3"]
+size = Vector2(10.0014, 762)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_facci"]
+size = Vector2(13, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_15k86"]
+size = Vector2(14.8774, 196)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ewkbw"]
+size = Vector2(132.719, 14.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ixfp1"]
+size = Vector2(132.719, 10.75)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxxwq"]
+size = Vector2(155, 89)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8nnpb"]
+size = Vector2(186, 173)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_he01p"]
+size = Vector2(761.084, 79.0624)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_e1s8v"]
+blend_mode = 1
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ruqdq"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kel4g"]
+size = Vector2(276, 139)
+
+[sub_resource type="Animation" id="Animation_4vufg"]
+resource_name = "secret_door_opening"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../background/secret_door:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, -53.5), Vector2(96, -87.667)]
+}
+
+[sub_resource type="Animation" id="Animation_4xseb"]
+resource_name = "show_hint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/hint:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 0), Color(0.666667, 0.564706, 0.690196, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_2dqq5"]
+resource_name = "hide_hint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/hint:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 1), Color(0.666667, 0.564706, 0.690196, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4jqkc"]
+_data = {
+"hide_hint": SubResource("Animation_2dqq5"),
+"secret_door_opening": SubResource("Animation_4vufg"),
+"show_hint": SubResource("Animation_4xseb")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0e8"]
+size = Vector2(121.5, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fef86"]
+size = Vector2(156, 163.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmfr"]
+size = Vector2(192, 55)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fikvq"]
+size = Vector2(156, 60)
 
 [node name="bar" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_d67o3")
 
 [node name="hall" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="background" type="Sprite2D" parent="hall"]
 position = Vector2(960, 540)
 scale = Vector2(6, 6)
 texture = ExtResource("1_g021d")
+
+[node name="secret_door" type="Sprite2D" parent="hall/background"]
+z_index = -1
+position = Vector2(96, -53.5)
+texture = ExtResource("3_sv58k")
+
+[node name="behind_secret_door" type="Sprite2D" parent="hall/background"]
+z_index = -2
+position = Vector2(96, -53.5)
+texture = ExtResource("4_71s1n")
 
 [node name="light" type="Node" parent="hall"]
 
@@ -24,7 +211,602 @@ texture = ExtResource("2_6s84i")
 position = Vector2(1347, 244)
 texture = ExtResource("2_6s84i")
 
+[node name="collisions" type="Node2D" parent="hall"]
+
+[node name="top_wall" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/top_wall"]
+position = Vector2(334, 378)
+rotation = 3.14159
+shape = SubResource("WorldBoundaryShape2D_efdws")
+
+[node name="bottom_wall" type="Node2D" parent="hall/collisions"]
+
+[node name="left" type="StaticBody2D" parent="hall/collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bottom_wall/left"]
+position = Vector2(539.75, 1008)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_quyul")
+
+[node name="right" type="StaticBody2D" parent="hall/collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bottom_wall/right"]
+position = Vector2(1362.88, 1007)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_hq1xg")
+
+[node name="center" type="StaticBody2D" parent="hall/collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bottom_wall/center"]
+position = Vector2(946, 1080.5)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_0jug7")
+
+[node name="left_wall" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/left_wall"]
+position = Vector2(233, 484)
+rotation = 1.5708
+shape = SubResource("WorldBoundaryShape2D_efdws")
+
+[node name="right_wall" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/right_wall"]
+position = Vector2(1681, 469)
+rotation = 4.71239
+shape = SubResource("WorldBoundaryShape2D_efdws")
+
+[node name="bar" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bar"]
+position = Vector2(956.75, 363)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_w3r0g")
+
+[node name="flower" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/flower"]
+position = Vector2(1626, 642.875)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_meux5")
+
+[node name="piano" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="hall/collisions/piano"]
+polygon = PackedVector2Array(225, 891, 284, 891, 377, 845, 378, 780, 225, 778)
+
+[node name="piano_chair" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/piano_chair"]
+position = Vector2(426, 876.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_fqbb3")
+
+[node name="table1" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/table1"]
+position = Vector2(753.188, 741)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cgepd")
+
+[node name="table2" type="StaticBody2D" parent="hall/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/table2"]
+position = Vector2(1239, 833)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_cgepd")
+
+[node name="chair" type="StaticBody2D" parent="hall/collisions/table2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/table2/chair"]
+position = Vector2(1323, 839)
+shape = SubResource("RectangleShape2D_cotgi")
+
+[node name="chairs" type="Node2D" parent="hall/collisions"]
+
+[node name="chair1" type="StaticBody2D" parent="hall/collisions/chairs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/chairs/chair1"]
+position = Vector2(744, 507.25)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xucd3")
+
+[node name="chair2" type="StaticBody2D" parent="hall/collisions/chairs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/chairs/chair2"]
+position = Vector2(846, 499.125)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xucd3")
+
+[node name="chair3" type="StaticBody2D" parent="hall/collisions/chairs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/chairs/chair3"]
+position = Vector2(954, 507)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_xucd3")
+
+[node name="chair4" type="StaticBody2D" parent="hall/collisions/chairs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/chairs/chair4"]
+position = Vector2(1080, 515.125)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_5op5w")
+
+[node name="chair5" type="StaticBody2D" parent="hall/collisions/chairs"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/chairs/chair5"]
+position = Vector2(1182, 506.563)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_5op5w")
+
+[node name="bar_table" type="Node2D" parent="hall/collisions"]
+
+[node name="table" type="StaticBody2D" parent="hall/collisions/bar_table"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bar_table/table"]
+position = Vector2(957, 474.999)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_676j3")
+
+[node name="left_legs" type="StaticBody2D" parent="hall/collisions/bar_table"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bar_table/left_legs"]
+position = Vector2(639, 485.5)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_facci")
+
+[node name="right_legs" type="StaticBody2D" parent="hall/collisions/bar_table"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/bar_table/right_legs"]
+position = Vector2(1275, 486)
+rotation = -1.5708
+shape = SubResource("RectangleShape2D_facci")
+
+[node name="couch" type="StaticBody2D" parent="hall/collisions"]
+z_index = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/couch"]
+position = Vector2(1567, 798)
+shape = SubResource("RectangleShape2D_15k86")
+
+[node name="top" type="StaticBody2D" parent="hall/collisions/couch"]
+z_index = 1
+position = Vector2(3397.56, 57)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/couch/top"]
+position = Vector2(-1771.2, 646.25)
+shape = SubResource("RectangleShape2D_ewkbw")
+
+[node name="bottom" type="StaticBody2D" parent="hall/collisions/couch"]
+z_index = 1
+position = Vector2(3406, 58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/collisions/couch/bottom"]
+position = Vector2(-1780, 837)
+shape = SubResource("RectangleShape2D_ixfp1")
+
+[node name="foreground" type="Node2D" parent="hall"]
+z_index = 2
+y_sort_enabled = true
+
+[node name="piano" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(306, 717)
+scale = Vector2(6, 6)
+texture = ExtResource("4_coky4")
+
+[node name="notes" type="Sprite2D" parent="hall/foreground/piano"]
+visible = false
+position = Vector2(1.5, -4)
+texture = ExtResource("5_rrh4r")
+
+[node name="piano_chair" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(426, 780)
+scale = Vector2(6, 6)
+texture = ExtResource("5_irjpe")
+offset = Vector2(0, 10)
+
+[node name="table1" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(753, 657)
+scale = Vector2(6, 6)
+texture = ExtResource("5_nd3l2")
+offset = Vector2(0, 5)
+
+[node name="table2" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(1239, 759)
+scale = Vector2(6, 6)
+texture = ExtResource("6_3xdpu")
+offset = Vector2(0, 5)
+
+[node name="bar_table" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(957, 399)
+scale = Vector2(6, 6)
+texture = ExtResource("7_e7xon")
+offset = Vector2(0, 7)
+
+[node name="flower" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(1626, 549)
+scale = Vector2(6, 6)
+texture = ExtResource("8_51542")
+
+[node name="couch" type="Sprite2D" parent="hall/foreground"]
+position = Vector2(1629, 645)
+scale = Vector2(6, 6)
+texture = ExtResource("9_s5grk")
+flip_h = true
+
+[node name="interactions" type="Node" parent="hall"]
+
+[node name="closed_door" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("11_bq606")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/closed_door"]
+position = Vector2(377.5, 369.5)
+shape = SubResource("RectangleShape2D_pxxwq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/closed_door"]
+stream = ExtResource("11_px0ie")
+volume_db = -3.0
+pitch_scale = 0.8
+
+[node name="d_closed_door" parent="hall/interactions/closed_door" instance=ExtResource("12_ancou")]
+phrases = ["Looks like this door is locked. Guess the kitchen's off-limits!", "This door won't budge. No kitchen adventures for me!", "Seems this door is a no-go. I should stick to the bar area "]
+
+[node name="couch" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
+y_sort_enabled = true
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("14_3a3of")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/couch"]
+position = Vector2(1593, 783)
+shape = SubResource("RectangleShape2D_8nnpb")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/couch"]
+volume_db = -3.0
+
+[node name="d_bar" parent="hall/interactions" instance=ExtResource("12_ancou")]
+position = Vector2(1685.83, 899.875)
+phrases = ["So, what's your drink, Mr. Invisible? Our specialty is \"Ghastly Gooey Chocolate Milk\" that'll rattle your skeleton!", "Good evening, esteemed phantom! May I recommend our \"Spooky Spiced Latte\"? They're a hit with the spectral crowd!", "Ah, a discerning customer! How about our special \"Skeleton Smoothie\"? It's a mix of everything good - guaranteed to keep your bones dancing!"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_bar"]
+position = Vector2(-728.374, -465.344)
+shape = SubResource("RectangleShape2D_he01p")
+disabled = true
+
+[node name="piano_game" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("15_akfl0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="hall/interactions/piano_game"]
+visible = false
+
+[node name="piano" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer"]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("15_matot")
+
+[node name="black_keys" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer"]
+z_index = 2
+position = Vector2(1002, 738)
+scale = Vector2(6, 6)
+texture = ExtResource("18_p0dr8")
+
+[node name="pressed_keys" type="Node2D" parent="hall/interactions/piano_game/CanvasLayer"]
+position = Vector2(0, -24)
+
+[node name="do" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(510, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="do#" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 3
+position = Vector2(567, 765)
+scale = Vector2(6, 6)
+texture = ExtResource("20_x70jd")
+
+[node name="re" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(624, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="re#" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 3
+position = Vector2(681, 765)
+scale = Vector2(6, 6)
+texture = ExtResource("20_x70jd")
+
+[node name="mi" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(738, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="fa" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(852, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="fa#" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 3
+position = Vector2(909, 765)
+scale = Vector2(6, 6)
+texture = ExtResource("20_x70jd")
+
+[node name="sol" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(966, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="sol#" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 3
+position = Vector2(1023, 765)
+scale = Vector2(6, 6)
+texture = ExtResource("20_x70jd")
+
+[node name="la" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(1080, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="la#" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 3
+position = Vector2(1137, 765)
+scale = Vector2(6, 6)
+texture = ExtResource("20_x70jd")
+
+[node name="ti" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(1194, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="do_high" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer/pressed_keys"]
+visible = false
+z_index = 1
+position = Vector2(1308, 843)
+scale = Vector2(6, 6)
+texture = ExtResource("18_1t305")
+
+[node name="sound" type="Node" parent="hall/interactions/piano_game/CanvasLayer"]
+
+[node name="do" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("20_b520t")
+bus = &"Piano"
+
+[node name="do#" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("21_57gcp")
+bus = &"Piano"
+
+[node name="re" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("22_ce8q0")
+bus = &"Piano"
+
+[node name="re#" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("23_rblko")
+bus = &"Piano"
+
+[node name="mi" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("24_gnckp")
+bus = &"Piano"
+
+[node name="fa" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("25_il4ui")
+bus = &"Piano"
+
+[node name="fa#" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("26_i2pgr")
+bus = &"Piano"
+
+[node name="sol" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("27_ucyoh")
+bus = &"Piano"
+
+[node name="sol#" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("28_d2fib")
+bus = &"Piano"
+
+[node name="la" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("29_r1pre")
+bus = &"Piano"
+
+[node name="la#" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("30_2qeny")
+bus = &"Piano"
+
+[node name="ti" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("31_wqlek")
+bus = &"Piano"
+
+[node name="do_high" type="AudioStreamPlayer" parent="hall/interactions/piano_game/CanvasLayer/sound"]
+stream = ExtResource("32_3yv0p")
+bus = &"Piano"
+
+[node name="highlight" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer"]
+z_index = 4
+material = SubResource("CanvasItemMaterial_e1s8v")
+position = Vector2(897, 618)
+scale = Vector2(6, 6)
+texture = ExtResource("37_76e3b")
+script = ExtResource("38_cefma")
+
+[node name="star" parent="hall/interactions/piano_game/CanvasLayer/highlight" instance=ExtResource("39_lbnag")]
+position = Vector2(-75.5, -12.3333)
+scale = Vector2(2, 2)
+frame = 1
+frame_progress = 0.0
+
+[node name="star2" parent="hall/interactions/piano_game/CanvasLayer/highlight" instance=ExtResource("39_lbnag")]
+position = Vector2(78.8333, 1.33333)
+scale = Vector2(2, 2)
+frame = 4
+frame_progress = 0.0
+
+[node name="notes" type="TextureRect" parent="hall/interactions/piano_game/CanvasLayer/highlight"]
+material = SubResource("CanvasItemMaterial_ruqdq")
+offset_left = -59.0
+offset_top = -73.0
+offset_right = -59.0
+offset_bottom = -60.0
+texture = ExtResource("39_pu64m")
+expand_mode = 1
+stretch_mode = 1
+
+[node name="hint" type="Label" parent="hall/interactions/piano_game/CanvasLayer"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -53.0
+offset_right = 205.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0.666667, 0.564706, 0.690196, 0)
+theme_override_fonts/font = ExtResource("36_k0tm0")
+theme_override_font_sizes/font_size = 40
+text = "Hold TAB to get a hint"
+
+[node name="notes" type="Sprite2D" parent="hall/interactions/piano_game/CanvasLayer"]
+visible = false
+position = Vector2(956, 200)
+scale = Vector2(6, 6)
+texture = ExtResource("40_2idvp")
+
+[node name="notes_label" type="Label" parent="hall/interactions/piano_game/CanvasLayer/notes"]
+top_level = true
+offset_left = 438.0
+offset_top = 49.0
+offset_right = 1537.0
+offset_bottom = 377.0
+theme_override_colors/font_color = Color(0.317647, 0.247059, 0.294118, 1)
+theme_override_colors/font_outline_color = Color(0.317647, 0.247059, 0.294118, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("36_k0tm0")
+theme_override_font_sizes/font_size = 40
+text = "Unlock the secret door with ease...
+                       
+	                        
+
+
+
+
+                           ...by playing the major scale of C's"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/piano_game"]
+stream = ExtResource("17_afp0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/piano_game"]
+position = Vector2(372, 824.5)
+shape = SubResource("RectangleShape2D_kel4g")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hall/interactions/piano_game"]
+libraries = {
+"": SubResource("AnimationLibrary_4jqkc")
+}
+
+[node name="d_first" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
+phrases = ["Scaleton: I've never been here at night, it's so cool!", "Boney: Yeah, it feels totally different in the dark, doesn't it?", "Scaleton: Exactly! So, about that secret passage upstairs you mentioned?", "Boney: Oh, that. My granddad built it during the Milk Prohibition to smuggle milk. But I'm not sure how to open it. I think the instructions must be hidden somewhere behind the bar counter"]
+one_off = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_first"]
+position = Vector2(925, 877)
+shape = SubResource("RectangleShape2D_uh0e8")
+
+[node name="d_third" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
+phrases = ["Boney: You did it! This is how grandpa moved his secret milk stash", "Scaleton: This is my chance... to step out and make people laugh. Here I come, world!"]
+one_off = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_third"]
+position = Vector2(398, 824)
+shape = SubResource("RectangleShape2D_fef86")
+disabled = true
+
+[node name="d_fourth" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
+phrases = ["Boney: You're really chasing your dream, huh? I'll miss your skeleton puns!", "Scaleton: It's time I surfaced. I've got jokes to tell and bones to rattle!", "Boney: One last thing – can you take this 'Top 100 Country Hits' record to my grandpa upstairs? It's from Mrs. Garners", "Scaleton:  Of course. Thanks for everything, Boney. Here's to finding new laughs!", "Boney: Break a leg out there! And tell grandpa I said hi!"]
+one_off = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_fourth"]
+position = Vector2(1536, 396)
+shape = SubResource("RectangleShape2D_fef86")
+disabled = true
+
+[node name="hidden_notes" type="StaticBody2D" parent="hall/interactions" groups=["auto-interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("43_axb2o")
+
+[node name="d_second" parent="hall/interactions/hidden_notes" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
+phrases = ["Scaleton: Got something! \"Unlock the secret door with ease, by playing the major scale of C's\" Guess that's our key!", "Boney: Classic grandpa, always with the puzzles. Try it out on the piano!"]
+one_off = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/hidden_notes"]
+position = Vector2(858.25, 426.5)
+shape = SubResource("RectangleShape2D_uh0e8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/hidden_notes"]
+stream = ExtResource("43_fb02g")
+
+[node name="d_trying_leave_bar" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("12_ancou")]
+phrases = ["Wait a second, I'm heading out? That's not right, I need to go the other way", "Oops, almost left the bar. I should be heading somewhere else", "Hold on, am I leaving? No, no, I need to turn around and go the other way"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_trying_leave_bar"]
+position = Vector2(942, 1053)
+shape = SubResource("RectangleShape2D_ltmfr")
+
+[node name="exit_bar" type="StaticBody2D" parent="hall/interactions" groups=["auto-interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("46_1uq77")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/exit_bar"]
+position = Vector2(1536, 373)
+shape = SubResource("RectangleShape2D_fikvq")
+disabled = true
+
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
 energy = 0.38
 blend_mode = 1
+
+[node name="scaleton" parent="." instance=ExtResource("4_4iwui")]
+position = Vector2(920, 877)
+
+[node name="friend" parent="." instance=ExtResource("38_sevjk")]
+z_index = 2
+position = Vector2(1042, 678)
+
+[connection signal="phrase_ended" from="hall/interactions/closed_door/d_closed_door" to="hall/interactions/closed_door" method="_on_d_closed_door_phrase_ended"]
+[connection signal="playing" from="hall/interactions/piano_game" to="." method="_on_piano_game_playing"]
+[connection signal="secret_door_opened" from="hall/interactions/piano_game" to="." method="_on_piano_game_secret_door_opened"]
+[connection signal="shown" from="hall/interactions/piano_game/CanvasLayer/highlight" to="hall/interactions/piano_game" method="_on_highlight_shown"]
+[connection signal="dialog_ended" from="hall/interactions/d_first" to="." method="_on_d_first_dialog_ended"]
+[connection signal="dialog_ended" from="hall/interactions/d_third" to="." method="_on_d_third_dialog_ended"]
+[connection signal="dialog_ended" from="hall/interactions/d_fourth" to="." method="_on_d_fourth_dialog_ended"]
+[connection signal="dialog_ended" from="hall/interactions/hidden_notes/d_second" to="." method="_on_d_second_dialog_ended"]
+[connection signal="reached_point_to_walk" from="friend" to="." method="_on_friend_reached_point_to_walk"]

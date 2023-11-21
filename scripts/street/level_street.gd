@@ -49,7 +49,7 @@ func start_football_game():
 	is_playing_football = true
 	$scaleton.teleport(Vector2(525, 779))
 	$friend.position = Vector2(1329, 559)
-	$friend.state = $friend.State.STATE_PLAY
+	$friend.change_state_to_play()
 	$neighbours/footbal_game/ball.reset_state = true
 	$dimmer.light_on()
 	$scaleton.can_move = true
@@ -70,7 +70,7 @@ func _on_right_goal_body_entered(body):
 	if is_playing_football and body.is_in_group("ball"):
 		is_playing_football = false
 		$neighbours/footbal_game/ball.is_forced_move = false
-		$friend.state = $friend.State.STATE_DIALOG
+		$friend.change_state_to_dialog()
 		$neighbours/footbal_game/left_goal.monitoring = false
 		set_deferred("$neighbours/footbal_game/right_goal.monitoring", false)
 		$neighbours/interactions/d_after_game/CollisionShape2D.position = $scaleton.position
@@ -80,7 +80,7 @@ func _on_right_goal_body_entered(body):
 
 
 func _on_d_after_game_dialog_ended():
-	$friend.state = $friend.State.STATE_WALKING
+	$friend.change_state_to_walking()
 	$friend.point_to_walk = Vector2(2137, 569)
 	$scaleton.interactable_object = null
 
@@ -106,4 +106,9 @@ func _on_ball_scaleton_kick():
 
 
 func _on_d_exit_street_yes_chosen():
-	get_tree().change_scene_to_file("res://levels/home.tscn")
+	$scaleton.can_move = false
+	$"bar-outside/interactions/d_exit_street/AudioStreamPlayer2".play()
+
+
+func _on_audio_stream_player_2_finished():
+	get_tree().change_scene_to_file("res://levels/bar.tscn")

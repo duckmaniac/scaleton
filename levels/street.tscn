@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=91 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -42,6 +42,7 @@
 [ext_resource type="Script" path="res://scripts/street/back_to_neighbours.gd" id="39_oaisi"]
 [ext_resource type="Texture2D" uid="uid://is32j838yhue" path="res://assets/sprites/street/news_sepia.png" id="39_r7nwo"]
 [ext_resource type="PackedScene" uid="uid://pujoq03fit0w" path="res://scenes/choice_dialog.tscn" id="40_itm4w"]
+[ext_resource type="AudioStream" uid="uid://bk1lo7c0xul6x" path="res://assets/sfx/key.mp3" id="42_ax06g"]
 
 [sub_resource type="Animation" id="Animation_teg7i"]
 resource_name = "light_off"
@@ -823,8 +824,6 @@ position = Vector2(-230, 203)
 shape = SubResource("RectangleShape2D_g0ikn")
 
 [node name="d_left_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["The Garners' place, mysterious yet charming. They collect unique artifacts, always something new in their window, like last week's handless clock. But the real magic is Mrs. Garner's legendary pies, rumored to be a 'borrowed' recipe from the surface"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_house"]
@@ -832,8 +831,6 @@ position = Vector2(352, 444)
 shape = SubResource("RectangleShape2D_3jtvt")
 
 [node name="d_basket" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["There's a bright memory from when I was a kid. We were playing soccer and these older teens took our ball. But Boney, he challenged them to a game for it. We played, won, and got our ball back. Felt like heroes that day"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_basket"]
@@ -841,8 +838,6 @@ position = Vector2(976, 340)
 shape = SubResource("RectangleShape2D_a241o")
 
 [node name="d_left_house2" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family skeleton. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_house2"]
@@ -892,8 +887,6 @@ position = Vector2(1882.75, 701)
 shape = SubResource("RectangleShape2D_1cq7w")
 
 [node name="d_left_border" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
@@ -940,8 +933,6 @@ blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
 position = Vector2(949, 839)
-collision_layer = 3
-collision_mask = 3
 
 [node name="friend" parent="." node_paths=PackedStringArray("ball") groups=["friend"] instance=ExtResource("13_j7csx")]
 z_index = 2
@@ -1082,8 +1073,6 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_qmqjp")
 
 [node name="d_left_border" parent="bar-outside/collisions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["Nope, wrong direction. I should head over to the bar where my buddy is", "I'm off route. Better head towards the bar to join my friend", "Seems I made a detour. Time to head to the bar where my friend's waiting "]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/d_left_border"]
@@ -1115,8 +1104,6 @@ frame_progress = 0.0
 y_sort_enabled = true
 
 [node name="d_post" parent="bar-outside/interactions" instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["As skeletons, waiting for the mail isn't a problem. We've been chilling here for centuries. What's a few more days?", "Why do skeletons make great postal workers? They're never tired of 'bone'-voyage jokes for every package!", "Asked a skeleton if he hated waiting for the mail. He said, \"Not at all, gives me a chance to bone up on my patience!\""]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_post"]
@@ -1124,8 +1111,6 @@ position = Vector2(279, 1664.5)
 shape = SubResource("RectangleShape2D_t4wtd")
 
 [node name="d_menu" parent="bar-outside/interactions" instance=ExtResource("15_c1odq")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["\"Bone Strength Brew\" - Chilled calcium-rich milk for sturdy bones", "\"Spooky Spiced Latte\" - Warm milk with vanilla and cinnamon, like a skeleton's hug", "\"Ghastly Gooey Chocolate Milk\" - Thick chocolate milk with cream, a true graveyard hit!"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_menu"]
@@ -1235,6 +1220,9 @@ phrases = ["Are you ready to go?"]
 position = Vector2(1423, 1672.63)
 shape = SubResource("RectangleShape2D_hxqrs")
 
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="bar-outside/interactions/d_exit_street"]
+stream = ExtResource("42_ax06g")
+
 [node name="highlight" type="Node2D" parent="bar-outside"]
 z_index = 2
 y_sort_enabled = true
@@ -1278,3 +1266,4 @@ script = ExtResource("25_xaah1")
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="Camera2D" method="_on_exit_neighbours_to_bar_outside"]
 [connection signal="to_neighbours" from="bar-outside/interactions/back_to_neighbours" to="Camera2D" method="_on_back_to_neighbours_to_neighbours"]
 [connection signal="yes_chosen" from="bar-outside/interactions/d_exit_street" to="." method="_on_d_exit_street_yes_chosen"]
+[connection signal="finished" from="bar-outside/interactions/d_exit_street/AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]

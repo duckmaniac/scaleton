@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 enum State {STATE_DIALOG, STATE_PLAY, STATE_WALKING}
 
+signal reached_point_to_walk
+
 @export var ball: RigidBody2D = null
 var state = State.STATE_DIALOG
 var speed = 200
@@ -44,10 +46,13 @@ func _on_Timer_timeout():
 
 func play_animation():
 	if state == State.STATE_DIALOG:
-		sprite.play("idle_forward")
+		if sprite.animation != "sit" and sprite.animation != "idle_left":
+			sprite.play("idle_forward")
 		return
 
 	if direction.length() == 0:
+		if sprite.animation == "sit": return
+		
 		if sprite.animation == "walk_backward":
 			sprite.play("idle_backward")
 		else:
@@ -101,6 +106,8 @@ func _physics_process(_delta):
 			elif velocity.x > 0:
 				direction.x = 1
 		else:
+			if direction != Vector2.ZERO:
+				emit_signal("reached_point_to_walk")
 			direction = Vector2.ZERO
 
 
@@ -120,6 +127,23 @@ func _on_exit_neighbours_to_bar_outside():
 	# Teleport only once.
 	if position.y < 1000:
 		position = Vector2(230, 1722)
-		
-	state = State.STATE_WALKING
+	
+	change_state_to_walking()
 	point_to_walk = Vector2(1543, 1580)
+	
+
+func change_state_to_play():
+	state = State.STATE_PLAY
+	speed = 200
+	$CollisionShape2D.position.x = -9.5
+	
+	
+func change_state_to_walking():
+	state = State.STATE_WALKING
+	speed = 250
+	$CollisionShape2D.position.x = 8
+	
+	
+func change_state_to_dialog():
+	state = State.STATE_DIALOG
+	$CollisionShape2D.position.x = 8

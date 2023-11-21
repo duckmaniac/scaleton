@@ -8,6 +8,7 @@ var direction = Vector2.ZERO
 var prev_direction = Vector2.ZERO
 var interactable_object = null
 var can_move = true
+var is_cut_scene = false
 var sprite = null
 var prev_animation = null
 
@@ -42,7 +43,7 @@ func process_interaction():
 		interactable_object.interact(self)
 		
 	if Input.is_action_just_pressed("dance") and can_move:
-		if prev_animation == "walk_backward":
+		if prev_animation == "walk_backward" or prev_animation == "idle_backward":
 			set_animation("dance_backward")
 		else:
 			set_animation("dance_forward")
@@ -54,6 +55,8 @@ func process_interaction():
 func set_direction():
 	if direction != Vector2.ZERO:
 		prev_direction = direction
+	if is_cut_scene: return
+	
 	direction = Vector2.ZERO
 	if can_move:
 		if Input.is_action_pressed("ui_right"):
@@ -139,3 +142,9 @@ func teleport(new_position):
 func set_animation(animation_name):
 	prev_animation = sprite.animation
 	sprite.play(animation_name)
+	
+	
+func cut_scene_move_forward():
+	can_move = false
+	is_cut_scene = true
+	direction = Vector2(0, -1)

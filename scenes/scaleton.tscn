@@ -267,6 +267,8 @@ size = Vector2(54, 19)
 [node name="scaleton" type="RigidBody2D"]
 z_index = 2
 y_sort_enabled = true
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.0
 max_contacts_reported = 1
 contact_monitor = true

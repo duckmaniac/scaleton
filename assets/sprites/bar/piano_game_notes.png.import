@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6j86r3dchkq5"
-path="res://.godot/imported/boney.png-a80244dedae030337f7a2d237579c66c.ctex"
+uid="uid://dcf3ymvle3u8p"
+path="res://.godot/imported/piano_game_notes.png-0220e3c67ae32b2f634b1cb9e38a6093.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/street/boney.png"
-dest_files=["res://.godot/imported/boney.png-a80244dedae030337f7a2d237579c66c.ctex"]
+source_file="res://assets/sprites/bar/piano_game_notes.png"
+dest_files=["res://.godot/imported/piano_game_notes.png-0220e3c67ae32b2f634b1cb9e38a6093.ctex"]
 
 [params]
 
