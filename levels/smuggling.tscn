@@ -1,0 +1,220 @@
+[gd_scene load_steps=22 format=3 uid="uid://dihh7kxwckc0s"]
+
+[ext_resource type="Texture2D" uid="uid://cnb6rjfntbdc" path="res://assets/sprites/smuggling/secreet_room.png" id="1_8jisk"]
+[ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="2_5vua6"]
+[ext_resource type="Texture2D" uid="uid://bifvk0mb0vfp5" path="res://assets/sprites/smuggling/foreground_cargo.png" id="3_auv8t"]
+[ext_resource type="Texture2D" uid="uid://bkd7v1x5xijl5" path="res://assets/sprites/smuggling/bottom_pipe.png" id="4_lv5qx"]
+[ext_resource type="Texture2D" uid="uid://8wjpdc3nii57" path="res://assets/sprites/smuggling/table.png" id="5_j0p1m"]
+[ext_resource type="Texture2D" uid="uid://bh7fuol0vqov1" path="res://assets/sprites/smuggling/tables.png" id="6_kgpfk"]
+[ext_resource type="Texture2D" uid="uid://dqwj1rej6ljxl" path="res://assets/sprites/smuggling/cargo.png" id="7_8a63h"]
+[ext_resource type="Texture2D" uid="uid://d2emvpwk53prc" path="res://assets/sprites/smuggling/small_table.png" id="7_xmubk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1ka"]
+size = Vector2(143, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7bh0s"]
+size = Vector2(114, 57)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ly5mu"]
+size = Vector2(917.5, 168)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_870fu"]
+size = Vector2(144, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n7dkb"]
+size = Vector2(108, 168.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vsbfn"]
+size = Vector2(48.5, 493)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmrt8"]
+size = Vector2(48.5, 509.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mleg3"]
+size = Vector2(132.25, 182.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r1og1"]
+size = Vector2(768.125, 43.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwkqd"]
+size = Vector2(98, 65.625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xbvjl"]
+size = Vector2(79, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfy4r"]
+size = Vector2(113.5, 12.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxex7"]
+size = Vector2(744, 43)
+
+[node name="smuggling" type="Node2D"]
+y_sort_enabled = true
+
+[node name="secreet_room" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="background" type="Sprite2D" parent="secreet_room"]
+position = Vector2(960, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("1_8jisk")
+
+[node name="global" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.38
+blend_mode = 1
+
+[node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
+position = Vector2(1241, 666)
+
+[node name="collisions" type="Node2D" parent="."]
+
+[node name="top_wall" type="Node2D" parent="collisions"]
+
+[node name="left" type="StaticBody2D" parent="collisions/top_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/top_wall/left"]
+position = Vector2(438.5, 395.5)
+shape = SubResource("RectangleShape2D_cu1ka")
+
+[node name="right" type="StaticBody2D" parent="collisions/top_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/top_wall/right"]
+position = Vector2(711, 395.5)
+shape = SubResource("RectangleShape2D_7bh0s")
+
+[node name="bottom_wall" type="Node2D" parent="collisions"]
+
+[node name="left" type="StaticBody2D" parent="collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/left"]
+position = Vector2(849.25, 996)
+shape = SubResource("RectangleShape2D_ly5mu")
+
+[node name="center" type="StaticBody2D" parent="collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/center"]
+position = Vector2(1380, 1086)
+shape = SubResource("RectangleShape2D_870fu")
+
+[node name="right" type="StaticBody2D" parent="collisions/bottom_wall"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/right"]
+position = Vector2(1506, 995.75)
+shape = SubResource("RectangleShape2D_n7dkb")
+
+[node name="left_wall" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/left_wall"]
+position = Vector2(377.25, 670.5)
+shape = SubResource("RectangleShape2D_vsbfn")
+
+[node name="right_wall" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/right_wall"]
+position = Vector2(1548, 656.75)
+shape = SubResource("RectangleShape2D_qmrt8")
+
+[node name="table" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/table"]
+position = Vector2(467.875, 646.75)
+shape = SubResource("RectangleShape2D_mleg3")
+
+[node name="chairs_and_cupboard" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/chairs_and_cupboard"]
+position = Vector2(1145.94, 422)
+shape = SubResource("RectangleShape2D_r1og1")
+
+[node name="valve" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/valve"]
+position = Vector2(1481, 433.188)
+shape = SubResource("RectangleShape2D_nwkqd")
+
+[node name="tables" type="Node2D" parent="collisions"]
+
+[node name="table1" type="StaticBody2D" parent="collisions/tables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table1"]
+position = Vector2(1478.5, 702.25)
+shape = SubResource("RectangleShape2D_xbvjl")
+
+[node name="table2" type="StaticBody2D" parent="collisions/tables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table2"]
+position = Vector2(1441.25, 660)
+shape = SubResource("RectangleShape2D_gfy4r")
+
+[node name="table3" type="StaticBody2D" parent="collisions/tables"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table3"]
+position = Vector2(1472, 606)
+shape = SubResource("RectangleShape2D_xbvjl")
+
+[node name="foreground_cargo" type="StaticBody2D" parent="collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/foreground_cargo"]
+position = Vector2(828, 906.5)
+shape = SubResource("RectangleShape2D_uxex7")
+
+[node name="foreground" type="Node2D" parent="."]
+z_index = 2
+y_sort_enabled = true
+
+[node name="cargo" type="Sprite2D" parent="foreground"]
+position = Vector2(828, 837)
+scale = Vector2(6, 6)
+texture = ExtResource("3_auv8t")
+
+[node name="bottom_pipe" type="Sprite2D" parent="foreground"]
+position = Vector2(612, 876)
+scale = Vector2(6, 6)
+texture = ExtResource("4_lv5qx")
+
+[node name="table" type="Sprite2D" parent="foreground"]
+position = Vector2(459, 498)
+scale = Vector2(6, 6)
+texture = ExtResource("5_j0p1m")
+offset = Vector2(0, 20)
+
+[node name="tables" type="Sprite2D" parent="foreground"]
+visible = false
+position = Vector2(1473, 540)
+scale = Vector2(6, 6)
+texture = ExtResource("6_kgpfk")
+offset = Vector2(0, 10)
+
+[node name="tables2" type="Node2D" parent="foreground"]
+y_sort_enabled = true
+
+[node name="table1" type="Sprite2D" parent="foreground/tables2"]
+position = Vector2(1500, 618)
+scale = Vector2(6, 6)
+texture = ExtResource("7_xmubk")
+offset = Vector2(0, 5)
+
+[node name="table2" type="Sprite2D" parent="foreground/tables2"]
+position = Vector2(1446, 576)
+scale = Vector2(6, 6)
+texture = ExtResource("7_xmubk")
+offset = Vector2(0, 5)
+
+[node name="table3" type="Sprite2D" parent="foreground/tables2"]
+position = Vector2(1494, 522)
+scale = Vector2(6, 6)
+texture = ExtResource("7_xmubk")
+offset = Vector2(0, 5)
+
+[node name="interactions" type="Node" parent="."]
+
+[node name="cargo" type="StaticBody2D" parent="interactions"]
+
+[node name="Sprite2D" type="Sprite2D" parent="interactions/cargo"]
+position = Vector2(582, 360)
+scale = Vector2(6, 6)
+texture = ExtResource("7_8a63h")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactions/cargo"]
+polygon = PackedVector2Array(513, 454, 627, 454, 651, 429, 651, 266, 537, 267, 512, 298)

@@ -114,6 +114,21 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kel4g"]
 size = Vector2(276, 139)
 
+[sub_resource type="Animation" id="Animation_2dqq5"]
+resource_name = "hide_hint"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/hint:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 1), Color(0.666667, 0.564706, 0.690196, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_4vufg"]
 resource_name = "secret_door_opening"
 length = 3.2
@@ -143,21 +158,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.666667, 0.564706, 0.690196, 0), Color(0.666667, 0.564706, 0.690196, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_2dqq5"]
-resource_name = "hide_hint"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CanvasLayer/hint:theme_override_colors/font_color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1, 0.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(0.666667, 0.564706, 0.690196, 1), Color(0.666667, 0.564706, 0.690196, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4jqkc"]
