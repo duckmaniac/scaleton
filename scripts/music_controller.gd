@@ -4,7 +4,8 @@ extends Node
 var ost = [
 	preload("res://assets/music/01.farewell.mp3"),
 	preload("res://assets/music/02.friend.mp3"),
-	preload("res://assets/music/03.bar.mp3")]
+	preload("res://assets/music/03.bar.mp3"),
+	preload("res://assets/music/04.smuggling.mp3")]
 var current_track = 0
 	
 	

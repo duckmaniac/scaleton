@@ -789,6 +789,46 @@ position = Vector2(1536, 373)
 shape = SubResource("RectangleShape2D_fikvq")
 disabled = true
 
+[node name="highlight" type="Node2D" parent="hall"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(48, 0)
+script = ExtResource("38_cefma")
+
+[node name="star" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+position = Vector2(908, 251)
+frame = 2
+frame_progress = 0.0
+
+[node name="star3" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+position = Vector2(330, 242)
+frame = 1
+frame_progress = 0.0
+
+[node name="star5" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+position = Vector2(327, 717)
+frame = 3
+frame_progress = 0.0
+
+[node name="star6" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+z_index = 1
+position = Vector2(811, 322)
+frame = 1
+frame_progress = 0.0
+
+[node name="star7" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+z_index = 1
+position = Vector2(1551, 753)
+frame = 1
+frame_progress = 0.0
+
+[node name="star8" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+visible = false
+z_index = 1
+position = Vector2(1491, 228)
+frame = 3
+frame_progress = 0.0
+
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
 energy = 0.38

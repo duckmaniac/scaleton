@@ -1,6 +1,7 @@
-[gd_scene load_steps=22 format=3 uid="uid://dihh7kxwckc0s"]
+[gd_scene load_steps=52 format=3 uid="uid://dihh7kxwckc0s"]
 
 [ext_resource type="Texture2D" uid="uid://cnb6rjfntbdc" path="res://assets/sprites/smuggling/secreet_room.png" id="1_8jisk"]
+[ext_resource type="Script" path="res://scripts/smuggling/level_smuggling.gd" id="1_njvly"]
 [ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="2_5vua6"]
 [ext_resource type="Texture2D" uid="uid://bifvk0mb0vfp5" path="res://assets/sprites/smuggling/foreground_cargo.png" id="3_auv8t"]
 [ext_resource type="Texture2D" uid="uid://bkd7v1x5xijl5" path="res://assets/sprites/smuggling/bottom_pipe.png" id="4_lv5qx"]
@@ -8,6 +9,18 @@
 [ext_resource type="Texture2D" uid="uid://bh7fuol0vqov1" path="res://assets/sprites/smuggling/tables.png" id="6_kgpfk"]
 [ext_resource type="Texture2D" uid="uid://dqwj1rej6ljxl" path="res://assets/sprites/smuggling/cargo.png" id="7_8a63h"]
 [ext_resource type="Texture2D" uid="uid://d2emvpwk53prc" path="res://assets/sprites/smuggling/small_table.png" id="7_xmubk"]
+[ext_resource type="Script" path="res://scripts/smuggling/water_drop.gd" id="9_4v0li"]
+[ext_resource type="Texture2D" uid="uid://3potoi5maxfg" path="res://assets/sprites/smuggling/drops.png" id="9_hr5mk"]
+[ext_resource type="Script" path="res://scripts/smuggling/valve.gd" id="9_k3ohj"]
+[ext_resource type="AudioStream" uid="uid://d1i3r1uterolv" path="res://assets/sfx/drop.mp3" id="11_bfshs"]
+[ext_resource type="Script" path="res://scripts/smuggling/cargo.gd" id="12_3jsop"]
+[ext_resource type="AudioStream" uid="uid://c6ay40ac8nl1y" path="res://assets/sfx/valve.mp3" id="13_wtjn0"]
+[ext_resource type="Texture2D" uid="uid://e83o0l53qcsx" path="res://assets/sprites/smuggling/valve.png" id="14_ulfhx"]
+[ext_resource type="Script" path="res://scripts/detail_view.gd" id="16_0pkqw"]
+[ext_resource type="AudioStream" uid="uid://dugg5ikaijoyb" path="res://assets/sfx/paper_show.mp3" id="17_a51xl"]
+[ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="18_pkm8y"]
+[ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="19_3is00"]
+[ext_resource type="Texture2D" uid="uid://dc1a0b6ho5rfb" path="res://assets/sprites/home/note.png" id="20_b7evv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1ka"]
 size = Vector2(143, 57)
@@ -48,8 +61,131 @@ size = Vector2(113.5, 12.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxex7"]
 size = Vector2(744, 43)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0mrs0"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(0, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wt8t"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(7, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_66hsm"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(14, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m7jul"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(21, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dt750"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(28, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hns07"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(35, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pk7k1"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(42, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q4655"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(49, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_th60i"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(56, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_urxh5"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(63, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qcbo"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(70, 0, 7, 41)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vdxvs"]
+atlas = ExtResource("9_hr5mk")
+region = Rect2(77, 0, 7, 41)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0634q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mrs0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wt8t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_66hsm")
+}, {
+"duration": 5.0,
+"texture": SubResource("AtlasTexture_m7jul")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dt750")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hns07")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pk7k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q4655")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_th60i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_urxh5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qcbo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vdxvs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0mrs0")
+}],
+"loop": false,
+"name": &"falling",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w834p"]
+size = Vector2(182, 115)
+
+[sub_resource type="Animation" id="Animation_ckuni"]
+resource_name = "rotate_valve"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("valve_sprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(3, 3, 3),
+"update": 0,
+"values": [0.0, 1.0472, 1.39626]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xwdrv"]
+_data = {
+"close_water": SubResource("Animation_ckuni")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vpf5"]
+size = Vector2(146, 149)
+
 [node name="smuggling" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_njvly")
 
 [node name="secreet_room" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -65,7 +201,7 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
-position = Vector2(1241, 666)
+position = Vector2(1087, 659)
 
 [node name="collisions" type="Node2D" parent="."]
 
@@ -207,9 +343,30 @@ scale = Vector2(6, 6)
 texture = ExtResource("7_xmubk")
 offset = Vector2(0, 5)
 
+[node name="water_drop" type="Node2D" parent="foreground"]
+y_sort_enabled = true
+script = ExtResource("9_4v0li")
+
+[node name="drop_animation" type="AnimatedSprite2D" parent="foreground/water_drop"]
+position = Vector2(1035, 369)
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_0634q")
+animation = &"falling"
+offset = Vector2(0, -4)
+
+[node name="drop_sfx" type="AudioStreamPlayer2D" parent="foreground/water_drop"]
+position = Vector2(1027, 480)
+stream = ExtResource("11_bfshs")
+volume_db = -3.0
+attenuation = 3.0
+
 [node name="interactions" type="Node" parent="."]
 
-[node name="cargo" type="StaticBody2D" parent="interactions"]
+[node name="cargo" type="StaticBody2D" parent="interactions" groups=["auto-interactable"]]
+position = Vector2(333, 207)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("12_3jsop")
 
 [node name="Sprite2D" type="Sprite2D" parent="interactions/cargo"]
 position = Vector2(582, 360)
@@ -217,4 +374,94 @@ scale = Vector2(6, 6)
 texture = ExtResource("7_8a63h")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactions/cargo"]
-polygon = PackedVector2Array(513, 454, 627, 454, 651, 429, 651, 266, 537, 267, 512, 298)
+polygon = PackedVector2Array(510, 456, 625, 456, 654, 426, 654, 360, 510, 361)
+
+[node name="valve" type="StaticBody2D" parent="interactions" groups=["interactable"]]
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("9_k3ohj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/valve"]
+position = Vector2(1434, 431.5)
+shape = SubResource("RectangleShape2D_w834p")
+
+[node name="valve_sfx" type="AudioStreamPlayer" parent="interactions/valve"]
+stream = ExtResource("13_wtjn0")
+volume_db = -3.0
+pitch_scale = 0.8
+
+[node name="valve_sprite" type="Sprite2D" parent="interactions/valve"]
+position = Vector2(1461, 357)
+scale = Vector2(6, 6)
+texture = ExtResource("14_ulfhx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="interactions/valve"]
+libraries = {
+"": SubResource("AnimationLibrary_xwdrv")
+}
+
+[node name="note" type="StaticBody2D" parent="interactions" groups=["interactable"]]
+position = Vector2(-304, -294)
+collision_layer = 0
+collision_mask = 3
+script = ExtResource("16_0pkqw")
+sfx_on_show = ExtResource("17_a51xl")
+sfx_on_hide = ExtResource("18_pkm8y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="interactions/note"]
+layer = 3
+visible = false
+
+[node name="RichTextLabel" type="Label" parent="interactions/note/CanvasLayer"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -338.0
+offset_top = -445.0
+offset_right = 335.0
+offset_bottom = 455.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/line_spacing = 10
+theme_override_fonts/font = ExtResource("19_3is00")
+theme_override_font_sizes/font_size = 34
+text = "Entry #311 - October 1923
+
+50 crates of Whole Milk: Delivered under the cover of night to the Blue Moon Cafe.
+25 crates of Spiced Milk: Dropped at the Old Theatre's back entrance.
+Payment: 60 silver coins, 15 golden tokens, and a rare jazz record.
+
+Rumors are spreading about our passage. We must be more discreet.
+Urgent: Change the piano code for the secret door. 
+New code - C major scale, to throw off any suspicion.
+ 
+Keep your bones light and steps quiet. The milk flows, but so do prying eyes."
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="interactions/note/CanvasLayer"]
+position = Vector2(974, 528)
+scale = Vector2(6.11151, 6.11151)
+texture = ExtResource("20_b7evv")
+
+[node name="dim" type="ColorRect" parent="interactions/note/CanvasLayer"]
+z_index = -1
+offset_right = 1920.0
+offset_bottom = 1080.0
+color = Color(0, 0, 0, 0.588235)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/note"]
+z_index = 1
+position = Vector2(849, 872.5)
+shape = SubResource("RectangleShape2D_8vpf5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interactions/note"]
+volume_db = -3.0
+
+[connection signal="animation_finished" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_animation_finished"]
+[connection signal="frame_changed" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_frame_changed"]
+[connection signal="water_closed" from="interactions/valve" to="foreground/water_drop" method="_on_valve_water_closed"]
