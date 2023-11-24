@@ -1,6 +1,16 @@
-extends StaticBody2D
+extends RigidBody2D
+
+@export var player: RigidBody2D = null
+var push_force = 10
+var is_being_pushed = false
 
 
-func interact(player):
-	player.speed = 100
-	position.x = player.position.x - 675
+#
+
+
+func _on_area_2d_start_pushing():
+	is_being_pushed = true
+
+
+func _on_area_2d_stop_pushging():
+	is_being_pushed = false

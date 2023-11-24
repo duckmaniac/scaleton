@@ -264,18 +264,10 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_waud6"]
 size = Vector2(54, 19)
 
-[node name="scaleton" type="RigidBody2D"]
+[node name="scaleton" type="CharacterBody2D" groups=["player"]]
 z_index = 2
 y_sort_enabled = true
-collision_layer = 3
 collision_mask = 3
-gravity_scale = 0.0
-continuous_cd = 1
-max_contacts_reported = 2
-contact_monitor = true
-lock_rotation = true
-freeze = true
-freeze_mode = 1
 script = ExtResource("1_cxwre")
 
 [node name="street_clothes_animation" type="AnimatedSprite2D" parent="."]
@@ -301,6 +293,4 @@ stream = ExtResource("4_5gwhm")
 [node name="AudioListener2D" type="AudioListener2D" parent="."]
 current = true
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="finished" from="StepsPlayer" to="." method="_on_steps_player_finished"]

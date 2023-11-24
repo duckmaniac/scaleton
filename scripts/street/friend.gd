@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 enum State {STATE_DIALOG, STATE_PLAY, STATE_WALKING}
 
 signal reached_point_to_walk
@@ -99,7 +100,7 @@ func _physics_process(_delta):
 		if point_to_walk != null and position.distance_to(point_to_walk) > 10:
 			velocity = position.direction_to(point_to_walk) * speed
 			move_and_slide()
-			sound_steps()	
+			sound_steps()
 			
 			if velocity.x < 0:
 				direction.x = -1

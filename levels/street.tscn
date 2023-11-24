@@ -1,4 +1,4 @@
-[gd_scene load_steps=91 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=90 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -14,10 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://bfjysn6i20ke5" path="res://scenes/ball.tscn" id="10_u5hll"]
 [ext_resource type="Texture2D" uid="uid://by88cnwkwusyn" path="res://assets/sprites/street/mushrooms.png" id="10_ugidk"]
 [ext_resource type="Texture2D" uid="uid://bmtfkxaw6rqi6" path="res://assets/sprites/street/cliffs1.png" id="11_u8ana"]
-[ext_resource type="PackedScene" uid="uid://tcrni8jxboos" path="res://scenes/multi_dialog.tscn" id="12_fxdoc"]
 [ext_resource type="PackedScene" uid="uid://cnpa7htl5vhc6" path="res://scenes/friend.tscn" id="13_j7csx"]
 [ext_resource type="Script" path="res://scripts/dimmer.gd" id="13_n4aef"]
-[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="14_vybhx"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star_interaction.tscn" id="14_vybhx"]
 [ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="15_c1odq"]
 [ext_resource type="Script" path="res://scripts/street/mushrooms.gd" id="16_o1tl7"]
 [ext_resource type="PackedScene" uid="uid://m38q2vllalgk" path="res://scenes/firefly.tscn" id="16_tth7t"]
@@ -220,9 +219,6 @@ _data = {
 "show_scaleton_phrase": SubResource("Animation_ihwmb")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ikn"]
-size = Vector2(159, 55)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3jtvt"]
 size = Vector2(258, 140)
 
@@ -237,6 +233,9 @@ size = Vector2(42.5, 364)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkx17"]
 size = Vector2(27, 389.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ikn"]
+size = Vector2(159, 55)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2ogu"]
 size = Vector2(891, 20)
@@ -806,23 +805,6 @@ libraries = {
 
 [node name="interactions" type="Node" parent="neighbours"]
 
-[node name="d_with_boney" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
-position = Vector2(-371, -26)
-phrases = ["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Dope *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_with_boney"]
-position = Vector2(1318, 856)
-shape = SubResource("RectangleShape2D_g0ikn")
-
-[node name="d_after_game" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("12_fxdoc")]
-phrases = ["Boney: This is the life, huh? Alright, game's over. Time for the real deal. Ready to hit that secret passage?", "Scaleton: Yeah, let's do this. Surface, here I come!"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_after_game"]
-position = Vector2(-230, 203)
-shape = SubResource("RectangleShape2D_g0ikn")
-
 [node name="d_left_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
 phrases = ["The Garners' place, mysterious yet charming. They collect unique artifacts, always something new in their window, like last week's handless clock. But the real magic is Mrs. Garner's legendary pies, rumored to be a 'borrowed' recipe from the surface"]
 
@@ -925,6 +907,10 @@ z_index = 1
 position = Vector2(1893, 636)
 frame = 1
 frame_progress = 0.0
+
+[node name="neighbours@interactions@d_with_boney@CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1318, 856)
+shape = SubResource("RectangleShape2D_g0ikn")
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -1260,8 +1246,6 @@ script = ExtResource("25_xaah1")
 [connection signal="scaleton_kick" from="neighbours/footbal_game/ball" to="." method="_on_ball_scaleton_kick"]
 [connection signal="body_entered" from="neighbours/footbal_game/left_goal" to="." method="_on_left_goal_body_entered"]
 [connection signal="body_entered" from="neighbours/footbal_game/right_goal" to="." method="_on_right_goal_body_entered"]
-[connection signal="dialog_ended" from="neighbours/interactions/d_with_boney" to="." method="_on_d_with_boney_dialog_ended"]
-[connection signal="dialog_ended" from="neighbours/interactions/d_after_game" to="." method="_on_d_after_game_dialog_ended"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="friend" method="_on_exit_neighbours_to_bar_outside"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="Camera2D" method="_on_exit_neighbours_to_bar_outside"]
 [connection signal="to_neighbours" from="bar-outside/interactions/back_to_neighbours" to="Camera2D" method="_on_back_to_neighbours_to_neighbours"]

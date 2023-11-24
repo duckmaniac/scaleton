@@ -1,7 +1,9 @@
-extends StaticBody2D
+extends Interactable
 
-@export var phrases = []
+@export var phrases: Array[String] = []
 @export var one_off = false
+@export var additional_sfx_phrase = 0
+@export var additional_sfx: AudioStreamPlayer = null
 
 signal dialog_ended
 
@@ -18,7 +20,7 @@ var is_typing = false
 var has_been_interacted = false
 
 
-func _ready():	
+func _ready():
 	timer = Timer.new()
 	timer.wait_time = 0.04
 	timer.one_shot = true
@@ -45,7 +47,9 @@ func _on_Timer_timeout():
 			is_typing = false
 
 
-func show_next_phrase():		
+func show_next_phrase():
+	if count_phrases == additional_sfx_phrase and additional_sfx != null:
+		additional_sfx.play()
 	is_typing = true
 	$CanvasLayer/Label.text = ""
 	current_phrase = phrases[count_phrases]
@@ -56,7 +60,7 @@ func show_next_phrase():
 	start_timer()
 
 
-func interact(player):
+func interact():
 	if one_off and has_been_interacted: return
 	
 	if is_typing:
@@ -66,7 +70,7 @@ func interact(player):
 		is_typing = false
 		return
 		
-	if not is_dialog_showing: 
+	if not is_dialog_showing:
 		player.can_move = false
 		is_dialog_showing = true
 		$CanvasLayer.show()
@@ -74,6 +78,7 @@ func interact(player):
 		show_next_phrase()
 	else:
 		$CanvasLayer.hide()
+		count_phrases = 0
 		is_dialog_showing = false
 		player.can_move = true
 		has_been_interacted = true

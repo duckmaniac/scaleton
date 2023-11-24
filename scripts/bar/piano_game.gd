@@ -1,4 +1,4 @@
-extends Node
+extends Interactable
 
 
 signal playing
@@ -11,7 +11,7 @@ var first_play = true
 var is_playing = false
 var has_notes = false
 
-var scale = ["do", "re", "mi", "fa", "sol", "la", "ti", "do_high",
+var music_scale = ["do", "re", "mi", "fa", "sol", "la", "ti", "do_high",
 			"ti", "la", "sol", "fa", "mi", "re", "do"]
 var current_note = null
 var num_of_match_notes = 0
@@ -20,7 +20,8 @@ var hint_has_been_hidden = false
 var hint_has_been_shown = false
 
 
-func _process(_delta):
+func _process(delta):
+	super(delta)
 	if not is_playing: return
 	
 	current_note = null
@@ -118,16 +119,16 @@ func _process(_delta):
 		$CanvasLayer/sound/do_high.stop()
 	
 	if current_note == null: return
-	if scale[num_of_match_notes] == current_note:
+	if music_scale[num_of_match_notes] == current_note:
 		num_of_match_notes += 1
 		if has_notes: $CanvasLayer/highlight/notes.size.x += 5.4
-	elif scale[0] == current_note:
+	elif music_scale[0] == current_note:
 		num_of_match_notes = 1
 		if has_notes: $CanvasLayer/highlight/notes.size.x = 5.4
 	else:
 		num_of_match_notes = 0
 		if has_notes: $CanvasLayer/highlight/notes.size.x = 0
-	if num_of_match_notes == scale.size():
+	if num_of_match_notes == music_scale.size():
 		num_of_match_notes = 0
 		if is_secret_door_opened: return;
 		emit_signal("secret_door_opened")
@@ -138,7 +139,7 @@ func _process(_delta):
 		$AudioStreamPlayer.stream = secret_door_sfx
 		$AudioStreamPlayer.play()
 		
-func interact(player):
+func interact():
 	emit_signal("playing")
 	if not is_playing:
 		AudioServer.set_bus_effect_enabled(2, 0, true)
@@ -164,7 +165,7 @@ func close_game():
 
 
 func _on_highlight_shown():
-	if hint_has_been_hidden: return
+	if not is_playing or hint_has_been_hidden: return
 	hint_has_been_hidden = true
 	if hint_has_been_shown:
 		$AnimationPlayer.play("hide_hint")

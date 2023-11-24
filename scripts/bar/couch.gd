@@ -1,11 +1,11 @@
-extends Node
+extends Interactable
 
 var couch_on = preload("res://assets/sfx/couch_on.mp3")
 var couch_off = preload("res://assets/sfx/couch_off.mp3")
 
 var is_sitting = false
 
-func interact(player):
+func interact():
 	if not is_sitting:
 		is_sitting = true
 		player.can_move = false

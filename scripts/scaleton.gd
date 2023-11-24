@@ -1,16 +1,18 @@
-extends RigidBody2D
+extends CharacterBody2D
 
+signal reached_point_to_walk
 
-var screen_size
+enum State {PLAYING, CUT_SCENE}
 
-@export var speed = 380.0
+@export var speed = 300.0
 var direction = Vector2.ZERO
 var prev_direction = Vector2.ZERO
 var interactable_object = null
 var can_move = true
-var is_cut_scene = false
 var sprite = null
 var prev_animation = null
+var point_to_walk = null
+var state = State.PLAYING
 
 # Preload the sounds
 var step_sounds = [
@@ -24,19 +26,40 @@ var is_steps_sound_playing = false
 
 func _ready():
 	randomize()
-	screen_size = get_viewport_rect().size
 	wear_street_clothes()
 
 
 func _process(_delta):
-	process_interaction()
-	set_direction()
+	if state != State.CUT_SCENE:
+		process_interaction()
+		set_direction()
 	play_animation()
 
+
 func _physics_process(delta):
-	if direction.length() != 0:
-		sound_steps()
-		move_character(delta)
+	if state == State.PLAYING:
+		if direction.length() != 0:
+			move_character(delta)
+			sound_steps()
+	elif state == State.CUT_SCENE:
+		if point_to_walk != null and position.distance_to(point_to_walk) > 10:
+			velocity = position.direction_to(point_to_walk) * speed
+			move_and_slide()
+			sound_steps()
+			
+			if velocity.y < 0:
+				direction.y = -1
+			elif velocity.y > 0:
+				direction.y = 1
+			elif velocity.x < 0:
+				direction.x = -1
+			elif velocity.x > 0:
+				direction.x = 1
+		else:
+			if direction != Vector2.ZERO:
+				emit_signal("reached_point_to_walk")
+			direction = Vector2.ZERO
+
 
 func process_interaction():
 	if Input.is_action_just_pressed("interact") and interactable_object != null:
@@ -55,7 +78,6 @@ func process_interaction():
 func set_direction():
 	if direction != Vector2.ZERO:
 		prev_direction = direction
-	if is_cut_scene: return
 	
 	direction = Vector2.ZERO
 	if can_move:
@@ -87,8 +109,8 @@ func play_animation():
 		set_animation("walk_forward")
 	elif direction.y < 0:
 		set_animation("walk_backward")
-		
-		
+
+
 func sound_steps():
 	if not is_steps_sound_playing:
 		is_steps_sound_playing = true
@@ -97,9 +119,14 @@ func sound_steps():
 		$StepsPlayer.play()
 
 
-func move_character(delta):
+func move_character(_delta):
 	direction = direction.normalized()
-	move_and_collide(direction * speed * delta)
+	velocity = direction * speed
+	if move_and_slide():
+		for i in get_slide_collision_count():
+			var col = get_slide_collision(i)
+			if col.get_collider() is RigidBody2D:
+				col.get_collider().linear_velocity = col.get_normal() * -500
 
 
 func _on_body_entered(body):
@@ -144,7 +171,7 @@ func set_animation(animation_name):
 	sprite.play(animation_name)
 	
 	
-func cut_scene_move_forward():
+func cut_scene_move_to_point(point):
 	can_move = false
-	is_cut_scene = true
-	direction = Vector2(0, -1)
+	point_to_walk = point
+	state = State.CUT_SCENE

@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Interactable
 
 
 signal view_closed
@@ -6,7 +6,8 @@ signal view_closed
 @export var sfx_on_show : Resource = null
 @export var sfx_on_hide : Resource = null
 	
-func interact(player):
+
+func interact():
 	if $CanvasLayer.visible:
 		if sfx_on_hide != null:
 			$AudioStreamPlayer.stream = sfx_on_hide

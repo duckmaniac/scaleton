@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://dihh7kxwckc0s"]
+[gd_scene load_steps=53 format=3 uid="uid://dihh7kxwckc0s"]
 
 [ext_resource type="Texture2D" uid="uid://cnb6rjfntbdc" path="res://assets/sprites/smuggling/secreet_room.png" id="1_8jisk"]
 [ext_resource type="Script" path="res://scripts/smuggling/level_smuggling.gd" id="1_njvly"]
@@ -157,7 +157,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w834p"]
-size = Vector2(182, 115)
+size = Vector2(208, 109)
 
 [sub_resource type="Animation" id="Animation_ckuni"]
 resource_name = "rotate_valve"
@@ -183,6 +183,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vpf5"]
 size = Vector2(146, 149)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj0ih"]
+size = Vector2(143.5, 86)
+
 [node name="smuggling" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_njvly")
@@ -201,7 +204,9 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
-position = Vector2(1087, 659)
+position = Vector2(1320, 780)
+collision_layer = 3
+collision_mask = 1
 
 [node name="collisions" type="Node2D" parent="."]
 
@@ -362,27 +367,14 @@ attenuation = 3.0
 
 [node name="interactions" type="Node" parent="."]
 
-[node name="cargo" type="StaticBody2D" parent="interactions" groups=["auto-interactable"]]
-position = Vector2(333, 207)
-collision_layer = 0
-collision_mask = 3
-script = ExtResource("12_3jsop")
-
-[node name="Sprite2D" type="Sprite2D" parent="interactions/cargo"]
-position = Vector2(582, 360)
-scale = Vector2(6, 6)
-texture = ExtResource("7_8a63h")
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="interactions/cargo"]
-polygon = PackedVector2Array(510, 456, 625, 456, 654, 426, 654, 360, 510, 361)
-
-[node name="valve" type="StaticBody2D" parent="interactions" groups=["interactable"]]
-collision_layer = 0
-collision_mask = 3
+[node name="valve" type="Area2D" parent="interactions" groups=["interactable"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("9_k3ohj")
+interaction_limit = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/valve"]
-position = Vector2(1434, 431.5)
+position = Vector2(1421, 428.5)
 shape = SubResource("RectangleShape2D_w834p")
 
 [node name="valve_sfx" type="AudioStreamPlayer" parent="interactions/valve"]
@@ -400,10 +392,10 @@ libraries = {
 "": SubResource("AnimationLibrary_xwdrv")
 }
 
-[node name="note" type="StaticBody2D" parent="interactions" groups=["interactable"]]
+[node name="note" type="Area2D" parent="interactions" groups=["interactable"]]
 position = Vector2(-304, -294)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("16_0pkqw")
 sfx_on_show = ExtResource("17_a51xl")
 sfx_on_hide = ExtResource("18_pkm8y")
@@ -461,6 +453,23 @@ shape = SubResource("RectangleShape2D_8vpf5")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interactions/note"]
 volume_db = -3.0
+
+[node name="cargo" type="RigidBody2D" parent="interactions" node_paths=PackedStringArray("player")]
+position = Vector2(333, 207)
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 50.0
+script = ExtResource("12_3jsop")
+player = NodePath("../../scaleton")
+
+[node name="Sprite2D" type="Sprite2D" parent="interactions/cargo"]
+position = Vector2(582, 360)
+scale = Vector2(6, 6)
+texture = ExtResource("7_8a63h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/cargo"]
+position = Vector2(582.25, 413)
+shape = SubResource("RectangleShape2D_dj0ih")
 
 [connection signal="animation_finished" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_animation_finished"]
 [connection signal="frame_changed" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_frame_changed"]

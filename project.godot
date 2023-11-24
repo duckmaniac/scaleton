@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Scaleton"
-run/main_scene="res://levels/bar.tscn"
+run/main_scene="res://levels/smuggling.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
 

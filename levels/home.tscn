@@ -19,7 +19,7 @@
 [ext_resource type="Script" path="res://scripts/home/move_to_corridor.gd" id="18_27t45"]
 [ext_resource type="Texture2D" uid="uid://dxga0uu2wgxor" path="res://assets/sprites/home/flower-animation.png" id="18_id3u7"]
 [ext_resource type="Script" path="res://scripts/home/flower.gd" id="18_p20y4"]
-[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="19_gdg0w"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star_interaction.tscn" id="19_gdg0w"]
 [ext_resource type="Script" path="res://scripts/highlight.gd" id="19_gtss6"]
 [ext_resource type="AudioStream" uid="uid://ce2qk76j02hul" path="res://assets/sfx/leaf.mp3" id="19_q4wdn"]
 [ext_resource type="Script" path="res://scripts/home/hint.gd" id="20_go4er"]

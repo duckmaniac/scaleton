@@ -21,6 +21,7 @@ func _on_piano_game_playing():
 func _on_d_second_dialog_ended():
 	has_notes = true
 	$hall/interactions/d_bar/CollisionShape2D.disabled = false
+	$hall/highlight/star.visible = true
 	$hall/highlight/star6.visible = false
 
 
@@ -32,7 +33,10 @@ func _on_piano_game_secret_door_opened():
 	$scaleton.sprite.set_animation("walk_left")
 	$scaleton.sprite.flip_h = true
 	$hall/interactions/d_third/CollisionShape2D.disabled = false
+	$hall/interactions/piano_game/CollisionShape2D.disabled = true
+	$hall/interactions/d_second/CollisionShape2D.disabled = true
 	$hall/highlight/star6.visible = false
+	$hall/highlight/star.visible = true
 	$hall/highlight/star8.visible = true
 
 
@@ -40,6 +44,7 @@ func _on_d_third_dialog_ended():
 	$hall/interactions/d_third/CollisionShape2D.position = Vector2.ZERO
 	$hall/interactions/d_bar/CollisionShape2D.disabled = false
 	$hall/interactions/d_fourth/CollisionShape2D.disabled = false
+	$hall/interactions/piano_game/CollisionShape2D.disabled = false
 	$friend.change_state_to_walking()
 	$friend.point_to_walk = Vector2(1419, 565)
 
@@ -60,6 +65,9 @@ func _on_friend_reached_point_to_walk():
 
 
 func _on_d_fourth_dialog_ended():
-	$hall/interactions/exit_bar/CollisionShape2D.disabled = false
 	$hall/interactions/d_fourth/CollisionShape2D.position = Vector2.ZERO
-	$scaleton.cut_scene_move_forward()
+	$scaleton.cut_scene_move_to_point(Vector2(1537, 397))
+
+
+func _on_scaleton_reached_point_to_walk():
+	get_tree().change_scene_to_file("res://levels/smuggling.tscn")

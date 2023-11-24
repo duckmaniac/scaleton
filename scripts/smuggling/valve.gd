@@ -1,13 +1,10 @@
-extends Node
+extends Interactable
 
 
 signal water_closed
-var has_been_interacted = false
 	
 	
-func interact(_player):
-	if has_been_interacted: return
-	has_been_interacted = true
+func interact():
 	$valve_sfx.play()
 	$AnimationPlayer.play("close_water")
 	emit_signal("water_closed")

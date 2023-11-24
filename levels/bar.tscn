@@ -14,7 +14,6 @@
 [ext_resource type="Texture2D" uid="uid://by5eh14lbg67e" path="res://assets/sprites/bar/bar_table.png" id="7_e7xon"]
 [ext_resource type="Texture2D" uid="uid://dea7hnajfh7x8" path="res://assets/sprites/bar/flower.png" id="8_51542"]
 [ext_resource type="Texture2D" uid="uid://bgtwjqhp2c4cl" path="res://assets/sprites/home/couch.png" id="9_s5grk"]
-[ext_resource type="Script" path="res://scripts/bar/closed_door.gd" id="11_bq606"]
 [ext_resource type="AudioStream" uid="uid://c5ljf1qxsoxnk" path="res://assets/sfx/closed_door.mp3" id="11_px0ie"]
 [ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="12_ancou"]
 [ext_resource type="Script" path="res://scripts/bar/couch.gd" id="14_3a3of"]
@@ -41,13 +40,12 @@
 [ext_resource type="Texture2D" uid="uid://dfhsr3ymc45re" path="res://assets/sprites/bar/piano_highlight.png" id="37_76e3b"]
 [ext_resource type="Script" path="res://scripts/highlight.gd" id="38_cefma"]
 [ext_resource type="PackedScene" uid="uid://cnpa7htl5vhc6" path="res://scenes/friend.tscn" id="38_sevjk"]
-[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star-interaction.tscn" id="39_lbnag"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star_interaction.tscn" id="39_lbnag"]
 [ext_resource type="Texture2D" uid="uid://cnkn7w0lte1o0" path="res://assets/sprites/bar/notes_highlight.png" id="39_pu64m"]
 [ext_resource type="Texture2D" uid="uid://dcf3ymvle3u8p" path="res://assets/sprites/bar/piano_game_notes.png" id="40_2idvp"]
-[ext_resource type="PackedScene" uid="uid://tcrni8jxboos" path="res://scenes/multi_dialog.tscn" id="41_kne50"]
-[ext_resource type="Script" path="res://scripts/bar/hidden_notes.gd" id="43_axb2o"]
 [ext_resource type="AudioStream" uid="uid://dugg5ikaijoyb" path="res://assets/sfx/paper_show.mp3" id="43_fb02g"]
-[ext_resource type="Script" path="res://scripts/bar/exit_bar.gd" id="46_1uq77"]
+[ext_resource type="AudioStream" uid="uid://cycuts84he1cy" path="res://assets/sfx/change_clothes.mp3" id="43_vqik2"]
+[ext_resource type="PackedScene" uid="uid://dchvnqhbwhubx" path="res://scenes/multi_dialog.tscn" id="46_waevy"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_efdws"]
 
@@ -96,8 +94,23 @@ size = Vector2(132.719, 14.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ixfp1"]
 size = Vector2(132.719, 10.75)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxxwq"]
-size = Vector2(155, 89)
+[sub_resource type="GDScript" id="GDScript_ap38m"]
+script/source = "extends Interactable
+
+
+var can_pull = true
+
+
+func interact():
+	if can_pull:
+		$AudioStreamPlayer.play()
+		can_pull = false
+	$d_closed_door.player = player
+
+
+func _on_d_closed_door_phrase_ended():
+	can_pull = true
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nnpb"]
 size = Vector2(186, 173)
@@ -167,17 +180,23 @@ _data = {
 "show_hint": SubResource("Animation_4xseb")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uh0e8"]
-size = Vector2(121.5, 71)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fef86"]
-size = Vector2(156, 163.5)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ltmfr"]
 size = Vector2(192, 55)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fikvq"]
-size = Vector2(156, 60)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cb3fm"]
+size = Vector2(201, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_36r6v"]
+size = Vector2(139, 92)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yd3ds"]
+size = Vector2(239.5, 155.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_osc8n"]
+size = Vector2(156.5, 146.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pxxwq"]
+size = Vector2(155, 89)
 
 [node name="bar" type="Node2D"]
 y_sort_enabled = true
@@ -437,24 +456,12 @@ flip_h = true
 
 [node name="interactions" type="Node" parent="hall"]
 
-[node name="closed_door" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
-collision_layer = 0
-collision_mask = 3
-script = ExtResource("11_bq606")
+[node name="closed_door" type="Area2D" parent="hall/interactions" groups=["interactable"]]
+collision_layer = 2
+collision_mask = 2
+script = SubResource("GDScript_ap38m")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/closed_door"]
-position = Vector2(377.5, 369.5)
-shape = SubResource("RectangleShape2D_pxxwq")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/closed_door"]
-stream = ExtResource("11_px0ie")
-volume_db = -3.0
-pitch_scale = 0.8
-
-[node name="d_closed_door" parent="hall/interactions/closed_door" instance=ExtResource("12_ancou")]
-phrases = ["Looks like this door is locked. Guess the kitchen's off-limits!", "This door won't budge. No kitchen adventures for me!", "Seems this door is a no-go. I should stick to the bar area "]
-
-[node name="couch" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
+[node name="couch" type="Area2D" parent="hall/interactions" groups=["interactable"]]
 y_sort_enabled = true
 collision_layer = 0
 collision_mask = 3
@@ -476,9 +483,9 @@ position = Vector2(-728.374, -465.344)
 shape = SubResource("RectangleShape2D_he01p")
 disabled = true
 
-[node name="piano_game" type="StaticBody2D" parent="hall/interactions" groups=["interactable"]]
-collision_layer = 0
-collision_mask = 3
+[node name="piano_game" type="Area2D" parent="hall/interactions" groups=["interactable"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("15_akfl0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="hall/interactions/piano_game"]
@@ -730,64 +737,74 @@ libraries = {
 "": SubResource("AnimationLibrary_4jqkc")
 }
 
-[node name="d_first" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
-phrases = ["Scaleton: I've never been here at night, it's so cool!", "Boney: Yeah, it feels totally different in the dark, doesn't it?", "Scaleton: Exactly! So, about that secret passage upstairs you mentioned?", "Boney: Oh, that. My granddad built it during the Milk Prohibition to smuggle milk. But I'm not sure how to open it. I think the instructions must be hidden somewhere behind the bar counter"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_first"]
-position = Vector2(925, 877)
-shape = SubResource("RectangleShape2D_uh0e8")
-
-[node name="d_third" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
-phrases = ["Boney: You did it! This is how grandpa moved his secret milk stash", "Scaleton: This is my chance... to step out and make people laugh. Here I come, world!"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_third"]
-position = Vector2(398, 824)
-shape = SubResource("RectangleShape2D_fef86")
-disabled = true
-
-[node name="d_fourth" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
-phrases = ["Boney: You're really chasing your dream, huh? I'll miss your skeleton puns!", "Scaleton: It's time I surfaced. I've got jokes to tell and bones to rattle!", "Boney: One last thing – can you take this 'Top 100 Country Hits' record to my grandpa upstairs? It's from Mrs. Garners", "Scaleton:  Of course. Thanks for everything, Boney. Here's to finding new laughs!", "Boney: Break a leg out there! And tell grandpa I said hi!"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_fourth"]
-position = Vector2(1536, 396)
-shape = SubResource("RectangleShape2D_fef86")
-disabled = true
-
-[node name="hidden_notes" type="StaticBody2D" parent="hall/interactions" groups=["auto-interactable"]]
-collision_layer = 0
-collision_mask = 3
-script = ExtResource("43_axb2o")
-
-[node name="d_second" parent="hall/interactions/hidden_notes" groups=["auto-interactable"] instance=ExtResource("41_kne50")]
-phrases = ["Scaleton: Got something! \"Unlock the secret door with ease, by playing the major scale of C's\" Guess that's our key!", "Boney: Classic grandpa, always with the puzzles. Try it out on the piano!"]
-one_off = true
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/hidden_notes"]
-position = Vector2(858.25, 426.5)
-shape = SubResource("RectangleShape2D_uh0e8")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/hidden_notes"]
-stream = ExtResource("43_fb02g")
-
 [node name="d_trying_leave_bar" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("12_ancou")]
 phrases = ["Wait a second, I'm heading out? That's not right, I need to go the other way", "Oops, almost left the bar. I should be heading somewhere else", "Hold on, am I leaving? No, no, I need to turn around and go the other way"]
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_trying_leave_bar"]
 position = Vector2(942, 1053)
 shape = SubResource("RectangleShape2D_ltmfr")
 
-[node name="exit_bar" type="StaticBody2D" parent="hall/interactions" groups=["auto-interactable"]]
-collision_layer = 0
-collision_mask = 3
-script = ExtResource("46_1uq77")
+[node name="d_first" parent="hall/interactions" instance=ExtResource("46_waevy")]
+phrases = Array[String](["Scaleton: I've never been here at night, it's so cool!", "Boney: Yeah, it feels totally different in the dark, doesn't it?", "Scaleton: Exactly! So, about that secret passage upstairs you mentioned?", "Boney: Oh, that. My granddad built it during the Milk Prohibition to smuggle milk. But I'm not sure how to open it. I think the instructions must be hidden somewhere behind the bar counter "])
+one_off = true
+auto_interact = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/exit_bar"]
-position = Vector2(1536, 373)
-shape = SubResource("RectangleShape2D_fikvq")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_first"]
+position = Vector2(947.5, 878)
+shape = SubResource("RectangleShape2D_cb3fm")
+
+[node name="d_second" parent="hall/interactions" node_paths=PackedStringArray("additional_sfx") instance=ExtResource("46_waevy")]
+phrases = Array[String](["Scaleton: Got something! \"Unlock the secret door with ease, by playing the major scale of C's\" Guess that's our key!", "Boney: Classic grandpa, always with the puzzles. Try it out on the piano!"])
+one_off = true
+additional_sfx = NodePath("AudioStreamPlayer2")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_second"]
+position = Vector2(859, 405)
+shape = SubResource("RectangleShape2D_36r6v")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="hall/interactions/d_second"]
+stream = ExtResource("43_fb02g")
+
+[node name="d_third" parent="hall/interactions" instance=ExtResource("46_waevy")]
+phrases = Array[String](["Boney: You did it! This is how grandpa moved his secret milk stash", "Scaleton: This is my chance... to step out and make people laugh. Here I come, world! "])
+one_off = true
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_third"]
+position = Vector2(397, 823)
+shape = SubResource("RectangleShape2D_yd3ds")
 disabled = true
+
+[node name="d_fourth" parent="hall/interactions" node_paths=PackedStringArray("additional_sfx") instance=ExtResource("46_waevy")]
+phrases = Array[String](["Boney: You're really chasing your dream, huh? I'll miss your skeleton puns!", "Scaleton: It's time I surfaced. I've got jokes to tell and bones to rattle!", "Boney: One last thing – can you take this 'Top 100 Country Hits' record to my grandpa upstairs? It's from Mrs. Garners", "Scaleton:  Of course. Thanks for everything, Boney. Here's to finding new laughs!", "Boney: Break a leg out there! And tell grandpa I said hi!"])
+one_off = true
+additional_sfx_phrase = 3
+additional_sfx = NodePath("AudioStreamPlayer2")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_fourth"]
+position = Vector2(1535.75, 414.875)
+shape = SubResource("RectangleShape2D_osc8n")
+disabled = true
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="hall/interactions/d_fourth"]
+stream = ExtResource("43_vqik2")
+volume_db = -3.0
+
+[node name="d_closed_door" parent="hall/interactions" node_paths=PackedStringArray("additional_sfx") instance=ExtResource("12_ancou")]
+phrases = ["Looks like this door is locked. Guess the kitchen's off-limits!", "This door won't budge. No kitchen adventures for me!", "Seems this door is a no-go. I should stick to the bar area "]
+additional_sfx = NodePath("AudioStreamPlayer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_closed_door"]
+position = Vector2(377.5, 369.5)
+shape = SubResource("RectangleShape2D_pxxwq")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="hall/interactions/d_closed_door"]
+stream = ExtResource("11_px0ie")
+volume_db = -3.0
+pitch_scale = 0.8
 
 [node name="highlight" type="Node2D" parent="hall"]
 z_index = 2
@@ -796,6 +813,7 @@ position = Vector2(48, 0)
 script = ExtResource("38_cefma")
 
 [node name="star" parent="hall/highlight" instance=ExtResource("39_lbnag")]
+visible = false
 position = Vector2(908, 251)
 frame = 2
 frame_progress = 0.0
@@ -835,18 +853,20 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("4_4iwui")]
-position = Vector2(920, 877)
+position = Vector2(936, 886)
+collision_layer = 3
 
 [node name="friend" parent="." instance=ExtResource("38_sevjk")]
 z_index = 2
 position = Vector2(1042, 678)
 
-[connection signal="phrase_ended" from="hall/interactions/closed_door/d_closed_door" to="hall/interactions/closed_door" method="_on_d_closed_door_phrase_ended"]
 [connection signal="playing" from="hall/interactions/piano_game" to="." method="_on_piano_game_playing"]
 [connection signal="secret_door_opened" from="hall/interactions/piano_game" to="." method="_on_piano_game_secret_door_opened"]
 [connection signal="shown" from="hall/interactions/piano_game/CanvasLayer/highlight" to="hall/interactions/piano_game" method="_on_highlight_shown"]
 [connection signal="dialog_ended" from="hall/interactions/d_first" to="." method="_on_d_first_dialog_ended"]
+[connection signal="dialog_ended" from="hall/interactions/d_second" to="." method="_on_d_second_dialog_ended"]
 [connection signal="dialog_ended" from="hall/interactions/d_third" to="." method="_on_d_third_dialog_ended"]
 [connection signal="dialog_ended" from="hall/interactions/d_fourth" to="." method="_on_d_fourth_dialog_ended"]
-[connection signal="dialog_ended" from="hall/interactions/hidden_notes/d_second" to="." method="_on_d_second_dialog_ended"]
+[connection signal="phrase_ended" from="hall/interactions/d_closed_door" to="hall/interactions/closed_door" method="_on_d_closed_door_phrase_ended"]
+[connection signal="reached_point_to_walk" from="scaleton" to="." method="_on_scaleton_reached_point_to_walk"]
 [connection signal="reached_point_to_walk" from="friend" to="." method="_on_friend_reached_point_to_walk"]
