@@ -23,14 +23,14 @@ func _ready():
 	
 	# intro
 	if not debug:
-		$scaleton.contact_monitor = false
+		$scaleton/CollisionShape2D.disabled = true
 		$scaleton.can_move = false
 		$neighbours/intro.visible = true
 		await get_tree().create_timer(3.7).timeout
 		$neighbours/intro/author.visible = true
 		await get_tree().create_timer(3.5).timeout
 		$neighbours/intro.visible = false
-		$scaleton.contact_monitor = true
+		$scaleton/CollisionShape2D.disabled = false
 
 
 func _process(_delta):
@@ -82,7 +82,6 @@ func _on_right_goal_body_entered(body):
 func _on_d_after_game_dialog_ended():
 	$friend.change_state_to_walking()
 	$friend.point_to_walk = Vector2(2137, 569)
-	$scaleton.interactable_object = null
 
 
 func _on_ball_friend_kick():

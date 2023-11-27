@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=92 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -23,6 +23,7 @@
 [ext_resource type="AudioStream" uid="uid://yclogf44lfpj" path="res://assets/sfx/mushrooms.mp3" id="18_qvtrp"]
 [ext_resource type="Script" path="res://scripts/street/to_bar_outside.gd" id="20_dkpkb"]
 [ext_resource type="Script" path="res://scripts/highlight.gd" id="22_857nn"]
+[ext_resource type="PackedScene" uid="uid://dchvnqhbwhubx" path="res://scenes/multi_dialog.tscn" id="22_d4yax"]
 [ext_resource type="Texture2D" uid="uid://dllk5raej86s3" path="res://assets/sprites/street/bar_outside.png" id="22_nqo8m"]
 [ext_resource type="Texture2D" uid="uid://t818weqlniaj" path="res://assets/textures/light_texture.webp" id="23_x3iuq"]
 [ext_resource type="Texture2D" uid="uid://d6bm52ftw2jy" path="res://assets/sprites/street/cliffs2.png" id="25_bkurt"]
@@ -234,8 +235,11 @@ size = Vector2(42.5, 364)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wkx17"]
 size = Vector2(27, 389.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g0ikn"]
-size = Vector2(159, 55)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nd53"]
+size = Vector2(175.5, 56.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4d1f3"]
+size = Vector2(175.5, 56.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2ogu"]
 size = Vector2(891, 20)
@@ -727,7 +731,7 @@ text = "by Dmitrii Tarbaev"
 [node name="ball" parent="neighbours/footbal_game" groups=["ball"] instance=ExtResource("10_u5hll")]
 z_index = 1
 position = Vector2(602, 668)
-collision_layer = 4
+collision_layer = 6
 
 [node name="highlight" type="Node2D" parent="neighbours/footbal_game/ball"]
 script = ExtResource("22_857nn")
@@ -819,14 +823,14 @@ phrases = ["There's a bright memory from when I was a kid. We were playing socce
 position = Vector2(976, 340)
 shape = SubResource("RectangleShape2D_a241o")
 
-[node name="d_left_house2" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
+[node name="d_right_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
 phrases = ["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family skeleton. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_house2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_right_house"]
 position = Vector2(1543, 446)
 shape = SubResource("RectangleShape2D_3jtvt")
 
-[node name="mushrooms" type="StaticBody2D" parent="neighbours/interactions" groups=["interactable"]]
+[node name="mushrooms" type="Area2D" parent="neighbours/interactions" groups=["interactable"]]
 position = Vector2(82, -1)
 collision_layer = 0
 collision_mask = 3
@@ -859,10 +863,11 @@ shape = SubResource("RectangleShape2D_y7x33")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="neighbours/interactions/mushrooms"]
 stream = ExtResource("18_qvtrp")
 
-[node name="exit_neighbours" type="StaticBody2D" parent="neighbours/interactions" groups=["auto-interactable"]]
-collision_layer = 0
-collision_mask = 3
+[node name="exit_neighbours" type="Area2D" parent="neighbours/interactions" groups=["auto-interactable"]]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("20_dkpkb")
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/exit_neighbours"]
 position = Vector2(1882.75, 701)
@@ -870,10 +875,29 @@ shape = SubResource("RectangleShape2D_1cq7w")
 
 [node name="d_left_border" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
 phrases = ["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "]
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
 position = Vector2(8.5, 699.5)
 shape = SubResource("RectangleShape2D_wkx17")
+
+[node name="d_with_boney" parent="neighbours/interactions" instance=ExtResource("22_d4yax")]
+phrases = Array[String](["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Dope *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"])
+one_off = true
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_with_boney"]
+position = Vector2(942, 825)
+shape = SubResource("RectangleShape2D_2nd53")
+
+[node name="d_after_game" parent="neighbours/interactions" instance=ExtResource("22_d4yax")]
+phrases = Array[String](["Boney: This is the life, huh? Alright, game's over. Time for the real deal. Ready to hit that secret passage?", "Scaleton: Yeah, let's do this. Surface, here I come!"])
+one_off = true
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_after_game"]
+position = Vector2(-194, 311)
+shape = SubResource("RectangleShape2D_4d1f3")
 
 [node name="highlight" type="Node2D" parent="neighbours"]
 z_index = 2
@@ -908,17 +932,14 @@ position = Vector2(1893, 636)
 frame = 1
 frame_progress = 0.0
 
-[node name="neighbours@interactions@d_with_boney@CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1318, 856)
-shape = SubResource("RectangleShape2D_g0ikn")
-
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
 energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
-position = Vector2(949, 839)
+position = Vector2(940, 846)
+collision_layer = 3
 
 [node name="friend" parent="." node_paths=PackedStringArray("ball") groups=["friend"] instance=ExtResource("13_j7csx")]
 z_index = 2
@@ -1058,10 +1079,11 @@ position = Vector2(843, 1678)
 rotation = 3.14159
 shape = SubResource("RectangleShape2D_qmqjp")
 
-[node name="d_left_border" parent="bar-outside/collisions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
+[node name="d_right_border" parent="bar-outside/collisions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
 phrases = ["Nope, wrong direction. I should head over to the bar where my buddy is", "I'm off route. Better head towards the bar to join my friend", "Seems I made a detour. Time to head to the bar where my friend's waiting "]
+auto_interact = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/d_left_border"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/d_right_border"]
 position = Vector2(1922.5, 1857.25)
 shape = SubResource("RectangleShape2D_wkx17")
 
@@ -1103,7 +1125,7 @@ phrases = ["\"Bone Strength Brew\" - Chilled calcium-rich milk for sturdy bones"
 position = Vector2(1728.75, 1692)
 shape = SubResource("RectangleShape2D_t4wtd")
 
-[node name="news" type="StaticBody2D" parent="bar-outside/interactions" groups=["interactable"]]
+[node name="news" type="Area2D" parent="bar-outside/interactions" groups=["interactable"]]
 position = Vector2(-304, -294)
 collision_layer = 0
 collision_mask = 3
@@ -1188,18 +1210,17 @@ shape = SubResource("RectangleShape2D_6bcr8")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="bar-outside/interactions/news"]
 volume_db = -3.0
 
-[node name="back_to_neighbours" type="StaticBody2D" parent="bar-outside/interactions" groups=["auto-interactable"]]
+[node name="back_to_neighbours" type="Area2D" parent="bar-outside/interactions" groups=["auto-interactable"]]
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("39_oaisi")
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/back_to_neighbours"]
 position = Vector2(0, 1880)
 shape = SubResource("RectangleShape2D_mckg4")
 
 [node name="d_exit_street" parent="bar-outside/interactions" instance=ExtResource("40_itm4w")]
-collision_layer = 0
-collision_mask = 3
 phrases = ["Are you ready to go?"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_exit_street"]
@@ -1248,6 +1269,8 @@ script = ExtResource("25_xaah1")
 [connection signal="body_entered" from="neighbours/footbal_game/right_goal" to="." method="_on_right_goal_body_entered"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="friend" method="_on_exit_neighbours_to_bar_outside"]
 [connection signal="to_bar_outside" from="neighbours/interactions/exit_neighbours" to="Camera2D" method="_on_exit_neighbours_to_bar_outside"]
+[connection signal="dialog_ended" from="neighbours/interactions/d_with_boney" to="." method="_on_d_with_boney_dialog_ended"]
+[connection signal="dialog_ended" from="neighbours/interactions/d_after_game" to="." method="_on_d_after_game_dialog_ended"]
 [connection signal="to_neighbours" from="bar-outside/interactions/back_to_neighbours" to="Camera2D" method="_on_back_to_neighbours_to_neighbours"]
 [connection signal="yes_chosen" from="bar-outside/interactions/d_exit_street" to="." method="_on_d_exit_street_yes_chosen"]
 [connection signal="finished" from="bar-outside/interactions/d_exit_street/AudioStreamPlayer2" to="." method="_on_audio_stream_player_2_finished"]

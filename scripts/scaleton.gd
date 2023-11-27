@@ -7,7 +7,6 @@ enum State {PLAYING, CUT_SCENE}
 @export var speed = 300.0
 var direction = Vector2.ZERO
 var prev_direction = Vector2.ZERO
-var interactable_object = null
 var can_move = true
 var sprite = null
 var prev_animation = null
@@ -62,9 +61,6 @@ func _physics_process(delta):
 
 
 func process_interaction():
-	if Input.is_action_just_pressed("interact") and interactable_object != null:
-		interactable_object.interact(self)
-		
 	if Input.is_action_just_pressed("dance") and can_move:
 		if prev_animation == "walk_backward" or prev_animation == "idle_backward":
 			set_animation("dance_backward")
@@ -129,18 +125,6 @@ func move_character(_delta):
 				col.get_collider().linear_velocity = col.get_normal() * -500
 
 
-func _on_body_entered(body):
-	if body.is_in_group("auto-interactable"):
-		body.interact(self)
-		interactable_object = body
-	elif body.is_in_group("interactable"):
-		interactable_object = body
-	
-		
-func _on_body_exited(_body):
-	interactable_object = null
-
-
 func wear_home_clothes():
 	sprite = get_node("home_clothes_animation")
 	$street_clothes_animation.hide()
@@ -172,6 +156,13 @@ func set_animation(animation_name):
 	
 	
 func cut_scene_move_to_point(point):
+	speed = 200
 	can_move = false
 	point_to_walk = point
 	state = State.CUT_SCENE
+	
+	
+func end_cut_scene():
+	speed = 300
+	can_move = true
+	state = State.PLAYING

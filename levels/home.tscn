@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://nwdepydlb2tl"]
+[gd_scene load_steps=91 format=3 uid="uid://nwdepydlb2tl"]
 
 [ext_resource type="Script" path="res://scripts/home/level_home.gd" id="1_dh4yn"]
 [ext_resource type="Script" path="res://scripts/home/home_camera.gd" id="2_lm2c7"]
@@ -161,11 +161,44 @@ size = Vector2(131.75, 154)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l033h"]
 size = Vector2(185, 39)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vd1hs"]
+size = Vector2(191.938, 18.125)
+
+[sub_resource type="Animation" id="Animation_yjusr"]
+resource_name = "hide_hint"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 1), Color(0.666667, 0.564706, 0.690196, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_e8xkc"]
 resource_name = "show_hint"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/Label:theme_override_colors/font_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.666667, 0.564706, 0.690196, 0), Color(0.666667, 0.564706, 0.690196, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_uvu3a"]
 _data = {
+"hide_hint": SubResource("Animation_yjusr"),
 "show_hint": SubResource("Animation_e8xkc")
 }
 
@@ -254,6 +287,7 @@ script = ExtResource("2_lm2c7")
 
 [node name="scaleton" parent="." instance=ExtResource("3_qg35q")]
 position = Vector2(1504, 501)
+collision_layer = 3
 
 [node name="scaletons_room" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -365,12 +399,12 @@ y_sort_enabled = true
 
 [node name="lamp" parent="scaletons_room/interactions" instance=ExtResource("8_5q5oc")]
 
-[node name="cupboard" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
+[node name="cupboard" type="Area2D" parent="scaletons_room/interactions" groups=["interactable"]]
 z_index = 1
 y_sort_enabled = true
 position = Vector2(606, -117)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("6_a27o5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/cupboard"]
@@ -390,7 +424,7 @@ volume_db = -5.0
 
 [node name="d_books" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(733, 421)
-phrases = ["\"Archery  for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
+phrases = ["\"Archery for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_books"]
 position = Vector2(101, 47.625)
@@ -419,10 +453,10 @@ phrases = ["Dreams? Nah, I've been dead tired for centuries!", "No rest for the 
 position = Vector2(-348, 241)
 shape = SubResource("RectangleShape2D_2khje")
 
-[node name="note" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
+[node name="note" type="Area2D" parent="scaletons_room/interactions" groups=["interactable"]]
 position = Vector2(-304, -294)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("11_t2yj6")
 sfx_on_show = ExtResource("9_vumei")
 sfx_on_hide = ExtResource("10_uxqtl")
@@ -475,7 +509,7 @@ shape = SubResource("RectangleShape2D_3eb7m")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="scaletons_room/interactions/note"]
 volume_db = -3.0
 
-[node name="flower" type="StaticBody2D" parent="scaletons_room/interactions" groups=["interactable"]]
+[node name="flower" type="Area2D" parent="scaletons_room/interactions" groups=["interactable"]]
 z_index = 2
 y_sort_enabled = true
 collision_layer = 0
@@ -495,18 +529,25 @@ shape = SubResource("RectangleShape2D_0jvvb")
 stream = ExtResource("19_q4wdn")
 volume_db = -10.0
 
-[node name="exit_room" type="StaticBody2D" parent="scaletons_room/interactions" groups=["auto-interactable"]]
-collision_layer = 0
-collision_mask = 3
-script = ExtResource("18_27t45")
-
-[node name="d_exit_room" parent="scaletons_room/interactions/exit_room" instance=ExtResource("9_rh7av")]
+[node name="d_exit_room" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(781, 451)
 phrases = ["Nope, can't leave without my clothes. I got some \"bare bones\" to cover up!", "I can't go anywhere without my wardrobe. I need something to \"dress my skeleton\" in!", "Leaving without my attire? Not a chance! I've got \"basic bones\" to adorn! "]
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_exit_room"]
+position = Vector2(587.5, 606)
+shape = SubResource("RectangleShape2D_l033h")
+
+[node name="exit_room" type="Area2D" parent="scaletons_room/interactions" groups=["auto-interactable"]]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("18_27t45")
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/exit_room"]
-position = Vector2(1368.5, 1057)
-shape = SubResource("RectangleShape2D_l033h")
+position = Vector2(1369, 1087.06)
+rotation = -3.14159
+shape = SubResource("RectangleShape2D_vd1hs")
 
 [node name="hint" type="Node" parent="scaletons_room/interactions"]
 script = ExtResource("20_go4er")
@@ -527,7 +568,7 @@ grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 4
 size_flags_vertical = 8
-theme_override_colors/font_color = Color(0.666667, 0.564706, 0.690196, 1)
+theme_override_colors/font_color = Color(0.666667, 0.564706, 0.690196, 0)
 theme_override_fonts/font = ExtResource("12_poj00")
 theme_override_font_sizes/font_size = 40
 text = "Hold TAB to get a hint"
@@ -653,7 +694,7 @@ texture_scale = 6.0
 
 [node name="interactions" type="Node" parent="corridor"]
 
-[node name="scaletons_door" type="StaticBody2D" parent="corridor/interactions" groups=["interactable"]]
+[node name="scaletons_door" type="Area2D" parent="corridor/interactions" groups=["interactable"]]
 z_index = 3
 collision_layer = 0
 collision_mask = 3
@@ -663,7 +704,7 @@ script = ExtResource("21_5ivis")
 position = Vector2(1437.31, 1717.5)
 shape = SubResource("RectangleShape2D_kt0tx")
 
-[node name="family_portrait" type="StaticBody2D" parent="corridor/interactions" groups=["interactable"]]
+[node name="family_portrait" type="Area2D" parent="corridor/interactions" groups=["interactable"]]
 z_index = 3
 collision_layer = 0
 collision_mask = 3
@@ -687,11 +728,12 @@ color = Color(0, 0, 0, 0.588235)
 position = Vector2(963.125, 1734.5)
 shape = SubResource("RectangleShape2D_y0nab")
 
-[node name="exit_corridor" type="StaticBody2D" parent="corridor/interactions" groups=["auto-interactable"]]
+[node name="exit_corridor" type="Area2D" parent="corridor/interactions" groups=["auto-interactable"]]
 z_index = 3
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("24_7e0ll")
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/exit_corridor"]
 position = Vector2(-28, 1742.5)
@@ -845,22 +887,23 @@ shape = SubResource("RectangleShape2D_0nrki")
 [node name="interactions" type="Node2D" parent="hallway"]
 y_sort_enabled = true
 
-[node name="back_to_corridor" type="StaticBody2D" parent="hallway/interactions" groups=["auto-interactable"]]
+[node name="back_to_corridor" type="Area2D" parent="hallway/interactions" groups=["auto-interactable"]]
 z_index = 3
 position = Vector2(-1920, -1078)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("28_5vqrt")
+auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/back_to_corridor"]
 position = Vector2(1913.75, 2905)
 shape = SubResource("RectangleShape2D_b64l0")
 
-[node name="intro" type="StaticBody2D" parent="hallway/interactions" groups=["interactable"]]
+[node name="intro" type="Area2D" parent="hallway/interactions" groups=["interactable"]]
 z_index = 3
 position = Vector2(-1920, -1078)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("29_4a604")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/intro"]
@@ -871,10 +914,10 @@ shape = SubResource("RectangleShape2D_2pdgn")
 position = Vector2(-1511, 1049)
 lamp_color = 2
 
-[node name="couch" type="StaticBody2D" parent="hallway/interactions" groups=["interactable"]]
+[node name="couch" type="Area2D" parent="hallway/interactions" groups=["interactable"]]
 y_sort_enabled = true
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("32_pspio")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hallway/interactions/couch"]
@@ -926,6 +969,7 @@ color = Color(1, 1, 0, 1)
 energy = 0.38
 blend_mode = 1
 
+[connection signal="clothes_changed" from="scaletons_room/interactions/cupboard" to="." method="_on_cupboard_clothes_changed"]
 [connection signal="view_closed" from="scaletons_room/interactions/note" to="scaletons_room/interactions/hint" method="_on_note_view_closed"]
 [connection signal="to_corridor" from="scaletons_room/interactions/exit_room" to="Camera2D" method="_on_exit_room_to_corridor"]
 [connection signal="shown" from="scaletons_room/highlight" to="scaletons_room/interactions/hint" method="_on_highlight_shown"]

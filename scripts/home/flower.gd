@@ -1,8 +1,8 @@
-extends StaticBody2D
+extends Interactable
 
 var was_animation_played = false
 
-func interact(_player):
+func interact():
 	if not was_animation_played:
 		$AnimatedSprite2D.play()
 		$AudioStreamPlayer.play()

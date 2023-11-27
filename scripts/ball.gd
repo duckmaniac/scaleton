@@ -11,6 +11,7 @@ var kick_strength = 23000
 var reset_state = false
 var is_forced_move = true
 
+
 func _ready():
 	add_child(timer)
 	timer.wait_time = 0.5
@@ -30,13 +31,6 @@ func kick(direction):
 	$AudioStreamPlayer.play()
 	can_be_kicked = false
 	timer.start()
-	
-
-# Player interaction.
-func interact(player):
-	if can_be_kicked:
-		kick(Vector2(1, player.prev_direction.y))
-		emit_signal("scaleton_kick")
 
 
 func _process(_delta):
@@ -55,9 +49,11 @@ func _process(_delta):
 		set_angular_velocity(0)
 
 
-# Friend interaction.
 func _on_body_entered(body):
-	if can_be_kicked and body.is_in_group("friend"):
+	if can_be_kicked and body.is_in_group("player"):
+		kick(Vector2(1, body.direction.y))
+		emit_signal("scaleton_kick")
+	elif can_be_kicked and body.is_in_group("friend"):
 		kick(Vector2(-1, 0))
 		body.error *= 3
 		emit_signal("friend_kick")

@@ -1,9 +1,9 @@
-extends StaticBody2D
+extends Interactable
 
 
 signal pet
 
 
-func interact(_player):
+func interact():
 	$AudioStreamPlayer.play()
 	emit_signal("pet")

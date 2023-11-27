@@ -1,7 +1,7 @@
-extends Node
+extends Interactable
 
 
-func interact(_player):
+func interact():
 	$AudioStreamPlayer.play()
 	var child_count = get_child_count()
 	for i in range(child_count):

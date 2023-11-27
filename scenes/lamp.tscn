@@ -78,12 +78,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lxp8"]
 size = Vector2(176, 113)
 
-[node name="lamp" type="StaticBody2D" groups=["interactable"]]
+[node name="lamp" type="Area2D" groups=["interactable"]]
 z_index = 2
 y_sort_enabled = true
 position = Vector2(-3, -40)
-collision_layer = 0
-collision_mask = 3
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_sg51v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

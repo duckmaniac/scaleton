@@ -1,16 +1,18 @@
 extends RigidBody2D
 
-@export var player: RigidBody2D = null
-var push_force = 10
-var is_being_pushed = false
+
+var prev_position
 
 
-#
+func _ready():
+	prev_position = position
+	await get_tree().create_timer(1).timeout
+	$AudioStreamPlayer.volume_db = 0
 
 
-func _on_area_2d_start_pushing():
-	is_being_pushed = true
-
-
-func _on_area_2d_stop_pushging():
-	is_being_pushed = false
+func _physics_process(_delta):
+	if position == prev_position:
+		$AudioStreamPlayer.stop()
+	elif $AudioStreamPlayer.get_playback_position() == 0:
+		$AudioStreamPlayer.play()
+	prev_position = position

@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Interactable
 
 enum LampType { green, red, small }
 @export var lamp_color = LampType.green
@@ -14,7 +14,7 @@ func _ready():
 	elif lamp_color == LampType.small:
 		$AnimatedSprite2D.animation = "small"	
 	
-func interact(_player):
+func interact():
 	if $PointLight2D.enabled:
 		$AudioStreamPlayer.stream = sound_off
 	else:

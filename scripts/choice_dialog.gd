@@ -1,4 +1,5 @@
-extends StaticBody2D
+extends Interactable
+
 
 @export var phrases = []
 
@@ -17,15 +18,18 @@ var is_typing = false
 var is_choice_showing = false
 var chose = true
 
-func _ready():	
+
+func _ready():
 	timer = Timer.new()
 	timer.wait_time = 0.04
 	timer.one_shot = true
 	timer.connect("timeout", Callable(self, "_on_Timer_timeout"))
 	add_child(timer)
 
+
 func start_timer():
 	timer.start()
+
 
 func _on_Timer_timeout():
 	if is_dialog_showing and is_typing:
@@ -39,7 +43,8 @@ func _on_Timer_timeout():
 			start_timer()	
 
 
-func _process(_delta):
+func _process(delta):
+	super(delta)
 	if is_choice_showing:
 		if Input.is_action_just_pressed("ui_left"):
 			chose = true
@@ -75,7 +80,7 @@ func end_typing():
 	is_typing = false
 
 
-func interact(player):
+func interact():
 	if is_typing:
 		end_typing()
 		return

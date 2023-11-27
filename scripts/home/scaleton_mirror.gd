@@ -3,7 +3,7 @@ extends RigidBody2D
 
 var screen_size
 
-@export var scaleton: RigidBody2D = null
+@export var scaleton: CharacterBody2D = null
 
 @export var speed = 380.0
 var direction = Vector2.ZERO

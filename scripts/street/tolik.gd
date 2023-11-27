@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@export var player: RigidBody2D = null
+@export var player: CharacterBody2D = null
 
 enum State {STATE_IDLE, STATE_SIT, STATE_STAND, STATE_RUN}
 var state = State.STATE_IDLE

@@ -205,7 +205,7 @@ offset = Vector2(0, 10)
 position = Vector2(-3, 38)
 shape = SubResource("RectangleShape2D_ateug")
 
-[node name="pet_activator" type="StaticBody2D" parent="." groups=["interactable"]]
+[node name="pet_activator" type="Area2D" parent="." groups=["interactable"]]
 collision_layer = 0
 collision_mask = 3
 script = ExtResource("3_t1ks2")

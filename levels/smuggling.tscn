@@ -1,9 +1,10 @@
-[gd_scene load_steps=53 format=3 uid="uid://dihh7kxwckc0s"]
+[gd_scene load_steps=68 format=3 uid="uid://dihh7kxwckc0s"]
 
 [ext_resource type="Texture2D" uid="uid://cnb6rjfntbdc" path="res://assets/sprites/smuggling/secreet_room.png" id="1_8jisk"]
 [ext_resource type="Script" path="res://scripts/smuggling/level_smuggling.gd" id="1_njvly"]
 [ext_resource type="PackedScene" uid="uid://brsaa2tlclx0n" path="res://scenes/scaleton.tscn" id="2_5vua6"]
 [ext_resource type="Texture2D" uid="uid://bifvk0mb0vfp5" path="res://assets/sprites/smuggling/foreground_cargo.png" id="3_auv8t"]
+[ext_resource type="AudioStream" uid="uid://tyxssya4yfpi" path="res://assets/sfx/secret_door.mp3" id="3_ohdd4"]
 [ext_resource type="Texture2D" uid="uid://bkd7v1x5xijl5" path="res://assets/sprites/smuggling/bottom_pipe.png" id="4_lv5qx"]
 [ext_resource type="Texture2D" uid="uid://8wjpdc3nii57" path="res://assets/sprites/smuggling/table.png" id="5_j0p1m"]
 [ext_resource type="Texture2D" uid="uid://bh7fuol0vqov1" path="res://assets/sprites/smuggling/tables.png" id="6_kgpfk"]
@@ -21,12 +22,18 @@
 [ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="18_pkm8y"]
 [ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="19_3is00"]
 [ext_resource type="Texture2D" uid="uid://dc1a0b6ho5rfb" path="res://assets/sprites/home/note.png" id="20_b7evv"]
+[ext_resource type="AudioStream" uid="uid://dbcbt0ji8hn8f" path="res://assets/sfx/push_cargo.mp3" id="22_1t1ao"]
+[ext_resource type="Script" path="res://scripts/smuggling/move_to_tonell.gd" id="23_13elr"]
+[ext_resource type="Texture2D" uid="uid://c0taoj5efou8i" path="res://assets/sprites/smuggling/tonell.png" id="25_15f2v"]
+[ext_resource type="Script" path="res://scripts/smuggling/back_to_secreet_room.gd" id="26_08p17"]
+[ext_resource type="Script" path="res://scripts/smuggling/smuggling_camera.gd" id="26_ndoaw"]
+[ext_resource type="Script" path="res://scripts/smuggling/exit_tonell.gd" id="27_rc818"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1ka"]
-size = Vector2(143, 57)
+size = Vector2(148, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bh0s"]
-size = Vector2(114, 57)
+size = Vector2(144, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly5mu"]
 size = Vector2(917.5, 168)
@@ -184,7 +191,31 @@ _data = {
 size = Vector2(146, 149)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dj0ih"]
-size = Vector2(143.5, 86)
+size = Vector2(143.5, 30)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rb82h"]
+size = Vector2(124, 54)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbjlr"]
+size = Vector2(48.5, 606.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pmfc"]
+size = Vector2(48.25, 215)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uu73p"]
+size = Vector2(48.5, 456.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4wm0d"]
+size = Vector2(48.5, 624)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_obaup"]
+size = Vector2(780.125, 273.531)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8r5ng"]
+size = Vector2(781.063, 48.3828)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vjr7u"]
+size = Vector2(156, 16)
 
 [node name="smuggling" type="Node2D"]
 y_sort_enabled = true
@@ -198,201 +229,198 @@ position = Vector2(960, 540)
 scale = Vector2(6, 6)
 texture = ExtResource("1_8jisk")
 
-[node name="global" type="DirectionalLight2D" parent="."]
-color = Color(1, 1, 0, 1)
-energy = 0.38
-blend_mode = 1
+[node name="secreet_door_sfx" type="AudioStreamPlayer" parent="secreet_room"]
+stream = ExtResource("3_ohdd4")
 
-[node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
-position = Vector2(1320, 780)
-collision_layer = 3
-collision_mask = 1
+[node name="collisions" type="Node2D" parent="secreet_room"]
 
-[node name="collisions" type="Node2D" parent="."]
+[node name="top_wall" type="Node2D" parent="secreet_room/collisions"]
 
-[node name="top_wall" type="Node2D" parent="collisions"]
+[node name="left" type="StaticBody2D" parent="secreet_room/collisions/top_wall"]
 
-[node name="left" type="StaticBody2D" parent="collisions/top_wall"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/top_wall/left"]
-position = Vector2(438.5, 395.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/top_wall/left"]
+z_index = 1
+position = Vector2(441, 395)
 shape = SubResource("RectangleShape2D_cu1ka")
 
-[node name="right" type="StaticBody2D" parent="collisions/top_wall"]
+[node name="right" type="StaticBody2D" parent="secreet_room/collisions/top_wall"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/top_wall/right"]
-position = Vector2(711, 395.5)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/top_wall/right"]
+z_index = 1
+position = Vector2(696, 395)
 shape = SubResource("RectangleShape2D_7bh0s")
 
-[node name="bottom_wall" type="Node2D" parent="collisions"]
+[node name="bottom_wall" type="Node2D" parent="secreet_room/collisions"]
 
-[node name="left" type="StaticBody2D" parent="collisions/bottom_wall"]
+[node name="left" type="StaticBody2D" parent="secreet_room/collisions/bottom_wall"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/left"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/bottom_wall/left"]
 position = Vector2(849.25, 996)
 shape = SubResource("RectangleShape2D_ly5mu")
 
-[node name="center" type="StaticBody2D" parent="collisions/bottom_wall"]
+[node name="center" type="StaticBody2D" parent="secreet_room/collisions/bottom_wall"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/center"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/bottom_wall/center"]
 position = Vector2(1380, 1086)
 shape = SubResource("RectangleShape2D_870fu")
 
-[node name="right" type="StaticBody2D" parent="collisions/bottom_wall"]
+[node name="right" type="StaticBody2D" parent="secreet_room/collisions/bottom_wall"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/bottom_wall/right"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/bottom_wall/right"]
 position = Vector2(1506, 995.75)
 shape = SubResource("RectangleShape2D_n7dkb")
 
-[node name="left_wall" type="StaticBody2D" parent="collisions"]
+[node name="left_wall" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/left_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/left_wall"]
 position = Vector2(377.25, 670.5)
 shape = SubResource("RectangleShape2D_vsbfn")
 
-[node name="right_wall" type="StaticBody2D" parent="collisions"]
+[node name="right_wall" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/right_wall"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/right_wall"]
 position = Vector2(1548, 656.75)
 shape = SubResource("RectangleShape2D_qmrt8")
 
-[node name="table" type="StaticBody2D" parent="collisions"]
+[node name="table" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/table"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/table"]
 position = Vector2(467.875, 646.75)
 shape = SubResource("RectangleShape2D_mleg3")
 
-[node name="chairs_and_cupboard" type="StaticBody2D" parent="collisions"]
+[node name="chairs_and_cupboard" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/chairs_and_cupboard"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/chairs_and_cupboard"]
 position = Vector2(1145.94, 422)
 shape = SubResource("RectangleShape2D_r1og1")
 
-[node name="valve" type="StaticBody2D" parent="collisions"]
+[node name="valve" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/valve"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/valve"]
 position = Vector2(1481, 433.188)
 shape = SubResource("RectangleShape2D_nwkqd")
 
-[node name="tables" type="Node2D" parent="collisions"]
+[node name="tables" type="Node2D" parent="secreet_room/collisions"]
 
-[node name="table1" type="StaticBody2D" parent="collisions/tables"]
+[node name="table1" type="StaticBody2D" parent="secreet_room/collisions/tables"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table1"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/tables/table1"]
 position = Vector2(1478.5, 702.25)
 shape = SubResource("RectangleShape2D_xbvjl")
 
-[node name="table2" type="StaticBody2D" parent="collisions/tables"]
+[node name="table2" type="StaticBody2D" parent="secreet_room/collisions/tables"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/tables/table2"]
 position = Vector2(1441.25, 660)
 shape = SubResource("RectangleShape2D_gfy4r")
 
-[node name="table3" type="StaticBody2D" parent="collisions/tables"]
+[node name="table3" type="StaticBody2D" parent="secreet_room/collisions/tables"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/tables/table3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/tables/table3"]
 position = Vector2(1472, 606)
 shape = SubResource("RectangleShape2D_xbvjl")
 
-[node name="foreground_cargo" type="StaticBody2D" parent="collisions"]
+[node name="foreground_cargo" type="StaticBody2D" parent="secreet_room/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="collisions/foreground_cargo"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/foreground_cargo"]
 position = Vector2(828, 906.5)
 shape = SubResource("RectangleShape2D_uxex7")
 
-[node name="foreground" type="Node2D" parent="."]
+[node name="foreground" type="Node2D" parent="secreet_room"]
 z_index = 2
 y_sort_enabled = true
 
-[node name="cargo" type="Sprite2D" parent="foreground"]
+[node name="cargo-foreground" type="Sprite2D" parent="secreet_room/foreground"]
 position = Vector2(828, 837)
 scale = Vector2(6, 6)
 texture = ExtResource("3_auv8t")
 
-[node name="bottom_pipe" type="Sprite2D" parent="foreground"]
+[node name="bottom_pipe" type="Sprite2D" parent="secreet_room/foreground"]
 position = Vector2(612, 876)
 scale = Vector2(6, 6)
 texture = ExtResource("4_lv5qx")
 
-[node name="table" type="Sprite2D" parent="foreground"]
+[node name="table" type="Sprite2D" parent="secreet_room/foreground"]
 position = Vector2(459, 498)
 scale = Vector2(6, 6)
 texture = ExtResource("5_j0p1m")
 offset = Vector2(0, 20)
 
-[node name="tables" type="Sprite2D" parent="foreground"]
+[node name="tables" type="Sprite2D" parent="secreet_room/foreground"]
 visible = false
 position = Vector2(1473, 540)
 scale = Vector2(6, 6)
 texture = ExtResource("6_kgpfk")
 offset = Vector2(0, 10)
 
-[node name="tables2" type="Node2D" parent="foreground"]
+[node name="tables2" type="Node2D" parent="secreet_room/foreground"]
 y_sort_enabled = true
 
-[node name="table1" type="Sprite2D" parent="foreground/tables2"]
+[node name="table1" type="Sprite2D" parent="secreet_room/foreground/tables2"]
 position = Vector2(1500, 618)
 scale = Vector2(6, 6)
 texture = ExtResource("7_xmubk")
 offset = Vector2(0, 5)
 
-[node name="table2" type="Sprite2D" parent="foreground/tables2"]
+[node name="table2" type="Sprite2D" parent="secreet_room/foreground/tables2"]
 position = Vector2(1446, 576)
 scale = Vector2(6, 6)
 texture = ExtResource("7_xmubk")
 offset = Vector2(0, 5)
 
-[node name="table3" type="Sprite2D" parent="foreground/tables2"]
+[node name="table3" type="Sprite2D" parent="secreet_room/foreground/tables2"]
 position = Vector2(1494, 522)
 scale = Vector2(6, 6)
 texture = ExtResource("7_xmubk")
 offset = Vector2(0, 5)
 
-[node name="water_drop" type="Node2D" parent="foreground"]
+[node name="water_drop" type="Node2D" parent="secreet_room/foreground"]
 y_sort_enabled = true
 script = ExtResource("9_4v0li")
 
-[node name="drop_animation" type="AnimatedSprite2D" parent="foreground/water_drop"]
+[node name="drop_animation" type="AnimatedSprite2D" parent="secreet_room/foreground/water_drop"]
 position = Vector2(1035, 369)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_0634q")
 animation = &"falling"
 offset = Vector2(0, -4)
 
-[node name="drop_sfx" type="AudioStreamPlayer2D" parent="foreground/water_drop"]
+[node name="drop_sfx" type="AudioStreamPlayer2D" parent="secreet_room/foreground/water_drop"]
 position = Vector2(1027, 480)
 stream = ExtResource("11_bfshs")
 volume_db = -3.0
 attenuation = 3.0
 
-[node name="interactions" type="Node" parent="."]
+[node name="interactions" type="Node2D" parent="secreet_room"]
+y_sort_enabled = true
 
-[node name="valve" type="Area2D" parent="interactions" groups=["interactable"]]
+[node name="valve" type="Area2D" parent="secreet_room/interactions" groups=["interactable"]]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("9_k3ohj")
 interaction_limit = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/valve"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/valve"]
 position = Vector2(1421, 428.5)
 shape = SubResource("RectangleShape2D_w834p")
 
-[node name="valve_sfx" type="AudioStreamPlayer" parent="interactions/valve"]
+[node name="valve_sfx" type="AudioStreamPlayer" parent="secreet_room/interactions/valve"]
 stream = ExtResource("13_wtjn0")
 volume_db = -3.0
 pitch_scale = 0.8
 
-[node name="valve_sprite" type="Sprite2D" parent="interactions/valve"]
+[node name="valve_sprite" type="Sprite2D" parent="secreet_room/interactions/valve"]
+z_index = 1
 position = Vector2(1461, 357)
 scale = Vector2(6, 6)
 texture = ExtResource("14_ulfhx")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="interactions/valve"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="secreet_room/interactions/valve"]
 libraries = {
 "": SubResource("AnimationLibrary_xwdrv")
 }
 
-[node name="note" type="Area2D" parent="interactions" groups=["interactable"]]
+[node name="note" type="Area2D" parent="secreet_room/interactions" groups=["interactable"]]
 position = Vector2(-304, -294)
 collision_layer = 2
 collision_mask = 2
@@ -400,11 +428,11 @@ script = ExtResource("16_0pkqw")
 sfx_on_show = ExtResource("17_a51xl")
 sfx_on_hide = ExtResource("18_pkm8y")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="interactions/note"]
+[node name="CanvasLayer" type="CanvasLayer" parent="secreet_room/interactions/note"]
 layer = 3
 visible = false
 
-[node name="RichTextLabel" type="Label" parent="interactions/note/CanvasLayer"]
+[node name="RichTextLabel" type="Label" parent="secreet_room/interactions/note/CanvasLayer"]
 z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -435,42 +463,139 @@ Keep your bones light and steps quiet. The milk flows, but so do prying eyes."
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Sprite2D" type="Sprite2D" parent="interactions/note/CanvasLayer"]
+[node name="Sprite2D" type="Sprite2D" parent="secreet_room/interactions/note/CanvasLayer"]
 position = Vector2(974, 528)
 scale = Vector2(6.11151, 6.11151)
 texture = ExtResource("20_b7evv")
 
-[node name="dim" type="ColorRect" parent="interactions/note/CanvasLayer"]
+[node name="dim" type="ColorRect" parent="secreet_room/interactions/note/CanvasLayer"]
 z_index = -1
 offset_right = 1920.0
 offset_bottom = 1080.0
 color = Color(0, 0, 0, 0.588235)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/note"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/note"]
 z_index = 1
 position = Vector2(849, 872.5)
 shape = SubResource("RectangleShape2D_8vpf5")
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="interactions/note"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="secreet_room/interactions/note"]
 volume_db = -3.0
 
-[node name="cargo" type="RigidBody2D" parent="interactions" node_paths=PackedStringArray("player")]
-position = Vector2(333, 207)
+[node name="cargo" type="RigidBody2D" parent="secreet_room/interactions"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(5, -5)
 gravity_scale = 0.0
 lock_rotation = true
 linear_damp = 50.0
 script = ExtResource("12_3jsop")
-player = NodePath("../../scaleton")
 
-[node name="Sprite2D" type="Sprite2D" parent="interactions/cargo"]
-position = Vector2(582, 360)
+[node name="Sprite2D" type="Sprite2D" parent="secreet_room/interactions/cargo"]
+position = Vector2(582, 330)
 scale = Vector2(6, 6)
 texture = ExtResource("7_8a63h")
+offset = Vector2(0, 5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="interactions/cargo"]
-position = Vector2(582.25, 413)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/cargo"]
+position = Vector2(582.25, 441)
 shape = SubResource("RectangleShape2D_dj0ih")
 
-[connection signal="animation_finished" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_animation_finished"]
-[connection signal="frame_changed" from="foreground/water_drop/drop_animation" to="foreground/water_drop" method="_on_drop_animation_frame_changed"]
-[connection signal="water_closed" from="interactions/valve" to="foreground/water_drop" method="_on_valve_water_closed"]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="secreet_room/interactions/cargo"]
+stream = ExtResource("22_1t1ao")
+volume_db = -80.0
+
+[node name="exit_secreet_room" type="Area2D" parent="secreet_room/interactions"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("23_13elr")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/exit_secreet_room"]
+position = Vector2(572, 380)
+shape = SubResource("RectangleShape2D_rb82h")
+
+[node name="global" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.38
+blend_mode = 1
+
+[node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
+position = Vector2(1377, 1078)
+collision_layer = 3
+
+[node name="tonell" type="Node2D" parent="."]
+
+[node name="background" type="Sprite2D" parent="tonell"]
+position = Vector2(960, 1720)
+scale = Vector2(6, 6)
+texture = ExtResource("25_15f2v")
+
+[node name="collisions" type="Node2D" parent="tonell"]
+
+[node name="left_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/left_wall_bottom"]
+position = Vector2(468, 1957.25)
+shape = SubResource("RectangleShape2D_tbjlr")
+
+[node name="left_wall_top" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/left_wall_top"]
+position = Vector2(1247.88, 1287.5)
+shape = SubResource("RectangleShape2D_1pmfc")
+
+[node name="right_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/right_wall_bottom"]
+position = Vector2(672, 2032.13)
+shape = SubResource("RectangleShape2D_uu73p")
+
+[node name="right_wall_top" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/right_wall_top"]
+position = Vector2(1452, 1492)
+shape = SubResource("RectangleShape2D_4wm0d")
+
+[node name="center_wall_top" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_top"]
+position = Vector2(881.938, 1531.77)
+shape = SubResource("RectangleShape2D_obaup")
+
+[node name="center_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_bottom"]
+position = Vector2(1086.53, 1828.19)
+shape = SubResource("RectangleShape2D_8r5ng")
+
+[node name="back_to_secreet_room" type="Area2D" parent="tonell/collisions"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("26_08p17")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/back_to_secreet_room"]
+position = Vector2(570, 2252)
+shape = SubResource("RectangleShape2D_vjr7u")
+
+[node name="exit_tonell" type="Area2D" parent="tonell/collisions"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("27_rc818")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/exit_tonell"]
+position = Vector2(1350, 1188)
+shape = SubResource("RectangleShape2D_vjr7u")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("26_ndoaw")
+
+[connection signal="animation_finished" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_animation_finished"]
+[connection signal="frame_changed" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_frame_changed"]
+[connection signal="water_closed" from="secreet_room/interactions/valve" to="secreet_room/foreground/water_drop" method="_on_valve_water_closed"]
+[connection signal="to_tonell" from="secreet_room/interactions/exit_secreet_room" to="Camera2D" method="_on_exit_secreet_room_to_tonell"]
+[connection signal="reached_point_to_walk" from="scaleton" to="." method="_on_scaleton_reached_point_to_walk"]
+[connection signal="to_secreet_room" from="tonell/collisions/back_to_secreet_room" to="Camera2D" method="_on_back_to_secreet_room_to_secreet_room"]

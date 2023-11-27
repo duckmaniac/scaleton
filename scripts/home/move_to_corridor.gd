@@ -1,10 +1,8 @@
-extends StaticBody2D
+extends Interactable
 
 signal to_corridor
 
-func interact(player):
+func interact():
 	if player.is_dressed_in_street_clothes():
 		player.teleport(Vector2(1442, 1721))
 		emit_signal("to_corridor")
-	else:
-		$d_exit_room.interact(player)
