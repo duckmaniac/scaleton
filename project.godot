@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicController="*res://autoloads/music_controller.tscn"
-SceneController="*res://autoloads/scene_controller.gd"
 
 [display]
 
