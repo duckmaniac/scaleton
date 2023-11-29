@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://dihh7kxwckc0s"]
+[gd_scene load_steps=84 format=3 uid="uid://dihh7kxwckc0s"]
 
 [ext_resource type="Texture2D" uid="uid://cnb6rjfntbdc" path="res://assets/sprites/smuggling/secreet_room.png" id="1_8jisk"]
 [ext_resource type="Script" path="res://scripts/smuggling/level_smuggling.gd" id="1_njvly"]
@@ -8,13 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://bkd7v1x5xijl5" path="res://assets/sprites/smuggling/bottom_pipe.png" id="4_lv5qx"]
 [ext_resource type="Texture2D" uid="uid://8wjpdc3nii57" path="res://assets/sprites/smuggling/table.png" id="5_j0p1m"]
 [ext_resource type="Texture2D" uid="uid://bh7fuol0vqov1" path="res://assets/sprites/smuggling/tables.png" id="6_kgpfk"]
-[ext_resource type="Texture2D" uid="uid://dqwj1rej6ljxl" path="res://assets/sprites/smuggling/cargo.png" id="7_8a63h"]
 [ext_resource type="Texture2D" uid="uid://d2emvpwk53prc" path="res://assets/sprites/smuggling/small_table.png" id="7_xmubk"]
 [ext_resource type="Script" path="res://scripts/smuggling/water_drop.gd" id="9_4v0li"]
 [ext_resource type="Texture2D" uid="uid://3potoi5maxfg" path="res://assets/sprites/smuggling/drops.png" id="9_hr5mk"]
 [ext_resource type="Script" path="res://scripts/smuggling/valve.gd" id="9_k3ohj"]
 [ext_resource type="AudioStream" uid="uid://d1i3r1uterolv" path="res://assets/sfx/drop.mp3" id="11_bfshs"]
-[ext_resource type="Script" path="res://scripts/smuggling/cargo.gd" id="12_3jsop"]
 [ext_resource type="AudioStream" uid="uid://c6ay40ac8nl1y" path="res://assets/sfx/valve.mp3" id="13_wtjn0"]
 [ext_resource type="Texture2D" uid="uid://e83o0l53qcsx" path="res://assets/sprites/smuggling/valve.png" id="14_ulfhx"]
 [ext_resource type="Script" path="res://scripts/detail_view.gd" id="16_0pkqw"]
@@ -22,18 +20,27 @@
 [ext_resource type="AudioStream" uid="uid://qtakh14vnhwc" path="res://assets/sfx/paper_hide.mp3" id="18_pkm8y"]
 [ext_resource type="FontFile" uid="uid://chymuad6xnic4" path="res://assets/text/scaleton.ttf" id="19_3is00"]
 [ext_resource type="Texture2D" uid="uid://dc1a0b6ho5rfb" path="res://assets/sprites/home/note.png" id="20_b7evv"]
-[ext_resource type="AudioStream" uid="uid://dbcbt0ji8hn8f" path="res://assets/sfx/push_cargo.mp3" id="22_1t1ao"]
+[ext_resource type="PackedScene" uid="uid://b4y2c3fthoo8o" path="res://scenes/cargo.tscn" id="20_oft5j"]
+[ext_resource type="PackedScene" uid="uid://do6sajp43u6aa" path="res://scenes/star_interaction.tscn" id="21_maa5j"]
 [ext_resource type="Script" path="res://scripts/smuggling/move_to_tonell.gd" id="23_13elr"]
+[ext_resource type="Script" path="res://scripts/highlight.gd" id="23_53r1g"]
+[ext_resource type="PackedScene" uid="uid://qkxcdmn6dcq5" path="res://scenes/door.tscn" id="25_5cgef"]
 [ext_resource type="Texture2D" uid="uid://c0taoj5efou8i" path="res://assets/sprites/smuggling/tonell.png" id="25_15f2v"]
 [ext_resource type="Script" path="res://scripts/smuggling/back_to_secreet_room.gd" id="26_08p17"]
+[ext_resource type="Texture2D" uid="uid://eunh6lty6tdo" path="res://assets/sprites/bar/behind_secret_door.png" id="26_mhrnw"]
 [ext_resource type="Script" path="res://scripts/smuggling/smuggling_camera.gd" id="26_ndoaw"]
+[ext_resource type="PackedScene" uid="uid://7t28i51rjj85" path="res://scenes/plate.tscn" id="26_nkfa0"]
 [ext_resource type="Script" path="res://scripts/smuggling/exit_tonell.gd" id="27_rc818"]
+[ext_resource type="Texture2D" uid="uid://cnvleus8xl2tw" path="res://assets/sprites/smuggling/cargo_puzzle.png" id="30_ah74w"]
+[ext_resource type="PackedScene" uid="uid://btkdjsptx2hbl" path="res://scenes/dialog.tscn" id="31_vfosq"]
+[ext_resource type="Script" path="res://scripts/smuggling/back_to_tonell.gd" id="34_84ceg"]
+[ext_resource type="Script" path="res://scripts/smuggling/exit_cargo_puzzle.gd" id="35_uub5o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cu1ka"]
-size = Vector2(148, 56)
+size = Vector2(161, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7bh0s"]
-size = Vector2(144, 56)
+size = Vector2(132, 56)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ly5mu"]
 size = Vector2(917.5, 168)
@@ -190,32 +197,59 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8vpf5"]
 size = Vector2(146, 149)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dj0ih"]
-size = Vector2(143.5, 30)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rb82h"]
-size = Vector2(124, 54)
+size = Vector2(126, 70)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbjlr"]
-size = Vector2(48.5, 606.5)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1pmfc"]
-size = Vector2(48.25, 215)
+size = Vector2(54.25, 606.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uu73p"]
-size = Vector2(48.5, 456.25)
+size = Vector2(54.25, 462.255)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wm0d"]
-size = Vector2(48.5, 624)
+size = Vector2(49.25, 404)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_obaup"]
-size = Vector2(780.125, 273.531)
+size = Vector2(732.063, 238.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_icap6"]
+size = Vector2(246.5, 239.425)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8r5ng"]
-size = Vector2(781.063, 48.3828)
+size = Vector2(930.001, 54.3813)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3cwry"]
+size = Vector2(126, 181.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ix1lb"]
+size = Vector2(156, 19.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vjr7u"]
-size = Vector2(156, 16)
+size = Vector2(156, 19.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt7ev"]
+size = Vector2(55, 336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvc5m"]
+size = Vector2(51, 336)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58cvs"]
+size = Vector2(948, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jydul"]
+size = Vector2(145, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4d5h"]
+size = Vector2(175.5, 324)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npj8b"]
+size = Vector2(552, 250.207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1wxld"]
+size = Vector2(552, 250.207)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_56g7v"]
+size = Vector2(156, 37)
 
 [node name="smuggling" type="Node2D"]
 y_sort_enabled = true
@@ -240,14 +274,14 @@ stream = ExtResource("3_ohdd4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/top_wall/left"]
 z_index = 1
-position = Vector2(441, 395)
+position = Vector2(447.5, 395)
 shape = SubResource("RectangleShape2D_cu1ka")
 
 [node name="right" type="StaticBody2D" parent="secreet_room/collisions/top_wall"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/collisions/top_wall/right"]
 z_index = 1
-position = Vector2(696, 395)
+position = Vector2(702, 395)
 shape = SubResource("RectangleShape2D_7bh0s")
 
 [node name="bottom_wall" type="Node2D" parent="secreet_room/collisions"]
@@ -482,28 +516,17 @@ shape = SubResource("RectangleShape2D_8vpf5")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="secreet_room/interactions/note"]
 volume_db = -3.0
 
-[node name="cargo" type="RigidBody2D" parent="secreet_room/interactions"]
-z_index = 2
+[node name="cargo" parent="secreet_room/interactions" instance=ExtResource("20_oft5j")]
+position = Vector2(-13, -3)
+
+[node name="highlight" type="Node2D" parent="secreet_room/interactions/cargo"]
 y_sort_enabled = true
-position = Vector2(5, -5)
-gravity_scale = 0.0
-lock_rotation = true
-linear_damp = 50.0
-script = ExtResource("12_3jsop")
+script = ExtResource("23_53r1g")
 
-[node name="Sprite2D" type="Sprite2D" parent="secreet_room/interactions/cargo"]
-position = Vector2(582, 330)
-scale = Vector2(6, 6)
-texture = ExtResource("7_8a63h")
-offset = Vector2(0, 5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/cargo"]
-position = Vector2(582.25, 441)
-shape = SubResource("RectangleShape2D_dj0ih")
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="secreet_room/interactions/cargo"]
-stream = ExtResource("22_1t1ao")
-volume_db = -80.0
+[node name="star" parent="secreet_room/interactions/cargo/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(576, 369)
+frame = 4
+frame_progress = 0.0
 
 [node name="exit_secreet_room" type="Area2D" parent="secreet_room/interactions"]
 collision_layer = 2
@@ -512,8 +535,24 @@ script = ExtResource("23_13elr")
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="secreet_room/interactions/exit_secreet_room"]
-position = Vector2(572, 380)
+position = Vector2(573, 388)
 shape = SubResource("RectangleShape2D_rb82h")
+
+[node name="highlight" type="Node2D" parent="secreet_room"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(48, 0)
+script = ExtResource("23_53r1g")
+
+[node name="star1" parent="secreet_room/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(432, 540)
+frame = 3
+frame_progress = 0.0
+
+[node name="star2" parent="secreet_room/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(1413, 356)
+frame = 1
+frame_progress = 0.0
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -521,81 +560,279 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_5vua6")]
-position = Vector2(1377, 1078)
+position = Vector2(1376, 1080)
 collision_layer = 3
 
 [node name="tonell" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="background" type="Sprite2D" parent="tonell"]
 position = Vector2(960, 1720)
 scale = Vector2(6, 6)
 texture = ExtResource("25_15f2v")
 
+[node name="behind_door_sprite" type="Sprite2D" parent="tonell/background"]
+z_index = -1
+position = Vector2(56.8333, -35.8333)
+texture = ExtResource("26_mhrnw")
+
 [node name="collisions" type="Node2D" parent="tonell"]
 
 [node name="left_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/left_wall_bottom"]
-position = Vector2(468, 1957.25)
+position = Vector2(470.875, 1957.25)
 shape = SubResource("RectangleShape2D_tbjlr")
-
-[node name="left_wall_top" type="StaticBody2D" parent="tonell/collisions"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/left_wall_top"]
-position = Vector2(1247.88, 1287.5)
-shape = SubResource("RectangleShape2D_1pmfc")
 
 [node name="right_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/right_wall_bottom"]
-position = Vector2(672, 2032.13)
+position = Vector2(669.125, 2029.13)
 shape = SubResource("RectangleShape2D_uu73p")
 
 [node name="right_wall_top" type="StaticBody2D" parent="tonell/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/right_wall_top"]
-position = Vector2(1452, 1492)
+position = Vector2(1650.63, 1598)
 shape = SubResource("RectangleShape2D_4wm0d")
 
-[node name="center_wall_top" type="StaticBody2D" parent="tonell/collisions"]
+[node name="center_wall_left" type="StaticBody2D" parent="tonell/collisions"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_top"]
-position = Vector2(881.938, 1531.77)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_left"]
+z_index = 1
+position = Vector2(857.969, 1542.56)
 shape = SubResource("RectangleShape2D_obaup")
+
+[node name="center_wall_right" type="StaticBody2D" parent="tonell/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_right"]
+z_index = 1
+position = Vector2(1503.25, 1542.29)
+shape = SubResource("RectangleShape2D_icap6")
 
 [node name="center_wall_bottom" type="StaticBody2D" parent="tonell/collisions"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/center_wall_bottom"]
-position = Vector2(1086.53, 1828.19)
+position = Vector2(1161, 1825.19)
 shape = SubResource("RectangleShape2D_8r5ng")
 
-[node name="back_to_secreet_room" type="Area2D" parent="tonell/collisions"]
+[node name="interactions" type="Node2D" parent="tonell"]
+y_sort_enabled = true
+
+[node name="door" parent="tonell/interactions" instance=ExtResource("25_5cgef")]
+position = Vector2(1302, 1537)
+
+[node name="cargo" parent="tonell/interactions" instance=ExtResource("20_oft5j")]
+position = Vector2(140, 1276)
+type = 0
+
+[node name="highlight" type="Node2D" parent="tonell/interactions/cargo"]
+y_sort_enabled = true
+script = ExtResource("23_53r1g")
+
+[node name="star" parent="tonell/interactions/cargo/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(573, 412)
+frame = 4
+frame_progress = 0.0
+
+[node name="first_plate" parent="tonell/interactions" instance=ExtResource("26_nkfa0")]
+z_index = 1
+position = Vector2(1524, 1716)
+
+[node name="sign" parent="tonell/interactions" instance=ExtResource("31_vfosq")]
+phrases = Array[String](["\"Place the box to pave your way, a simple step before the real play!\" "])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/interactions/sign"]
+position = Vector2(867, 1633.38)
+shape = SubResource("RectangleShape2D_3cwry")
+
+[node name="back_to_secreet_room" type="Area2D" parent="tonell/interactions"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("26_08p17")
 auto_interact = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/back_to_secreet_room"]
-position = Vector2(570, 2252)
-shape = SubResource("RectangleShape2D_vjr7u")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/interactions/back_to_secreet_room"]
+position = Vector2(570, 2260.75)
+shape = SubResource("RectangleShape2D_ix1lb")
 
-[node name="exit_tonell" type="Area2D" parent="tonell/collisions"]
+[node name="exit_tonell" type="Area2D" parent="tonell/interactions"]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("27_rc818")
 auto_interact = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/collisions/exit_tonell"]
-position = Vector2(1350, 1188)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="tonell/interactions/exit_tonell"]
+position = Vector2(1302, 1654)
 shape = SubResource("RectangleShape2D_vjr7u")
+
+[node name="highlight" type="Node2D" parent="tonell"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(48, 0)
+script = ExtResource("23_53r1g")
+
+[node name="star1" parent="tonell/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(820, 1521)
+frame = 1
+frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
 script = ExtResource("26_ndoaw")
 
+[node name="cargo_puzzle" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="background" type="Sprite2D" parent="cargo_puzzle"]
+position = Vector2(960, 2900)
+scale = Vector2(6, 6)
+texture = ExtResource("30_ah74w")
+
+[node name="behind_door_sprite" type="Sprite2D" parent="cargo_puzzle/background"]
+z_index = -1
+position = Vector2(0, -44.5)
+texture = ExtResource("26_mhrnw")
+
+[node name="collisions" type="Node2D" parent="cargo_puzzle"]
+
+[node name="left_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/left_wall"]
+position = Vector2(302.5, 2948)
+shape = SubResource("RectangleShape2D_pt7ev")
+
+[node name="right_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/right_wall"]
+position = Vector2(1615.5, 2948)
+shape = SubResource("RectangleShape2D_lvc5m")
+
+[node name="left_bottom_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/left_bottom_wall"]
+position = Vector2(804, 3278)
+shape = SubResource("RectangleShape2D_58cvs")
+
+[node name="canter_bottom_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/canter_bottom_wall"]
+position = Vector2(1350, 3445.5)
+shape = SubResource("RectangleShape2D_jydul")
+
+[node name="right_bottom_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/right_bottom_wall"]
+position = Vector2(1509.75, 3278)
+shape = SubResource("RectangleShape2D_s4d5h")
+
+[node name="left_top_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/left_top_wall"]
+z_index = 1
+position = Vector2(606, 2664.9)
+shape = SubResource("RectangleShape2D_npj8b")
+
+[node name="right_top_wall" type="StaticBody2D" parent="cargo_puzzle/collisions"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/collisions/right_top_wall"]
+z_index = 1
+position = Vector2(1314, 2664.9)
+shape = SubResource("RectangleShape2D_1wxld")
+
+[node name="interactions" type="Node2D" parent="cargo_puzzle"]
+y_sort_enabled = true
+
+[node name="door" parent="cargo_puzzle/interactions" instance=ExtResource("25_5cgef")]
+position = Vector2(960, 2663)
+
+[node name="small_plate" parent="cargo_puzzle/interactions" instance=ExtResource("26_nkfa0")]
+position = Vector2(651, 2929)
+type = 0
+
+[node name="medium_plate" parent="cargo_puzzle/interactions" instance=ExtResource("26_nkfa0")]
+position = Vector2(918, 2930)
+
+[node name="big_plate" parent="cargo_puzzle/interactions" instance=ExtResource("26_nkfa0")]
+position = Vector2(1189, 2932)
+type = 2
+
+[node name="big_cargo" parent="cargo_puzzle/interactions" instance=ExtResource("20_oft5j")]
+position = Vector2(64, 2494)
+
+[node name="highlight" type="Node2D" parent="cargo_puzzle/interactions/big_cargo"]
+y_sort_enabled = true
+script = ExtResource("23_53r1g")
+
+[node name="star" parent="cargo_puzzle/interactions/big_cargo/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(573, 412)
+frame = 4
+frame_progress = 0.0
+
+[node name="small_cargo" parent="cargo_puzzle/interactions" instance=ExtResource("20_oft5j")]
+position = Vector2(604, 2499)
+type = 0
+
+[node name="highlight" type="Node2D" parent="cargo_puzzle/interactions/small_cargo"]
+y_sort_enabled = true
+script = ExtResource("23_53r1g")
+
+[node name="star" parent="cargo_puzzle/interactions/small_cargo/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(573, 412)
+frame = 2
+frame_progress = 0.0
+
+[node name="sign" parent="cargo_puzzle/interactions" instance=ExtResource("31_vfosq")]
+phrases = Array[String](["\"In a realm of scales, plates sit in wait: each craves fit weight to set its fate!\""])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/interactions/sign"]
+position = Vector2(1347, 2772)
+shape = SubResource("RectangleShape2D_3cwry")
+
+[node name="back_to_tonell" type="Area2D" parent="cargo_puzzle/interactions"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("34_84ceg")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/interactions/back_to_tonell"]
+position = Vector2(1350, 3431)
+shape = SubResource("RectangleShape2D_vjr7u")
+
+[node name="exit_cargo_puzzle" type="Area2D" parent="cargo_puzzle/interactions"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("35_uub5o")
+auto_interact = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cargo_puzzle/interactions/exit_cargo_puzzle"]
+position = Vector2(960, 2771.5)
+shape = SubResource("RectangleShape2D_56g7v")
+
+[node name="highlight" type="Node2D" parent="cargo_puzzle"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(48, 0)
+script = ExtResource("23_53r1g")
+
+[node name="star1" parent="cargo_puzzle/highlight" instance=ExtResource("21_maa5j")]
+position = Vector2(1299, 2654)
+frame = 1
+frame_progress = 0.0
+
 [connection signal="animation_finished" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_animation_finished"]
 [connection signal="frame_changed" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_frame_changed"]
+[connection signal="water_closed" from="secreet_room/interactions/valve" to="." method="_on_valve_water_closed"]
 [connection signal="water_closed" from="secreet_room/interactions/valve" to="secreet_room/foreground/water_drop" method="_on_valve_water_closed"]
 [connection signal="to_tonell" from="secreet_room/interactions/exit_secreet_room" to="Camera2D" method="_on_exit_secreet_room_to_tonell"]
 [connection signal="reached_point_to_walk" from="scaleton" to="." method="_on_scaleton_reached_point_to_walk"]
-[connection signal="to_secreet_room" from="tonell/collisions/back_to_secreet_room" to="Camera2D" method="_on_back_to_secreet_room_to_secreet_room"]
+[connection signal="pressed" from="tonell/interactions/first_plate" to="." method="_on_first_plate_pressed"]
+[connection signal="to_secreet_room" from="tonell/interactions/back_to_secreet_room" to="Camera2D" method="_on_back_to_secreet_room_to_secreet_room"]
+[connection signal="to_cargo_puzzle" from="tonell/interactions/exit_tonell" to="Camera2D" method="_on_exit_tonell_to_cargo_puzzle"]
+[connection signal="pressed" from="cargo_puzzle/interactions/small_plate" to="." method="_on_small_plate_pressed"]
+[connection signal="unpressed" from="cargo_puzzle/interactions/small_plate" to="." method="_on_small_plate_unpressed"]
+[connection signal="pressed" from="cargo_puzzle/interactions/medium_plate" to="." method="_on_medium_plate_pressed"]
+[connection signal="unpressed" from="cargo_puzzle/interactions/medium_plate" to="." method="_on_medium_plate_unpressed"]
+[connection signal="pressed" from="cargo_puzzle/interactions/big_plate" to="." method="_on_big_plate_pressed"]
+[connection signal="unpressed" from="cargo_puzzle/interactions/big_plate" to="." method="_on_big_plate_unpressed"]
+[connection signal="to_tonell" from="cargo_puzzle/interactions/back_to_tonell" to="Camera2D" method="_on_back_to_tonell_to_tonell"]

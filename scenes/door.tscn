@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3 uid="uid://qkxcdmn6dcq5"]
+
+[ext_resource type="Script" path="res://scripts/smuggling/door.gd" id="1_5r36j"]
+[ext_resource type="Texture2D" uid="uid://ckbux5ft442wh" path="res://assets/sprites/smuggling/door.png" id="2_kjyyb"]
+[ext_resource type="AudioStream" uid="uid://b35bc6f73kpdv" path="res://assets/sfx/smuggling_door.mp3" id="3_8qviv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yrq2g"]
+size = Vector2(2306, 245.75)
+
+[sub_resource type="Animation" id="Animation_lislg"]
+resource_name = "open_door"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1.3, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 10), Vector2(0, -25), Vector2(0, -65), Vector2(0, -140), Vector2(0, -190)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("door_sprite:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.9, 1.3, 1.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -35), Vector2(0, -75), Vector2(0, -150), Vector2(0, -200)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ewf0j"]
+_data = {
+"open_door": SubResource("Animation_lislg")
+}
+
+[node name="door" type="StaticBody2D"]
+script = ExtResource("1_5r36j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 6.125)
+shape = SubResource("RectangleShape2D_yrq2g")
+
+[node name="door_sprite" type="Sprite2D" parent="."]
+scale = Vector2(6, 6)
+texture = ExtResource("2_kjyyb")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_8qviv")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ewf0j")
+}

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf2t40b1onova"
-path="res://.godot/imported/secreet_room.png-714b5ba4fc9560f239af201f2fcd3446.ctex"
+uid="uid://cnvleus8xl2tw"
+path="res://.godot/imported/cargo_puzzle.png-1e7e8aa3f2400ee9f2d7ec693962765d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/aseprite/secreet_room.png"
-dest_files=["res://.godot/imported/secreet_room.png-714b5ba4fc9560f239af201f2fcd3446.ctex"]
+source_file="res://assets/sprites/smuggling/cargo_puzzle.png"
+dest_files=["res://.godot/imported/cargo_puzzle.png-1e7e8aa3f2400ee9f2d7ec693962765d.ctex"]
 
 [params]
 

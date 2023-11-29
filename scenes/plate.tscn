@@ -1,0 +1,92 @@
+[gd_scene load_steps=13 format=3 uid="uid://7t28i51rjj85"]
+
+[ext_resource type="Script" path="res://scripts/smuggling/plate.gd" id="1_c4ex6"]
+[ext_resource type="Texture2D" uid="uid://dr7yb6oyypaxv" path="res://assets/sprites/smuggling/big_plate.png" id="2_n0tma"]
+[ext_resource type="Texture2D" uid="uid://bqx3ophhxl1ss" path="res://assets/sprites/smuggling/medium_plate.png" id="3_dcgwl"]
+[ext_resource type="Texture2D" uid="uid://e50wnvwn4du1" path="res://assets/sprites/smuggling/small_plate.png" id="4_8ll7h"]
+[ext_resource type="AudioStream" uid="uid://crfp0fvivh4ok" path="res://assets/sfx/plate_pressed.mp3" id="5_8nmoe"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_75kah"]
+atlas = ExtResource("2_n0tma")
+region = Rect2(0, 0, 27, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ilwy3"]
+atlas = ExtResource("2_n0tma")
+region = Rect2(27, 0, 27, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ft03b"]
+atlas = ExtResource("3_dcgwl")
+region = Rect2(0, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84a61"]
+atlas = ExtResource("3_dcgwl")
+region = Rect2(24, 0, 24, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tayp2"]
+atlas = ExtResource("4_8ll7h")
+region = Rect2(0, 0, 20, 7)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_138wx"]
+atlas = ExtResource("4_8ll7h")
+region = Rect2(20, 0, 20, 7)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hilpm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_75kah")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ilwy3")
+}],
+"loop": false,
+"name": &"big_plate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ft03b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84a61")
+}],
+"loop": false,
+"name": &"medium_plate",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tayp2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_138wx")
+}],
+"loop": false,
+"name": &"small_plate",
+"speed": 5.0
+}]
+
+[node name="plate" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_c4ex6")
+
+[node name="small_collision" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-57, 6, -33, -18, 51, -18, 57, -12, 33, 12, -51, 12)
+
+[node name="medium_collisiion" type="CollisionPolygon2D" parent="."]
+position = Vector2(-1524, -1726)
+polygon = PackedVector2Array(1455, 1735, 1485, 1705, 1587, 1705, 1593, 1711, 1563, 1741, 1461, 1741)
+
+[node name="big_collisiion" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-78, 15, -36, -27, 72, -27, 78, -21, 36, 21, -72, 21)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(6, 6)
+sprite_frames = SubResource("SpriteFrames_hilpm")
+animation = &"small_plate"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_8nmoe")
+volume_db = -80.0
+pitch_scale = 0.9

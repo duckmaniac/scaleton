@@ -1,5 +1,9 @@
 extends Interactable
 
 
+signal to_cargo_puzzle
+
+
 func interact():
-	get_tree().change_scene_to_file("res://levels/home.tscn")
+	player.teleport(Vector2(1351, 3410))
+	emit_signal("to_cargo_puzzle")

@@ -2,7 +2,7 @@ extends Interactable
 
 signal phrase_ended
 
-@export var phrases = []
+@export var phrases: Array[String] = []
 @export var additional_sfx_phrase = 0
 @export var additional_sfx: AudioStreamPlayer = null
 

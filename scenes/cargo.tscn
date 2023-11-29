@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://b4y2c3fthoo8o"]
+
+[ext_resource type="Script" path="res://scripts/smuggling/cargo.gd" id="1_cab66"]
+[ext_resource type="Texture2D" uid="uid://dqwj1rej6ljxl" path="res://assets/sprites/smuggling/cargo.png" id="2_o1h88"]
+[ext_resource type="AudioStream" uid="uid://dbcbt0ji8hn8f" path="res://assets/sfx/push_cargo.mp3" id="3_wxmw3"]
+
+[node name="cargo" type="RigidBody2D" groups=["cargo"]]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(5, -5)
+collision_layer = 3
+collision_mask = 3
+gravity_scale = 0.0
+lock_rotation = true
+linear_damp = 50.0
+script = ExtResource("1_cab66")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(582, 330)
+scale = Vector2(6, 6)
+texture = ExtResource("2_o1h88")
+offset = Vector2(0, 5)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wxmw3")
+volume_db = -80.0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(621, 453, 621, 447, 627, 447, 627, 441, 633, 441, 633, 435, 639, 435, 639, 429, 645, 429, 645, 426, 651, 426, 651, 423, 513, 423, 513, 441, 519, 441, 519, 447, 525, 447, 525, 453)
