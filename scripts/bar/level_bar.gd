@@ -8,7 +8,7 @@ var door_opened = false
 
 func _ready():
 	if not debug:
-		MusicController.set_track(2)
+		MusicController.set_track(3)
 
 
 func _on_piano_game_playing():
@@ -70,4 +70,4 @@ func _on_d_fourth_dialog_ended():
 
 
 func _on_scaleton_reached_point_to_walk():
-	get_tree().change_scene_to_file("res://levels/smuggling.tscn")
+	LevelController.load_level(LevelController.Levels.SMUGGLING)

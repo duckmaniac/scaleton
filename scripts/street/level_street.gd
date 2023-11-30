@@ -19,7 +19,7 @@ var friend_phrase_counter = 0
 
 func _ready():
 	if not debug:
-		MusicController.set_track(1)
+		MusicController.set_track(2)
 	
 	# intro
 	if not debug:
@@ -27,9 +27,9 @@ func _ready():
 		$scaleton.can_move = false
 		$neighbours/intro.visible = true
 		await get_tree().create_timer(3.7).timeout
-		$neighbours/intro/author.visible = true
+		$neighbours/intro/CanvasModulate/author.visible = true
 		await get_tree().create_timer(3.5).timeout
-		$neighbours/intro.visible = false
+		$neighbours/footbal_game/AnimationPlayer.play("intro_ended")
 		$scaleton/CollisionShape2D.disabled = false
 
 
@@ -110,4 +110,4 @@ func _on_d_exit_street_yes_chosen():
 
 
 func _on_audio_stream_player_2_finished():
-	get_tree().change_scene_to_file("res://levels/bar.tscn")
+	LevelController.load_level(LevelController.Levels.BAR)

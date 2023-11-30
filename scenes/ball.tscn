@@ -9,7 +9,7 @@ friction = 0.0
 bounce = 0.6
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kcwll"]
-radius = 7.0
+radius = 7.5
 
 [node name="ball" type="RigidBody2D" groups=["auto-interactable"]]
 collision_layer = 0

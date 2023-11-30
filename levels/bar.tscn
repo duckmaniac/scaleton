@@ -476,7 +476,7 @@ volume_db = -3.0
 
 [node name="d_bar" parent="hall/interactions" instance=ExtResource("12_ancou")]
 position = Vector2(1685.83, 899.875)
-phrases = ["So, what's your drink, Mr. Invisible? Our specialty is \"Ghastly Gooey Chocolate Milk\" that'll rattle your skeleton!", "Good evening, esteemed phantom! May I recommend our \"Spooky Spiced Latte\"? They're a hit with the spectral crowd!", "Ah, a discerning customer! How about our special \"Skeleton Smoothie\"? It's a mix of everything good - guaranteed to keep your bones dancing!"]
+phrases = Array[String](["So, what's your drink, Mr. Invisible? Our specialty is \"Ghastly Gooey Chocolate Milk\" that'll rattle your skeleton!", "Good evening, esteemed phantom! May I recommend our \"Spooky Spiced Latte\"? They're a hit with the spectral crowd!", "Ah, a discerning customer! How about our special \"Skeleton Smoothie\"? It's a mix of everything good - guaranteed to keep your bones dancing!"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_bar"]
 position = Vector2(-728.374, -465.344)
@@ -738,7 +738,7 @@ libraries = {
 }
 
 [node name="d_trying_leave_bar" parent="hall/interactions" groups=["auto-interactable"] instance=ExtResource("12_ancou")]
-phrases = ["Wait a second, I'm heading out? That's not right, I need to go the other way", "Oops, almost left the bar. I should be heading somewhere else", "Hold on, am I leaving? No, no, I need to turn around and go the other way"]
+phrases = Array[String](["Wait a second, I'm heading out? That's not right, I need to go the other way", "Oops, almost left the bar. I should be heading somewhere else", "Hold on, am I leaving? No, no, I need to turn around and go the other way"])
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_trying_leave_bar"]
@@ -794,7 +794,7 @@ stream = ExtResource("43_vqik2")
 volume_db = -3.0
 
 [node name="d_closed_door" parent="hall/interactions" node_paths=PackedStringArray("additional_sfx") instance=ExtResource("12_ancou")]
-phrases = ["Looks like this door is locked. Guess the kitchen's off-limits!", "This door won't budge. No kitchen adventures for me!", "Seems this door is a no-go. I should stick to the bar area "]
+phrases = Array[String](["Looks like this door is locked. Guess the kitchen's off-limits!", "This door won't budge. No kitchen adventures for me!", "Seems this door is a no-go. I should stick to the bar area "])
 additional_sfx = NodePath("AudioStreamPlayer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hall/interactions/d_closed_door"]

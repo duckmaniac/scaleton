@@ -7,7 +7,7 @@ var pressed_counter = 0
 
 func _ready():
 	if not debug:
-		MusicController.set_track(3)
+		MusicController.set_track(4)
 		$scaleton.cut_scene_move_to_point(Vector2(1369, 944))
 		$secreet_room/secreet_door_sfx.play(2.5)
 

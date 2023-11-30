@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MusicController="*res://autoloads/music_controller.tscn"
+LevelController="*res://autoloads/level_controller.tscn"
 
 [display]
 

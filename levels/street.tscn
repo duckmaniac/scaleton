@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://nbjpa2ei7jdb"]
+[gd_scene load_steps=93 format=3 uid="uid://nbjpa2ei7jdb"]
 
 [ext_resource type="Texture2D" uid="uid://jbtgecylchf4" path="res://assets/sprites/street/neighbours.png" id="1_7ok3t"]
 [ext_resource type="Script" path="res://scripts/street/level_street.gd" id="1_vxctq"]
@@ -213,9 +213,26 @@ tracks/0/keys = {
 "values": [Color(0.52549, 0.533333, 0.588235, 0), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_j7l6y"]
+resource_name = "intro_ended"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../intro/CanvasModulate:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75eh4"]
 _data = {
 "game_ended": SubResource("Animation_u3e75"),
+"intro_ended": SubResource("Animation_j7l6y"),
 "show_friend_phrase": SubResource("Animation_ocgjx"),
 "show_scaleton_phrase": SubResource("Animation_ihwmb")
 }
@@ -579,58 +596,61 @@ texture = ExtResource("11_u8ana")
 [node name="intro" type="CanvasLayer" parent="neighbours"]
 visible = false
 
-[node name="stars" type="Node2D" parent="neighbours/intro"]
-position = Vector2(3, -3)
+[node name="CanvasModulate" type="CanvasModulate" parent="neighbours/intro"]
+position = Vector2(-48, 0)
 
-[node name="star" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="stars" type="Node2D" parent="neighbours/intro/CanvasModulate"]
+position = Vector2(51, -3)
+
+[node name="star" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(393, 354)
 autoplay = "default"
 frame_progress = 0.20816
 
-[node name="star2" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star2" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(918, 669)
 autoplay = "default"
 frame = 3
 frame_progress = 0.0
 
-[node name="star3" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star3" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(711, 159)
 autoplay = "default"
 frame = 4
 frame_progress = 0.0
 
-[node name="star10" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star10" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(554, 794)
 autoplay = "default"
 frame = 1
 frame_progress = 0.0
 
-[node name="star7" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star7" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1322, 276)
 autoplay = "default"
 frame = 1
 frame_progress = 0.0
 
-[node name="star12" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star12" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1744, 454)
 autoplay = "default"
 frame = 4
 frame_progress = 0.0
 
-[node name="star4" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star4" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(233, 41)
 autoplay = "default"
 frame = 4
 frame_progress = 0.0
 
-[node name="star5" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star5" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1669, 1020)
 scale = Vector2(8, 6.66663)
@@ -638,66 +658,66 @@ autoplay = "default"
 frame = 4
 frame_progress = 0.0
 
-[node name="star11" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star11" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1193, 860)
 autoplay = "default"
 frame = 2
 frame_progress = 0.0
 
-[node name="star8" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star8" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(127, 503)
 autoplay = "default"
 frame = 4
 frame_progress = 0.0
 
-[node name="star6" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star6" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(218, 941)
 autoplay = "default"
 frame = 2
 frame_progress = 0.0
 
-[node name="star9" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star9" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1673, 92)
 autoplay = "default"
 frame = 2
 frame_progress = 0.0
 
-[node name="star13" parent="neighbours/intro/stars" instance=ExtResource("8_0aww5")]
+[node name="star13" parent="neighbours/intro/CanvasModulate/stars" instance=ExtResource("8_0aww5")]
 z_index = 3
 position = Vector2(1491, 742)
 autoplay = "default"
 frame_progress = 0.0
 
-[node name="ColorRect" type="ColorRect" parent="neighbours/intro"]
+[node name="ColorRect" type="ColorRect" parent="neighbours/intro/CanvasModulate"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -960.0
-offset_top = -626.0
-offset_right = 960.0
-offset_bottom = 618.0
+offset_left = 48.0
+offset_top = -86.0
+offset_right = 1968.0
+offset_bottom = 1158.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 color = Color(0.168627, 0.0941176, 0.235294, 1)
 
-[node name="game" type="Label" parent="neighbours/intro"]
+[node name="game" type="Label" parent="neighbours/intro/CanvasModulate"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -495.0
-offset_top = -51.5
-offset_right = 501.0
-offset_bottom = 45.5
+offset_left = 513.0
+offset_top = 488.5
+offset_right = 1509.0
+offset_bottom = 585.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -706,17 +726,17 @@ theme_override_fonts/font = ExtResource("9_bsa46")
 theme_override_font_sizes/font_size = 100
 text = "SCALETON'S STORY"
 
-[node name="author" type="Label" parent="neighbours/intro"]
+[node name="author" type="Label" parent="neighbours/intro/CanvasModulate"]
 visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 148.0
-offset_top = 78.0
-offset_right = 1015.0
-offset_bottom = 175.0
+offset_left = 1156.0
+offset_top = 618.0
+offset_right = 2023.0
+offset_bottom = 715.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -731,7 +751,7 @@ text = "by Dmitrii Tarbaev"
 [node name="ball" parent="neighbours/footbal_game" groups=["ball"] instance=ExtResource("10_u5hll")]
 z_index = 1
 position = Vector2(602, 668)
-collision_layer = 6
+collision_layer = 4
 
 [node name="highlight" type="Node2D" parent="neighbours/footbal_game/ball"]
 script = ExtResource("22_857nn")
@@ -810,21 +830,21 @@ libraries = {
 [node name="interactions" type="Node" parent="neighbours"]
 
 [node name="d_left_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-phrases = ["The Garners' place, mysterious yet charming. They collect unique artifacts, always something new in their window, like last week's handless clock. But the real magic is Mrs. Garner's legendary pies, rumored to be a 'borrowed' recipe from the surface"]
+phrases = Array[String](["The Garners' place, mysterious yet charming. They collect unique artifacts, always something new in their window, like last week's handless clock. But the real magic is Mrs. Garner's legendary pies, rumored to be a 'borrowed' recipe from the surface"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_house"]
 position = Vector2(352, 444)
 shape = SubResource("RectangleShape2D_3jtvt")
 
 [node name="d_basket" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-phrases = ["There's a bright memory from when I was a kid. We were playing soccer and these older teens took our ball. But Boney, he challenged them to a game for it. We played, won, and got our ball back. Felt like heroes that day"]
+phrases = Array[String](["There's a bright memory from when I was a kid. We were playing soccer and these older teens took our ball. But Boney, he challenged them to a game for it. We played, won, and got our ball back. Felt like heroes that day"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_basket"]
 position = Vector2(976, 340)
 shape = SubResource("RectangleShape2D_a241o")
 
 [node name="d_right_house" parent="neighbours/interactions" instance=ExtResource("15_c1odq")]
-phrases = ["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family skeleton. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family"]
+phrases = Array[String](["The Goodwins' house, where Boney lives. His dad is the heart of our community, a true family skeleton. Their home was my second childhood playground, always welcoming. They run the local bar, a place that brings everyone together, feeling like family"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_right_house"]
 position = Vector2(1543, 446)
@@ -874,7 +894,7 @@ position = Vector2(1882.75, 701)
 shape = SubResource("RectangleShape2D_1cq7w")
 
 [node name="d_left_border" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
-phrases = ["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "]
+phrases = Array[String](["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "])
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
@@ -1080,7 +1100,7 @@ rotation = 3.14159
 shape = SubResource("RectangleShape2D_qmqjp")
 
 [node name="d_right_border" parent="bar-outside/collisions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
-phrases = ["Nope, wrong direction. I should head over to the bar where my buddy is", "I'm off route. Better head towards the bar to join my friend", "Seems I made a detour. Time to head to the bar where my friend's waiting "]
+phrases = Array[String](["Nope, wrong direction. I should head over to the bar where my buddy is", "I'm off route. Better head towards the bar to join my friend", "Seems I made a detour. Time to head to the bar where my friend's waiting "])
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/collisions/d_right_border"]
@@ -1112,14 +1132,14 @@ frame_progress = 0.0
 y_sort_enabled = true
 
 [node name="d_post" parent="bar-outside/interactions" instance=ExtResource("15_c1odq")]
-phrases = ["As skeletons, waiting for the mail isn't a problem. We've been chilling here for centuries. What's a few more days?", "Why do skeletons make great postal workers? They're never tired of 'bone'-voyage jokes for every package!", "Asked a skeleton if he hated waiting for the mail. He said, \"Not at all, gives me a chance to bone up on my patience!\""]
+phrases = Array[String](["As skeletons, waiting for the mail isn't a problem. We've been chilling here for centuries. What's a few more days?", "Why do skeletons make great postal workers? They're never tired of 'bone'-voyage jokes for every package!", "Asked a skeleton if he hated waiting for the mail. He said, \"Not at all, gives me a chance to bone up on my patience!\""])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_post"]
 position = Vector2(279, 1664.5)
 shape = SubResource("RectangleShape2D_t4wtd")
 
 [node name="d_menu" parent="bar-outside/interactions" instance=ExtResource("15_c1odq")]
-phrases = ["\"Bone Strength Brew\" - Chilled calcium-rich milk for sturdy bones", "\"Spooky Spiced Latte\" - Warm milk with vanilla and cinnamon, like a skeleton's hug", "\"Ghastly Gooey Chocolate Milk\" - Thick chocolate milk with cream, a true graveyard hit!"]
+phrases = Array[String](["\"Bone Strength Brew\" - Chilled calcium-rich milk for sturdy bones", "\"Spooky Spiced Latte\" - Warm milk with vanilla and cinnamon, like a skeleton's hug", "\"Ghastly Gooey Chocolate Milk\" - Thick chocolate milk with cream, a true graveyard hit!"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="bar-outside/interactions/d_menu"]
 position = Vector2(1728.75, 1692)

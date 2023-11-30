@@ -424,7 +424,7 @@ volume_db = -5.0
 
 [node name="d_books" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(733, 421)
-phrases = ["\"Archery for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"]
+phrases = Array[String](["\"Archery for dummies\", sigh, my mother dreams of me becoming an archer like my father", "\"No Pun Intended: Volume Too\" ohh love this book!", "\"Quantum Psychology\" - never liked physics"])
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_books"]
 position = Vector2(101, 47.625)
@@ -432,7 +432,7 @@ shape = SubResource("RectangleShape2D_xmf51")
 
 [node name="d_clock" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(733, 421)
-phrases = ["Oops, look at the time! I better hurry up and meet my friend outside", "Time's ticking and I'm just here boning around. Gotta rattle my bones and meet my buddy outside!", "These clock hands are moving faster than my bones. Time to dash and catch up with my buddy!"]
+phrases = Array[String](["Oops, look at the time! I better hurry up and meet my friend outside", "Time's ticking and I'm just here boning around. Gotta rattle my bones and meet my buddy outside!", "These clock hands are moving faster than my bones. Time to dash and catch up with my buddy!"])
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="scaletons_room/interactions/d_clock"]
 position = Vector2(514.5, -16.1875)
@@ -447,7 +447,7 @@ max_distance = 1000.0
 
 [node name="d_bed" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(781, 451)
-phrases = ["Dreams? Nah, I've been dead tired for centuries!", "No rest for the wicked... or for the skeletal!", "Why should I sleep? I'm bone-tired all the time!"]
+phrases = Array[String](["Dreams? Nah, I've been dead tired for centuries!", "No rest for the wicked... or for the skeletal!", "Why should I sleep? I'm bone-tired all the time!"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_bed"]
 position = Vector2(-348, 241)
@@ -531,7 +531,7 @@ volume_db = -10.0
 
 [node name="d_exit_room" parent="scaletons_room/interactions" instance=ExtResource("9_rh7av")]
 position = Vector2(781, 451)
-phrases = ["Nope, can't leave without my clothes. I got some \"bare bones\" to cover up!", "I can't go anywhere without my wardrobe. I need something to \"dress my skeleton\" in!", "Leaving without my attire? Not a chance! I've got \"basic bones\" to adorn! "]
+phrases = Array[String](["Nope, can't leave without my clothes. I got some \"bare bones\" to cover up!", "I can't go anywhere without my wardrobe. I need something to \"dress my skeleton\" in!", "Leaving without my attire? Not a chance! I've got \"basic bones\" to adorn! "])
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="scaletons_room/interactions/d_exit_room"]
@@ -745,7 +745,7 @@ position = Vector2(1309, 1168)
 lamp_color = 1
 
 [node name="d_parents_door" parent="corridor/interactions" instance=ExtResource("9_rh7av")]
-phrases = ["This is my parents' room, I don't want to wake them up", "Why did the skeleton go to the doctor about his snoring problem?", "Because he couldn't find his \"jaw-dropping\" solution!"]
+phrases = Array[String](["This is my parents' room, I don't want to wake them up", "Why did the skeleton go to the doctor about his snoring problem?", "Because he couldn't find his \"jaw-dropping\" solution!"])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="corridor/interactions/d_parents_door"]
 position = Vector2(479, 1716.5)
