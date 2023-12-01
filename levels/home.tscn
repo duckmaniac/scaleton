@@ -286,7 +286,7 @@ position = Vector2(960, 540)
 script = ExtResource("2_lm2c7")
 
 [node name="scaleton" parent="." instance=ExtResource("3_qg35q")]
-position = Vector2(1504, 501)
+position = Vector2(1498, 494)
 collision_layer = 3
 
 [node name="scaletons_room" type="Node2D" parent="."]
@@ -483,7 +483,7 @@ theme_override_fonts/font = ExtResource("12_poj00")
 theme_override_font_sizes/font_size = 34
 text = "Dear Mom and Dad,
 
-I’m taking a leap of faith to pursue my dream of becoming a stand-up comedian above ground. I cherish our home and the laughs we've shared, but I've got this funny feeling in my bones that there's more for me out there. Don’t worry, I’m not just clacking my jaw - I’ve thought this through. I promise to make you proud and fill the world with our signature humor. I'll keep in touch, and before you know it, I might just be the next big rib-tickler on the comedy scene!
+I want to try fulfilling my dream of becoming a stand-up comedian above ground. I cherish our home and the laughs we've shared, but I've got this funny feeling in my bones that there's more for me out there. Don’t worry, I’m not just clacking my jaw - I’ve thought this through. I promise to make you proud and fill the world with our signature humor. I'll keep in touch, and before you know it, I become the next big rib-tickler on the comedy scene!
 
 With a humerus hug,
 Your bony boy - Scaleton"
@@ -596,40 +596,34 @@ script = ExtResource("19_gtss6")
 [node name="star" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1035, 333)
 frame = 2
-frame_progress = 0.0
 
 [node name="star2" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(312, 389)
+z_index = 1
+position = Vector2(339, 308)
 frame = 4
-frame_progress = 0.0
 
 [node name="star3" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(423, 558)
+position = Vector2(441, 639)
 frame = 1
-frame_progress = 0.0
 
 [node name="star4" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1594, 796)
+position = Vector2(1597, 870)
 
 [node name="star5" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1469, 353)
 frame = 3
-frame_progress = 0.0
 
 [node name="star6" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(770, 310)
 frame = 1
-frame_progress = 0.0
 
 [node name="star7" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1370, 1039)
 frame = 1
-frame_progress = 0.0
 
 [node name="star8" parent="scaletons_room/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1269, 189)
 frame = 1
-frame_progress = 0.0
 
 [node name="corridor" type="Node2D" parent="."]
 
@@ -760,24 +754,20 @@ autoplay = true
 max_distance = 1000.0
 
 [node name="highlight" type="Node2D" parent="corridor/interactions"]
-z_index = 2
 y_sort_enabled = true
 script = ExtResource("19_gtss6")
 
 [node name="star" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1394, 1580)
 frame = 2
-frame_progress = 0.0
 
 [node name="star2" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(1624, 1597)
+position = Vector2(1651, 1513)
 frame = 4
-frame_progress = 0.0
 
 [node name="star3" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(966, 1584)
 frame = 1
-frame_progress = 0.0
 
 [node name="star4" parent="corridor/interactions/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(423, 1581)
@@ -941,22 +931,19 @@ script = ExtResource("19_gtss6")
 
 [node name="star" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(903, 2564)
-frame_progress = 0.0
 
 [node name="star2" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(778, 2578)
+z_index = 1
+position = Vector2(754, 2518)
 frame = 3
-frame_progress = 0.0
 
 [node name="star3" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
-position = Vector2(195, 2795)
+position = Vector2(159, 2822)
 frame = 1
-frame_progress = 0.0
 
 [node name="star4" parent="hallway/interactions/highlight" instance=ExtResource("19_gdg0w")]
 position = Vector2(1908, 2900)
 frame = 1
-frame_progress = 0.0
 
 [node name="scaleton_mirror" parent="." node_paths=PackedStringArray("scaleton") instance=ExtResource("30_2vd08")]
 z_index = -2
@@ -971,6 +958,7 @@ blend_mode = 1
 
 [connection signal="clothes_changed" from="scaletons_room/interactions/cupboard" to="." method="_on_cupboard_clothes_changed"]
 [connection signal="view_closed" from="scaletons_room/interactions/note" to="scaletons_room/interactions/hint" method="_on_note_view_closed"]
+[connection signal="leaf_fell" from="scaletons_room/interactions/flower" to="." method="_on_flower_leaf_fell"]
 [connection signal="to_corridor" from="scaletons_room/interactions/exit_room" to="Camera2D" method="_on_exit_room_to_corridor"]
 [connection signal="shown" from="scaletons_room/highlight" to="scaletons_room/interactions/hint" method="_on_highlight_shown"]
 [connection signal="to_scaletons_room" from="corridor/interactions/scaletons_door" to="Camera2D" method="_on_scaletons_door_to_scaletons_room"]

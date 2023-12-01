@@ -27,12 +27,15 @@ animations = [{
 }]
 
 [node name="firefly" type="CharacterBody2D" groups=["firefly"]]
+y_sort_enabled = true
 script = ExtResource("1_fwnum")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -41)
 scale = Vector2(6, 6)
 sprite_frames = SubResource("SpriteFrames_juwrx")
 animation = &"fly"
+offset = Vector2(0, 7)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 energy = 0.1

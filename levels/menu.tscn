@@ -136,12 +136,12 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.980392, 0.945098, 0.905882, 1)
-theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_h2mkw")
-theme_override_font_sizes/font_size = 100
+theme_override_font_sizes/font_size = 80
 text = "NEW GAME"
 horizontal_alignment = 1
 vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="continue" type="Label" parent="CanvasLayer"]
 anchors_preset = 8
@@ -157,8 +157,9 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.992157, 0.972549, 0.952941, 1)
+theme_override_constants/outline_size = 3
 theme_override_fonts/font = ExtResource("2_h2mkw")
-theme_override_font_sizes/font_size = 80
+theme_override_font_sizes/font_size = 100
 text = "CONTINUE"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -236,95 +237,60 @@ script = ExtResource("5_mwn18")
 
 [node name="star" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2851, 1935)
-frame_progress = 0.0
 
 [node name="star2" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2759, 1885)
-frame = 3
-frame_progress = 0.0
 
 [node name="star3" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2653, 1838)
-frame = 1
-frame_progress = 0.0
 
 [node name="star4" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2549, 1759)
-frame = 1
-frame_progress = 0.0
 
 [node name="star5" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2478, 1676)
-frame_progress = 0.0
 
 [node name="star6" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2469, 1560)
-frame = 3
-frame_progress = 0.0
 
 [node name="star7" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2517, 1462)
-frame = 1
-frame_progress = 0.0
 
 [node name="star8" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2630, 1379)
-frame = 1
-frame_progress = 0.0
 
 [node name="star9" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2740, 1359)
-frame_progress = 0.0
 
 [node name="star10" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2834, 1420)
-frame = 3
-frame_progress = 0.0
 
 [node name="star11" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2906, 1364)
-frame = 1
-frame_progress = 0.0
 
 [node name="star12" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3010, 1335)
-frame = 1
-frame_progress = 0.0
 
 [node name="star13" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3099, 1351)
-frame_progress = 0.0
 
 [node name="star14" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3182, 1400)
-frame = 3
-frame_progress = 0.0
 
 [node name="star15" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3244, 1500)
-frame = 1
-frame_progress = 0.0
 
 [node name="star16" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3243, 1609)
-frame = 1
-frame_progress = 0.0
 
 [node name="star17" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3212, 1707)
-frame = 1
-frame_progress = 0.0
 
 [node name="star18" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3147, 1794)
-frame_progress = 0.0
 
 [node name="star19" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(3059, 1850)
-frame = 3
-frame_progress = 0.0
 
 [node name="star20" parent="CanvasLayer/highlight" instance=ExtResource("6_3i8ro")]
 position = Vector2(2958, 1898)
-frame = 1
-frame_progress = 0.0

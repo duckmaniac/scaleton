@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://dng5yum7dua5r"]
+
+[node name="move_to_right" type="Node2D"]

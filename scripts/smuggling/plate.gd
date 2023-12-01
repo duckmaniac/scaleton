@@ -7,6 +7,9 @@ signal unpressed
 enum Plate { SMALL, MEDIUM, BIG }
 @export var type = Plate.MEDIUM
 
+@export var one_off = false
+var has_ben_pressed = false
+
 var sfx_pressed = preload("res://assets/sfx/plate_pressed.mp3")
 var sfx_unpressed = preload("res://assets/sfx/plate_unpressed.mp3")
 
@@ -45,6 +48,7 @@ func press():
 	$AnimatedSprite2D.frame = 1
 	$AudioStreamPlayer.stream = sfx_pressed
 	$AudioStreamPlayer.play()
+	has_ben_pressed = true
 	emit_signal("pressed")
 
 
@@ -69,6 +73,7 @@ func can_be_pressed(body):
 
 
 func _on_self_body_entered(body):
+	if has_ben_pressed and one_off: return
 	if can_be_pressed(body): 
 		if objects_on_the_plate.size() == 0:
 			press()
@@ -76,6 +81,7 @@ func _on_self_body_entered(body):
 
 
 func _on_self_body_exited(body):
+	if has_ben_pressed and one_off: return
 	if not objects_on_the_plate.has(body.get_instance_id()): return
 	objects_on_the_plate.erase(body.get_instance_id())
 	if objects_on_the_plate.size() == 0: unpress()

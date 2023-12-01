@@ -90,7 +90,7 @@ script = ExtResource("1_sg51v")
 position = Vector2(339, 423)
 scale = Vector2(5.99265, 5.99265)
 sprite_frames = SubResource("SpriteFrames_rdl7k")
-animation = &"green"
+animation = &"small"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 z_index = 1

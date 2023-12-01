@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d11emmjygo46i"]
 
-[ext_resource type="Script" path="res://autoloads/level_controller.gd" id="1_ktf2p"]
+[ext_resource type="Script" path="res://scripts/level_controller.gd" id="1_y0fx2"]
 
 [sub_resource type="Animation" id="Animation_kas5x"]
 resource_name = "ease_in"
@@ -41,7 +41,7 @@ _data = {
 }
 
 [node name="level_controller" type="Node2D"]
-script = ExtResource("1_ktf2p")
+script = ExtResource("1_y0fx2")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 4

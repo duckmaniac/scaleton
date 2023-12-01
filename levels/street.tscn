@@ -125,7 +125,7 @@ size = Vector2(29.5001, 240)
 size = Vector2(203, 240)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jj75g"]
-size = Vector2(29.7501, 60.5)
+size = Vector2(51.875, 76)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nrpj4"]
 size = Vector2(84.0001, 60.0001)
@@ -181,6 +181,22 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_j7l6y"]
+resource_name = "intro_ended"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../../intro/CanvasModulate:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_ocgjx"]
 resource_name = "show_friend_phrase"
 length = 1.5
@@ -211,22 +227,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
 "values": [Color(0.52549, 0.533333, 0.588235, 0), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 1), Color(0.52549, 0.533333, 0.588235, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_j7l6y"]
-resource_name = "intro_ended"
-length = 0.25
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../../intro/CanvasModulate:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_75eh4"]
@@ -427,7 +427,7 @@ metadata/_edit_lock_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/collisions/mushrooms"]
 z_index = 1
-position = Vector2(220, 843)
+position = Vector2(228, 854.063)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jj75g")
 
@@ -759,7 +759,6 @@ script = ExtResource("22_857nn")
 [node name="star7" parent="neighbours/footbal_game/ball/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(-3, 2)
 frame = 1
-frame_progress = 0.0
 
 [node name="left_goal" type="Area2D" parent="neighbours/footbal_game"]
 collision_layer = 0
@@ -894,7 +893,7 @@ position = Vector2(1882.75, 701)
 shape = SubResource("RectangleShape2D_1cq7w")
 
 [node name="d_left_border" parent="neighbours/interactions" groups=["auto-interactable"] instance=ExtResource("15_c1odq")]
-phrases = Array[String](["Oops, wrong way. I need to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "])
+phrases = Array[String](["Oops, wrong way. I have to go where my buddy went", "I'm going the wrong way. Need to catch up with my friend", "Looks like I took a wrong turn. Better follow my buddy's path "])
 auto_interact = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="neighbours/interactions/d_left_border"]
@@ -902,7 +901,7 @@ position = Vector2(8.5, 699.5)
 shape = SubResource("RectangleShape2D_wkx17")
 
 [node name="d_with_boney" parent="neighbours/interactions" instance=ExtResource("22_d4yax")]
-phrases = Array[String](["Scaleton: I was half-expecting you to bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Dope *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"])
+phrases = Array[String](["Scaleton: I was startin' to think you'd bail on me", "Boney: Come on, you know I've got your back. Key's in my pocket, plan's all set. Ready to light up the surface with your jokes?", "Scaleton: Yeah, been dreaming about this forever. Just... what if I bomb up there?", "Boney: Bomb? You're all bones, buddy! What's there to lose? *laughs* Just try not to drop your skull when you're dropping punchlines", "Scaleton: Dope *pauses* But seriously, is this even safe?", "Boney: Safe as it'll ever be! And hey, how about a quick game of football for old times' sake?", "Scaleton: Football now? You're not serious", "Boney: Absolutely! A final kick-about in the underworld, what do you say?", "Scaleton: Alright, game on. But let's not dawdle"])
 one_off = true
 auto_interact = true
 
@@ -928,29 +927,23 @@ script = ExtResource("22_857nn")
 [node name="star" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(1549, 312)
 frame = 2
-frame_progress = 0.0
 
 [node name="star3" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(368, 314)
-frame = 1
-frame_progress = 0.0
 
 [node name="star5" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
-position = Vector2(175, 805)
+position = Vector2(166, 848)
 frame = 3
-frame_progress = 0.0
 
 [node name="star6" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 z_index = 1
 position = Vector2(975, 154)
 frame = 1
-frame_progress = 0.0
 
 [node name="star7" parent="neighbours/highlight" instance=ExtResource("14_vybhx")]
 z_index = 1
 position = Vector2(1893, 636)
-frame = 1
-frame_progress = 0.0
+frame = 4
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -958,7 +951,7 @@ energy = 0.38
 blend_mode = 1
 
 [node name="scaleton" parent="." instance=ExtResource("2_3wjrk")]
-position = Vector2(940, 846)
+position = Vector2(927, 827)
 collision_layer = 3
 
 [node name="friend" parent="." node_paths=PackedStringArray("ball") groups=["friend"] instance=ExtResource("13_j7csx")]
@@ -1120,13 +1113,13 @@ position = Vector2(1089, 1633)
 player = NodePath("../../scaleton")
 
 [node name="highlight" type="Node2D" parent="bar-outside/tolik"]
+y_sort_enabled = true
 script = ExtResource("22_857nn")
 
 [node name="star7" parent="bar-outside/tolik/highlight" instance=ExtResource("14_vybhx")]
 z_index = 2
 position = Vector2(-2, 14)
 frame = 1
-frame_progress = 0.0
 
 [node name="interactions" type="Node2D" parent="bar-outside"]
 y_sort_enabled = true
@@ -1256,28 +1249,24 @@ y_sort_enabled = true
 script = ExtResource("22_857nn")
 
 [node name="star" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
-position = Vector2(261, 1554)
+position = Vector2(279, 1575)
 frame = 1
-frame_progress = 0.0
 
 [node name="star3" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
+z_index = -1
 position = Vector2(758, 1625)
 frame = 4
-frame_progress = 0.0
 
 [node name="star5" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(1425, 1482)
-frame_progress = 0.0
 
 [node name="star6" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(1738, 1641)
 frame = 3
-frame_progress = 0.0
 
 [node name="star7" parent="bar-outside/highlight" instance=ExtResource("14_vybhx")]
 position = Vector2(17, 1814)
 frame = 3
-frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)

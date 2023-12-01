@@ -1,5 +1,7 @@
 extends Interactable
 
+
+signal leaf_fell
 var was_animation_played = false
 
 func interact():
@@ -7,3 +9,4 @@ func interact():
 		$AnimatedSprite2D.play()
 		$AudioStreamPlayer.play()
 		was_animation_played = true
+		emit_signal("leaf_fell")

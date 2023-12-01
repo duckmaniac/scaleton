@@ -524,9 +524,8 @@ y_sort_enabled = true
 script = ExtResource("23_53r1g")
 
 [node name="star" parent="secreet_room/interactions/cargo/highlight" instance=ExtResource("21_maa5j")]
-position = Vector2(576, 369)
+position = Vector2(575, 408)
 frame = 4
-frame_progress = 0.0
 
 [node name="exit_secreet_room" type="Area2D" parent="secreet_room/interactions"]
 collision_layer = 2
@@ -545,14 +544,11 @@ position = Vector2(48, 0)
 script = ExtResource("23_53r1g")
 
 [node name="star1" parent="secreet_room/highlight" instance=ExtResource("21_maa5j")]
-position = Vector2(432, 540)
-frame = 3
-frame_progress = 0.0
+position = Vector2(451, 557)
 
 [node name="star2" parent="secreet_room/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(1413, 356)
-frame = 1
-frame_progress = 0.0
+frame = 3
 
 [node name="global" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -632,12 +628,11 @@ script = ExtResource("23_53r1g")
 
 [node name="star" parent="tonell/interactions/cargo/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(573, 412)
-frame = 4
-frame_progress = 0.0
+frame = 2
 
 [node name="first_plate" parent="tonell/interactions" instance=ExtResource("26_nkfa0")]
 z_index = 1
-position = Vector2(1524, 1716)
+position = Vector2(1523, 1709)
 
 [node name="sign" parent="tonell/interactions" instance=ExtResource("31_vfosq")]
 phrases = Array[String](["\"Place the box to pave your way, a simple step before the real play!\" "])
@@ -674,8 +669,6 @@ script = ExtResource("23_53r1g")
 
 [node name="star1" parent="tonell/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(820, 1521)
-frame = 1
-frame_progress = 0.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(960, 540)
@@ -766,8 +759,6 @@ script = ExtResource("23_53r1g")
 
 [node name="star" parent="cargo_puzzle/interactions/big_cargo/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(573, 412)
-frame = 4
-frame_progress = 0.0
 
 [node name="small_cargo" parent="cargo_puzzle/interactions" instance=ExtResource("20_oft5j")]
 position = Vector2(604, 2499)
@@ -780,7 +771,6 @@ script = ExtResource("23_53r1g")
 [node name="star" parent="cargo_puzzle/interactions/small_cargo/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(573, 412)
 frame = 2
-frame_progress = 0.0
 
 [node name="sign" parent="cargo_puzzle/interactions" instance=ExtResource("31_vfosq")]
 phrases = Array[String](["\"In a realm of scales, plates sit in wait: each craves fit weight to set its fate!\""])
@@ -817,8 +807,7 @@ script = ExtResource("23_53r1g")
 
 [node name="star1" parent="cargo_puzzle/highlight" instance=ExtResource("21_maa5j")]
 position = Vector2(1299, 2654)
-frame = 1
-frame_progress = 0.0
+frame = 4
 
 [connection signal="animation_finished" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_animation_finished"]
 [connection signal="frame_changed" from="secreet_room/foreground/water_drop/drop_animation" to="secreet_room/foreground/water_drop" method="_on_drop_animation_frame_changed"]
