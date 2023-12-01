@@ -777,7 +777,7 @@ shape = SubResource("RectangleShape2D_yd3ds")
 disabled = true
 
 [node name="d_fourth" parent="hall/interactions" node_paths=PackedStringArray("additional_sfx") instance=ExtResource("46_waevy")]
-phrases = Array[String](["Boney: You're really chasing your dream, huh? I'll miss your skeleton puns!", "Scaleton: It's time I surfaced. I've got jokes to tell and bones to rattle!", "Boney: One last thing – can you take this 'Top 100 Country Hits' record to my grandpa upstairs? It's from Mrs. Garners", "Scaleton:  Of course. Thanks for everything, Boney. Here's to finding new laughs!", "Boney: Break a leg out there! And tell grandpa I said hi!"])
+phrases = Array[String](["Boney: You're really chasing your dream, huh? I'll miss your skeleton puns!", "Scaleton: It's time I surfaced. I've got jokes to tell and bones to rattle!", "Boney: One last thing - can you take this 'Top 100 Country Hits' record to my grandpa upstairs? It's from Mrs. Garners", "Scaleton:  Of course. Thanks for everything, Boney. Here's to finding new laughs!", "Boney: Break a leg out there! And tell grandpa I said hi!"])
 one_off = true
 additional_sfx_phrase = 3
 additional_sfx = NodePath("AudioStreamPlayer2")

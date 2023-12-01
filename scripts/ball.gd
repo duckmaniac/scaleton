@@ -55,7 +55,7 @@ func _on_body_entered(body):
 		emit_signal("scaleton_kick")
 	elif can_be_kicked and body.is_in_group("friend"):
 		kick(Vector2(-1, 0))
-		body.error *= 3
+		body.error *= 3.5
 		emit_signal("friend_kick")
 
 	
